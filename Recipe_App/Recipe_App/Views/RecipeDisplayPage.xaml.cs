@@ -84,6 +84,8 @@ namespace Recipe_App.Views
             editorRecipeName.IsEnabled = false;
             editorCategory.IsEnabled = false;
             editorIngredients.IsEnabled = false;
+            editorRecipe.IsEnabled = false;
+            editorNotes.IsEnabled = false;
             SQLentry.RecipeName = editorRecipeName.Text;
 
         }
