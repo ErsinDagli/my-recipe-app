@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Recipe_App.Views.RecipeDisplayPage">
+    <ContentPage.Content >
+        <ScrollView >
+            <StackLayout Padding="30" x:Name="myStack" Opacity="1">
+            <Image x:Name="imgRecipe" 
+                   Source="{Binding ImageFilePath}"
+                   HeightRequest="200" 
+                   WidthRequest="500"
+                   >
+                    <Image.GestureRecognizers>
+                        <PinchGestureRecognizer x:Name="pinchGesture" 
+                                                PinchUpdated="PinchGestureRecognizer_PinchUpdated"
+                                                 />
+                    </Image.GestureRecognizers>
+            </Image>
+
+                    <Label Text="Recipe Name:" />
+                <Editor x:Name="editorRecipeName" IsEnabled="false" Completed="editorRecipeName_Completed"  />
+                <Label Text="Category:" />
+                <Editor x:Name="editorCategory" IsEnabled="false" Completed="editorCategory_Completed"  />
+                <Label Text="Ingredients:" />
+                <Editor x:Name="editorIngredients" IsEnabled="false" Completed="editorIngredients_Completed" />
+                <Label Text="Recipe:" />
+                <Editor x:Name="editorRecipe" IsEnabled="false" Completed="editorRecipe_Completed"    />
+                <Label Text="Notes:" />
+                <Editor x:Name="editorNotes" IsEnabled="false" Completed="editorNotes_Completed"  />
+
+
+
+
+
+
+
+                <Button x:Name="Delete" Text="Delete Recipe" Clicked="Delete_Clicked" HorizontalOptions="Center" VerticalOptions="Center" BorderRadius="20"/>
+                <Button x:Name="EditRecipe" Text="Edit Recipe" Clicked="EditRecipe_Clicked" HorizontalOptions="Center" VerticalOptions="Center" BorderRadius="20"/>
+                <Button  x:Name="SaveButton" Text="Save" Clicked="SaveButton_Clicked"  HorizontalOptions="Center" BorderRadius="20" />
+            </StackLayout>
+      </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

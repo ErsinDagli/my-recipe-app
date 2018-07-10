@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Recipe_App.Views.CategoryButtonsPage">
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout x:Name="buttonStack">
+            <FlexLayout x:Name="categoryButtonPageStack" 
+                    AlignItems="Center"
+                    Wrap="Wrap"
+                    JustifyContent="SpaceEvenly"
+                    FlexLayout.Grow="1"
+                        >
+
+                    <Button x:Name="buttons"   
+                    Text="{Binding Category}" 
+                    HeightRequest="40" 
+                    WidthRequest="40" 
+                    BorderRadius="30"
+                    />
+
+                </FlexLayout>
+                <Button x:Name="DeleteButtons"
+                        Text="Delete"
+                        Clicked="DeleteButtons_Clicked"
+                        VerticalOptions="EndAndExpand"/>
+            </StackLayout>
+            </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

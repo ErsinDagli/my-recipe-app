@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Recipe_App.AddRecipesPage"
+               xmlns:local="clr-namespace:Recipe_App">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="30">
+            <Label Text="Add Recipe!" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Center"/>
+            <Image x:Name="RecipeImage" Grid.Row="0" HorizontalOptions="Center" HeightRequest="200" WidthRequest="200"/>
+            <Grid Padding="30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                
+                <Button x:Name="CameraButton" Text="Take Photo"  Grid.Row="1" Grid.Column="0" Clicked="CameraButtonClicked" HeightRequest="40" WidthRequest="40" BorderRadius="20"/>
+                <Button x:Name="ChooseImage" Text="Choose Image" Grid.Row="1" Grid.Column="1"  Clicked="ChooseImageClicked" HeightRequest="40" WidthRequest="40" BorderRadius="20"/>
+            </Grid>
+                <Frame CornerRadius="20"
+                       IsClippedToBounds="True">
+                    <Entry x:Name="txtRecipeName"  Placeholder="Recipe Name" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Grid.Row="3"/>
+                </Frame>
+                <Frame CornerRadius="20"
+                       IsClippedToBounds="True">
+                    <Entry x:Name="txtcategory" Placeholder="Category" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Grid.Row="4"/>
+                </Frame>
+                <Frame CornerRadius="20"
+                       IsClippedToBounds="True">
+                    <Entry x:Name="txtIngredients"  Placeholder="Ingredients" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Grid.Row="5"/>
+                </Frame>
+                <Frame CornerRadius="20"
+                       IsClippedToBounds="True">
+                    <Entry x:Name="txtRecipe"  Placeholder="Recipe" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Grid.Row="6"/>
+                </Frame>
+                <Frame CornerRadius="20"
+                       IsClippedToBounds="True">
+                    <Entry x:Name="txtNotes"   Placeholder="Notes" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Grid.Row="7"/>
+                </Frame>
+                <Button x:Name="SaveButton" Clicked="Click_Save" Text="Save" HorizontalOptions="CenterAndExpand"   HeightRequest="40" WidthRequest="100" BorderRadius="20"/>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
