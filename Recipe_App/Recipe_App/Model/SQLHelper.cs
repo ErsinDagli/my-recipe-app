@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using PCLStorage;
-using Recipe_App.Model;
+
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 
@@ -49,7 +49,7 @@ namespace Recipe_App.ViewModels
 
         public List<SQLentry> GetCategory(string category)
         {
-            return database.Table<SQLentry>().Where(c => c.Category.Contains(category)).ToList();
+            return database.Table<SQLentry>().Where(c => c.Category == category).ToList();
         }
         
 
@@ -73,11 +73,11 @@ namespace Recipe_App.ViewModels
             }
         }
 
-        public int DeleteItem(int RecipeID)
+        public void DeleteItem(int RecipeID)
         {
             lock (locker)
             {
-                return database.Delete<SQLentry>(RecipeID);
+                 database.Delete<SQLentry>(RecipeID);
             }
         }
 

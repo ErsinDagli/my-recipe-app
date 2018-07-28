@@ -35,7 +35,7 @@ namespace Recipe_App
             InitializeComponent();
             BindingContext = new SQLentry();
 
-
+            //we check if theres duplicate values, if so we dont add it
             RecipeNameOC = new ObservableCollection<SQLentry>();
             var entries = App.Database.ListRecipes("");
             foreach (var item in entries)
@@ -56,6 +56,11 @@ namespace Recipe_App
             //OnPropertyChanged(searchitemslist.SelectedItem.ToString());
 
 
+        }
+
+        protected override void OnAppearing()
+        {
+            searchitemslistView.ItemsSource = RecipeNameOC;
         }
 
 

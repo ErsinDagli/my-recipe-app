@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Recipe_App.Views.Categories"
-             BackgroundImage="recipeBackground.png">
+             BackgroundImage="MyRecipesSearchBackgroundEdited.png">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="30">
@@ -14,7 +14,7 @@
                                 <StackLayout Orientation="Horizontal" 
                                 HorizontalOptions="FillAndExpand"
                                 Margin="20, 10, 20, 0" >
-                                    <Label  Text="{Binding RecipeName}" HorizontalOptions="StartAndExpand" />
+                                    <Label  Text="{Binding RecipeName}" HorizontalOptions="StartAndExpand" FontAttributes="Bold" FontSize="Medium"/>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>

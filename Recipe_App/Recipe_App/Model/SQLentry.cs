@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Recipe_App.Model;
+
 using SQLite;
 using Xamarin.Forms;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace Recipe_App.ViewModels
 {
-    public class SQLentry : ICategory
+    public class SQLentry 
     {
         private object database;
 

@@ -6,6 +6,8 @@ using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+
+
 [assembly: XamlCompilation (XamlCompilationOptions.Compile)]
 namespace Recipe_App
 {
@@ -21,7 +23,15 @@ namespace Recipe_App
 		{
 			InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage()) { BarBackgroundColor = Color.Black};
+            MainPage = new NavigationPage(new MainPage())
+            {
+                BarBackgroundColor = Color.Black
+                
+                
+            };
+            NavigationPage.SetHasNavigationBar(MainPage, false);
+
+
 
             //we create a list first form SQLhelper, then popuplate our OC with this list
             // recipeNameList = App.Database.ListRecipes("");
@@ -43,10 +53,13 @@ namespace Recipe_App
 
 
 
-            Application.Current.Properties.Remove("");
+          
 
 
         }
+
+
+        
 
         public static SQLHelper Database
         {
@@ -59,6 +72,9 @@ namespace Recipe_App
                 return database;
             }
         }
+
+        public object Glide { get; }
+
         private static SQLHelper database;
 
 
@@ -77,5 +93,12 @@ namespace Recipe_App
 		{
 			// Handle when your app resumes
 		}
-	}
+
+
+
+       
+
+
+    }
+
 }

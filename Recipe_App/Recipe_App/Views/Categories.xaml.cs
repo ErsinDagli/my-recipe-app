@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Recipe_App.Model;
+
 using System.Collections.ObjectModel;
 
 namespace Recipe_App.Views
@@ -16,7 +16,7 @@ namespace Recipe_App.Views
 	public partial class Categories : ContentPage
 	{
         public static string SelectedCategory;
-        public static List<SQLentry> categoryListEntries;
+        public static IList<SQLentry> categoryListEntries;
         public static ObservableCollection<SQLentry> CategoryOC;
 
 
@@ -42,6 +42,11 @@ namespace Recipe_App.Views
             //categoriesList.ItemsSource =  CategoryOC.Where(x => x.Category == SelectedCategory);
             categoriesList.ItemsSource = CategoryOC;
            // categoriesList.ItemsSource = App.Database.GetCategory(selectedcategory);
+        }
+
+        protected override void OnAppearing()
+        {
+            categoriesList.ItemsSource = CategoryOC;
         }
 
         private async Task categoriesList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
