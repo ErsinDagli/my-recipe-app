@@ -4,7 +4,7 @@
              x:Class="Recipe_App.AddRecipesPage"
                xmlns:local="clr-namespace:Recipe_App"
              xmlns:local1="clr-namespace:Recipe_App.Views"
-             BackgroundImage="Fruits.png">
+             BackgroundImage="Fruits4in1.png">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="20" >

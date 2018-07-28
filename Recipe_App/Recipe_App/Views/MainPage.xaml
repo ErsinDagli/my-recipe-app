@@ -4,12 +4,12 @@
              xmlns:local="clr-namespace:Recipe_App"
              x:Class="Recipe_App.MainPage"
              x:Name="MainContentPage"
-             BackgroundImage="MyRecipesMainPageBackgroundEdited.png"
+             BackgroundImage="MainPage.png"
              >
 
     <StackLayout Padding="30" >
         <!-- Place new controls here -->
-    	<Label Text="My Recipes App" 
+    	<Label Text="" 
                FontSize="Large"
                FontAttributes="Bold"
                HorizontalOptions="Center"
