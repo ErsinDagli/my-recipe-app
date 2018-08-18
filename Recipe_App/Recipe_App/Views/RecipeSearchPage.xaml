@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Recipe_App.ViewModels"
+             x:Class="Recipe_App.RecipeSearchPage"
+             BackgroundImage="MyRecipesSearchBackgroundEdited.png">
+
+    <ContentPage.Content>
+        <ScrollView>
+            
+                
+                    <StackLayout 
+                        x:Name="recipeSearchPageStackLayout" 
+                        BackgroundColor="MintCream" 
+                        Padding="30">
+
+                        <Label Text="My Recipes"
+                        VerticalOptions="Center" 
+                        HorizontalOptions="Center"
+                        FontSize="Medium"
+                        FontAttributes="Bold"
+                               
+                            />
+
+                        <SearchBar x:Name="searchbar" Placeholder="Name" SearchButtonPressed="searchbar_SearchButtonPressed" 
+                    TextChanged="searchbar_TextChanged" 
+                    HorizontalOptions="CenterAndExpand"  
+                    VerticalOptions="Center"
+                    HeightRequest="40"
+                    >
+                            <SearchBar.Behaviors>
+                                <local:TextChangedBehavior />
+                            </SearchBar.Behaviors>
+
+                        </SearchBar>
+                        
+                        <ListView x:Name="searchitemslistView" 
+                                  ItemSelected="searchitemslist_ItemSelected"  
+                                  >
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout
+                                            Orientation="Horizontal" 
+                                             HorizontalOptions="FillAndExpand" >
+                                    
+                                        <Label  Text="{Binding RecipeName}" 
+                                                HorizontalOptions="StartAndExpand"
+                                                TextColor="Black"
+                                                FontAttributes="Bold"/>
+                                   
+                                </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+            </StackLayout>
+
+
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

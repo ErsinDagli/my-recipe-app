@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Recipe_App.Views.CategoryButtonsPage"
+             >
+    <ContentPage.Content>
+        <ScrollView>
+           
+                <StackLayout x:Name="buttonStack">
+                    <Entry x:Name="AddCategoryEntry" IsVisible="False" />
+                    <Button x:Name="SaveCategoryButton" 
+                            Text="Save" 
+                            CornerRadius="20"
+                            HorizontalOptions="End"
+                            Clicked="SaveCategoryButton_Clicked" IsVisible="False"
+                            BackgroundColor="Purple"
+                            TextColor="White"/>
+                        <Button x:Name="AddCategoryButton" 
+                            Text="+"
+                            CornerRadius="20"
+                            HorizontalOptions="End"
+                            BackgroundColor="Purple"
+                            TextColor="White"
+                                Clicked="AddCategoryButton_Clicked"/>
+
+
+                    <FlexLayout x:Name="categoryButtonPageStack" 
+                        AlignItems="Center"
+                        Wrap="Wrap"
+                        JustifyContent="SpaceEvenly"
+                        FlowDirection="LeftToRight"
+                        FlexLayout.Grow="1"
+                        Padding="30"
+                            Margin="60,0,0,0">
+
+
+
+                        <Button x:Name="BreakfastButton" Text="Breakfast" HeightRequest="100" WidthRequest="100" CornerRadius="20" Clicked="BreakfastButton_Clicked"/>
+                        <Button x:Name="Lunch"  Text="Lunch" HeightRequest="100" WidthRequest="100" CornerRadius="20" Clicked="Lunch_Clicked"/>
+                        <Button x:Name="Dinner"  Text="Dinner" HeightRequest="100" WidthRequest="100" CornerRadius="20" Clicked="Dinner_Clicked"/>
+                        <Button x:Name="Desserts"  Text="Desserts" HeightRequest="100" WidthRequest="100" CornerRadius="20" Clicked="Desserts_Clicked"/>
+                        <Button x:Name="QuickBites"  Text="Quick Bites" HeightRequest="100" WidthRequest="100" CornerRadius="20" Clicked="QuickBites_Clicked"/>
+                        <Button x:Name="Salads"  Text="Salads" HeightRequest="100" WidthRequest="100" CornerRadius="20" Clicked="Salads_Clicked"/>
+
+
+
+                    </FlexLayout>
+                
+                
+
+                    <Button x:Name="DeleteButtons"
+                        Text="Delete"
+                        HorizontalOptions="Center"
+                        Clicked="DeleteButtons_Clicked"
+                        VerticalOptions="EndAndExpand"
+                        BorderRadius="20" 
+                        TextColor="White"
+                    BackgroundColor="Purple"/>
+                
+            </StackLayout>
+            
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

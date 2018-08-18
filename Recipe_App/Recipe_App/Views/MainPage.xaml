@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Recipe_App"
+             x:Class="Recipe_App.MainPage"
+             x:Name="MainContentPage"
+             BackgroundImage="MainPage.png"
+             >
+
+    <StackLayout Padding="30" >
+        <!-- Place new controls here -->
+    	<Label Text="" 
+               FontSize="Large"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               VerticalOptions="CenterAndExpand"
+               />
+        <Button Text="Add Recipe" Command="{Binding NavigateToAddRecipesPage}" 
+                HeightRequest="50"
+                WidthRequest="50" 
+                BorderRadius="20"
+                BackgroundColor="BlueViolet"
+                TextColor="White"/>
+        <Button Text="Search Recipes" Command="{Binding NavigateToRecipeSearchPage}" 
+                BorderRadius="20" 
+                BackgroundColor="BlueViolet"
+                TextColor="White"/>
+
+        <Image x:Name="newimage" />
+
+
+
+    </StackLayout>
+
+</ContentPage>
