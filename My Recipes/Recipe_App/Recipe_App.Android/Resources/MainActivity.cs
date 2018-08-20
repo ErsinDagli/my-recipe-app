@@ -11,7 +11,7 @@ using Android.Graphics;
 
 namespace Recipe_App.Droid
 {
-    [Activity(Label = "My Recipes", Icon = "@drawable/chefshaticon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "MyRecipes", Icon = "@drawable/chefshaticon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
        
