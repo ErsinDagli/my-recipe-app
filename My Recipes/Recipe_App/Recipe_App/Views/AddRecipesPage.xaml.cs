@@ -7,6 +7,7 @@ using Xamarin.Forms.Xaml;
 using Recipe_App.ViewModels;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
+using Recipe_App.Model;
 
 namespace Recipe_App
 {
@@ -23,7 +24,8 @@ namespace Recipe_App
         public AddRecipesPage()
         {
             InitializeComponent();
-            //BindingContext = new AddRecipesPageViewModel();
+            BindingContext = new Language();
+            
 
             //update picker values with colletion
             foreach (var item in Application.Current.Properties)

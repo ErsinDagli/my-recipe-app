@@ -35,16 +35,16 @@
 
 
 
-                        <Button x:Name="BreakfastButton" Text="Breakfast" HeightRequest="100" WidthRequest="100" CornerRadius="20" Clicked="BreakfastButton_Clicked"/>
-                        <Button x:Name="Lunch"  Text="Lunch" HeightRequest="100" WidthRequest="100" CornerRadius="20" Clicked="Lunch_Clicked"/>
-                        <Button x:Name="Dinner"  Text="Dinner" HeightRequest="100" WidthRequest="100" CornerRadius="20" Clicked="Dinner_Clicked"/>
-                        <Button x:Name="Desserts"  Text="Desserts" HeightRequest="100" WidthRequest="100" CornerRadius="20" Clicked="Desserts_Clicked"/>
-                        <Button x:Name="QuickBites"  Text="Quick Bites" HeightRequest="100" WidthRequest="100" CornerRadius="20" Clicked="QuickBites_Clicked"/>
-                        <Button x:Name="Salads"  Text="Salads" HeightRequest="100" WidthRequest="100" CornerRadius="20" Clicked="Salads_Clicked"/>
+                        <Button x:Name="BreakfastButton" Text="{Binding Breakfast}" HeightRequest="100" WidthRequest="100" CornerRadius="20" Clicked="BreakfastButton_Clicked"/>
+                        <Button x:Name="Lunch"  Text="{Binding Lunch}" HeightRequest="100" WidthRequest="100" CornerRadius="20" Clicked="Lunch_Clicked"/>
+                        <Button x:Name="Dinner"  Text="{Binding Dinner}" HeightRequest="100" WidthRequest="100" CornerRadius="20" Clicked="Dinner_Clicked"/>
+                        <Button x:Name="Desserts"  Text="{Binding Desserts}" HeightRequest="100" WidthRequest="100" CornerRadius="20" Clicked="Desserts_Clicked"/>
+                        <Button x:Name="QuickBites"  Text="{Binding Quickbites}" HeightRequest="100" WidthRequest="100" CornerRadius="20" Clicked="QuickBites_Clicked"/>
+                        <Button x:Name="Salads"  Text="{Binding Salads}" HeightRequest="100" WidthRequest="100" CornerRadius="20" Clicked="Salads_Clicked"/>
 
 
 
-                    </FlexLayout>
+                </FlexLayout>
                 
                 
 

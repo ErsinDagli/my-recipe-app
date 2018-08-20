@@ -9,7 +9,9 @@
 
     <StackLayout Padding="30" >
         <!-- Place new controls here -->
-    	<Label Text="" 
+        <Button Text="TR" x:Name="TurkishButton" HorizontalOptions="End" BorderRadius="20" WidthRequest="100" HeightRequest="40" TextColor="White" BackgroundColor="Red" Clicked="TurkishButton_Clicked"/>
+        <Button Text="EN" x:Name="EnglishButton"  HorizontalOptions="End" BorderRadius="20" WidthRequest="100" HeightRequest="40" TextColor="White" BackgroundColor="Blue" Clicked="EnglishButton_Clicked"/>
+        <Label Text="" 
                FontSize="Large"
                FontAttributes="Bold"
                HorizontalOptions="Center"
@@ -25,10 +27,6 @@
                 BorderRadius="20" 
                 BackgroundColor="BlueViolet"
                 TextColor="White"/>
-
-        <Image x:Name="newimage" />
-
-
 
     </StackLayout>
 

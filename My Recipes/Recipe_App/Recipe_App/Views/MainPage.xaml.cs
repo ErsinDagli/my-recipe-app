@@ -1,4 +1,5 @@
-﻿using Recipe_App.ViewModels;
+﻿using Recipe_App.Model;
+using Recipe_App.ViewModels;
 using Xamarin.Forms;
 
 
@@ -6,6 +7,9 @@ namespace Recipe_App
 {
 	public partial class MainPage : ContentPage
 	{
+
+        public static bool TurkishClicked = false;
+
 		public MainPage()
 		{
             
@@ -29,16 +33,15 @@ namespace Recipe_App
             BackgroundImage = null;
         }
 
+        private void TurkishButton_Clicked(object sender, System.EventArgs e)
+        {
+            TurkishClicked = true;
 
+        }
 
-
-
-
-
-
-
-
-
-
+        private void EnglishButton_Clicked(object sender, System.EventArgs e)
+        {
+            TurkishClicked = false;
+        }
     }
 }

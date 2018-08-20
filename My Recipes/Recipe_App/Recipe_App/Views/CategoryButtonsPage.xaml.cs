@@ -1,4 +1,5 @@
-﻿using Recipe_App.ViewModels;
+﻿using Recipe_App.Model;
+using Recipe_App.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -14,7 +15,9 @@ namespace Recipe_App.Views
 		public CategoryButtonsPage ()
 		{
 			InitializeComponent ();
-            BindingContext = new SQLentry();
+            //BindingContext = new SQLentry();
+            BindingContext = new Language();
+
 
             BreakfastButton.BackgroundColor = GetRandomColor();
             Lunch.BackgroundColor = GetRandomColor();

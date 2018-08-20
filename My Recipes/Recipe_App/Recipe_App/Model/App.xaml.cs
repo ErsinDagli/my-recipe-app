@@ -13,12 +13,7 @@ namespace Recipe_App
 {
 	public partial class App : Application
 	{
-       // public static  ObservableCollection<SQLentry> RecipeNameOC { get; set; }
-       // public static IList<SQLentry> recipeNameList;
-        //public static List<SQLentry> categoryListEntries;
-       // public static ObservableCollection<SQLentry> CategoryOC;
-
-
+       
         public App ()
 		{
 			InitializeComponent();
@@ -30,31 +25,6 @@ namespace Recipe_App
                 
             };
             NavigationPage.SetHasNavigationBar(MainPage, false);
-
-
-
-            //we create a list first form SQLhelper, then popuplate our OC with this list
-            // recipeNameList = App.Database.ListRecipes("");
-            // RecipeNameOC = new ObservableCollection<SQLentry>(recipeNameList);
-
-
-
-            //we create a list first form SQLhelper, then popuplate our OC with this list
-            // categoryListEntries = App.Database.GetCategory(Categories.SelectedCategory);
-            //CategoryOC = new ObservableCollection<SQLentry>(categoryListEntries);
-
-            //var newListOfCategories = App.Database.GetCategory(Categories.SelectedCategory);
-            //foreach (var item in newListOfCategories)
-            //{
-            //    App.CategoryOC.Add(item);
-
-            //}
-
-
-
-
-          
-
 
         }
 
