@@ -8,6 +8,7 @@ using Recipe_App.ViewModels;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using Recipe_App.Model;
+using System.Resources;
 
 namespace Recipe_App
 {
@@ -24,7 +25,7 @@ namespace Recipe_App
         public AddRecipesPage()
         {
             InitializeComponent();
-            BindingContext = new Language();
+            //BindingContext = new Language();
             
 
             //update picker values with colletion
@@ -33,6 +34,21 @@ namespace Recipe_App
                 txtcategory.Items.Add(item.Value.ToString());
             }
             
+            
+
+            if(MainPage.TurkishClicked == true)
+            {
+                addRecipeLabel.Text = Turkish.AddRecipe;
+                recipeNameLabel.Text = Turkish.RecipeName;
+                categoryLabel.Text = Turkish.Category;
+                ingredientsLabel.Text = Turkish.Ingredients;
+                recipeLabel.Text = Turkish.Recipe;
+                notesLabel.Text = Turkish.Notes;
+                SaveButton.Text = Turkish.SaveButton;
+
+
+
+            }
 
 
         }

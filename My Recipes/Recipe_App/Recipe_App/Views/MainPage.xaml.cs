@@ -37,11 +37,12 @@ namespace Recipe_App
         {
             TurkishClicked = true;
 
+
         }
 
         private void EnglishButton_Clicked(object sender, System.EventArgs e)
         {
-            TurkishClicked = false;
+           // TurkishClicked = false;
         }
     }
 }

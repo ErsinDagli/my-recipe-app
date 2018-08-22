@@ -30,7 +30,6 @@ namespace Recipe_App.Droid
             LoadApplication(new App());
 
 
-
             
         }
     
