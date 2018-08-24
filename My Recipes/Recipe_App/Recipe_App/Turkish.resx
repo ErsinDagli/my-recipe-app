@@ -117,25 +117,79 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddRecipe" xml:space="preserve">
+  <data name="AddRecipeEnglish" xml:space="preserve">
+    <value>Add Recipe</value>
+  </data>
+  <data name="AddRecipeTurkish" xml:space="preserve">
     <value>Tarif Ekle</value>
   </data>
   <data name="Category" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CategoryBreakfastEnglish" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CategoryBreakfastTurkish" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CategoryDinnerEnglish" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CategoryDinnerTurkish" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CategoryEnglish" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="CategoryLunchEnglish" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CategoryLunchTurkish" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CategoryTurkish" xml:space="preserve">
     <value>Kategori</value>
   </data>
-  <data name="Ingredients" xml:space="preserve">
+  <data name="ChooseImageButtonEnglish" xml:space="preserve">
+    <value>Choose Photo</value>
+  </data>
+  <data name="ChooseImageButtonTurkish" xml:space="preserve">
+    <value>Resim Sec</value>
+  </data>
+  <data name="IngredientsEnglish" xml:space="preserve">
+    <value>Ingredients</value>
+  </data>
+  <data name="IngredientsTurkish" xml:space="preserve">
     <value>Icindekiler</value>
   </data>
-  <data name="Notes" xml:space="preserve">
+  <data name="NotesEnglish" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="NotesTurkish" xml:space="preserve">
     <value>Notlar</value>
   </data>
-  <data name="Recipe" xml:space="preserve">
-    <value>Tarif</value>
+  <data name="RecipeEnglish" xml:space="preserve">
+    <value>Recipe</value>
   </data>
-  <data name="RecipeName" xml:space="preserve">
+  <data name="RecipeNameEnglish" xml:space="preserve">
+    <value>Recipe Name</value>
+  </data>
+  <data name="RecipeNameTurkish" xml:space="preserve">
     <value>Tarif Ismi</value>
   </data>
-  <data name="SaveButton" xml:space="preserve">
+  <data name="RecipeTurkish" xml:space="preserve">
+    <value>Tarif</value>
+  </data>
+  <data name="SaveButtonEnglish" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SaveButtonTurkish" xml:space="preserve">
     <value>Ekle</value>
+  </data>
+  <data name="TakePhotoButtonEnglish" xml:space="preserve">
+    <value>Take Photo</value>
+  </data>
+  <data name="TakePhotoButtonTurkish" xml:space="preserve">
+    <value>Resim Cek</value>
   </data>
 </root>

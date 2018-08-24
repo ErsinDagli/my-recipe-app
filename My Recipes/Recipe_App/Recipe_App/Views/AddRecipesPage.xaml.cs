@@ -38,16 +38,25 @@ namespace Recipe_App
 
             if(MainPage.TurkishClicked == true)
             {
-                addRecipeLabel.Text = Turkish.AddRecipe;
-                recipeNameLabel.Text = Turkish.RecipeName;
-                categoryLabel.Text = Turkish.Category;
-                ingredientsLabel.Text = Turkish.Ingredients;
-                recipeLabel.Text = Turkish.Recipe;
-                notesLabel.Text = Turkish.Notes;
-                SaveButton.Text = Turkish.SaveButton;
+                addRecipeLabel.Text = Turkish.AddRecipeTurkish;
+                recipeNameLabel.Text = Turkish.RecipeNameTurkish;
+                categoryLabel.Text = Turkish.CategoryTurkish;
+                ingredientsLabel.Text = Turkish.IngredientsTurkish;
+                recipeLabel.Text = Turkish.RecipeTurkish;
+                notesLabel.Text = Turkish.NotesTurkish;
+                SaveButton.Text = Turkish.SaveButtonTurkish;
 
 
-
+            }
+            else
+            {
+                addRecipeLabel.Text = Turkish.AddRecipeTurkish;
+                recipeNameLabel.Text = Turkish.RecipeNameTurkish;
+                categoryLabel.Text = Turkish.CategoryTurkish;
+                ingredientsLabel.Text = Turkish.IngredientsTurkish;
+                recipeLabel.Text = Turkish.RecipeTurkish;
+                notesLabel.Text = Turkish.NotesTurkish;
+                SaveButton.Text = Turkish.SaveButtonTurkish;
             }
 
 

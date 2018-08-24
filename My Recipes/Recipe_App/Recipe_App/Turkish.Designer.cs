@@ -61,16 +61,25 @@ namespace Recipe_App {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tarif Ekle.
+        ///   Looks up a localized string similar to Add Recipe.
         /// </summary>
-        internal static string AddRecipe {
+        internal static string AddRecipeEnglish {
             get {
-                return ResourceManager.GetString("AddRecipe", resourceCulture);
+                return ResourceManager.GetString("AddRecipeEnglish", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kategori.
+        ///   Looks up a localized string similar to Tarif Ekle.
+        /// </summary>
+        internal static string AddRecipeTurkish {
+            get {
+                return ResourceManager.GetString("AddRecipeTurkish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string Category {
             get {
@@ -79,47 +88,200 @@ namespace Recipe_App {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string CategoryBreakfastEnglish {
+            get {
+                return ResourceManager.GetString("CategoryBreakfastEnglish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string CategoryBreakfastTurkish {
+            get {
+                return ResourceManager.GetString("CategoryBreakfastTurkish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string CategoryDinnerEnglish {
+            get {
+                return ResourceManager.GetString("CategoryDinnerEnglish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string CategoryDinnerTurkish {
+            get {
+                return ResourceManager.GetString("CategoryDinnerTurkish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Category.
+        /// </summary>
+        internal static string CategoryEnglish {
+            get {
+                return ResourceManager.GetString("CategoryEnglish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string CategoryLunchEnglish {
+            get {
+                return ResourceManager.GetString("CategoryLunchEnglish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string CategoryLunchTurkish {
+            get {
+                return ResourceManager.GetString("CategoryLunchTurkish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kategori.
+        /// </summary>
+        internal static string CategoryTurkish {
+            get {
+                return ResourceManager.GetString("CategoryTurkish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose Photo.
+        /// </summary>
+        internal static string ChooseImageButtonEnglish {
+            get {
+                return ResourceManager.GetString("ChooseImageButtonEnglish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resim Sec.
+        /// </summary>
+        internal static string ChooseImageButtonTurkish {
+            get {
+                return ResourceManager.GetString("ChooseImageButtonTurkish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ingredients.
+        /// </summary>
+        internal static string IngredientsEnglish {
+            get {
+                return ResourceManager.GetString("IngredientsEnglish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Icindekiler.
         /// </summary>
-        internal static string Ingredients {
+        internal static string IngredientsTurkish {
             get {
-                return ResourceManager.GetString("Ingredients", resourceCulture);
+                return ResourceManager.GetString("IngredientsTurkish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notes.
+        /// </summary>
+        internal static string NotesEnglish {
+            get {
+                return ResourceManager.GetString("NotesEnglish", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Notlar.
         /// </summary>
-        internal static string Notes {
+        internal static string NotesTurkish {
             get {
-                return ResourceManager.GetString("Notes", resourceCulture);
+                return ResourceManager.GetString("NotesTurkish", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tarif.
+        ///   Looks up a localized string similar to Recipe.
         /// </summary>
-        internal static string Recipe {
+        internal static string RecipeEnglish {
             get {
-                return ResourceManager.GetString("Recipe", resourceCulture);
+                return ResourceManager.GetString("RecipeEnglish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recipe Name.
+        /// </summary>
+        internal static string RecipeNameEnglish {
+            get {
+                return ResourceManager.GetString("RecipeNameEnglish", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Tarif Ismi.
         /// </summary>
-        internal static string RecipeName {
+        internal static string RecipeNameTurkish {
             get {
-                return ResourceManager.GetString("RecipeName", resourceCulture);
+                return ResourceManager.GetString("RecipeNameTurkish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tarif.
+        /// </summary>
+        internal static string RecipeTurkish {
+            get {
+                return ResourceManager.GetString("RecipeTurkish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        internal static string SaveButtonEnglish {
+            get {
+                return ResourceManager.GetString("SaveButtonEnglish", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Ekle.
         /// </summary>
-        internal static string SaveButton {
+        internal static string SaveButtonTurkish {
             get {
-                return ResourceManager.GetString("SaveButton", resourceCulture);
+                return ResourceManager.GetString("SaveButtonTurkish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Take Photo.
+        /// </summary>
+        internal static string TakePhotoButtonEnglish {
+            get {
+                return ResourceManager.GetString("TakePhotoButtonEnglish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resim Cek.
+        /// </summary>
+        internal static string TakePhotoButtonTurkish {
+            get {
+                return ResourceManager.GetString("TakePhotoButtonTurkish", resourceCulture);
             }
         }
     }
