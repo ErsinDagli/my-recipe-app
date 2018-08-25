@@ -7,8 +7,7 @@ using Xamarin.Forms.Xaml;
 using Recipe_App.ViewModels;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
-using Recipe_App.Model;
-using System.Resources;
+
 
 namespace Recipe_App
 {
@@ -36,27 +35,43 @@ namespace Recipe_App
             
             
 
-            if(MainPage.TurkishClicked == true)
+            if(MainPage.TurkishClicked == false)
             {
-                addRecipeLabel.Text = Turkish.AddRecipeTurkish;
-                recipeNameLabel.Text = Turkish.RecipeNameTurkish;
-                categoryLabel.Text = Turkish.CategoryTurkish;
-                ingredientsLabel.Text = Turkish.IngredientsTurkish;
-                recipeLabel.Text = Turkish.RecipeTurkish;
-                notesLabel.Text = Turkish.NotesTurkish;
-                SaveButton.Text = Turkish.SaveButtonTurkish;
+                
+                recipeNameLabel.Text = Language.RecipeNameEnglish;
+                categoryLabel.Text = Language.CategoryEnglish;
+                ingredientsLabel.Text = Language.IngredientsEnglish;
+                recipeLabel.Text = Language.RecipeEnglish;
+                notesLabel.Text = Language.NotesEnglish;
+                SaveButton.Text = Language.SaveButtonEnglish;
+                CameraButton.Text = Language.TakePhotoButtonEnglish;
+                ChooseImage.Text = Language.ChooseImageButtonEnglish;
 
+
+                txtcategory.Items.Add("Breakfast");
+                txtcategory.Items.Add("Lunch");
+                txtcategory.Items.Add("Dinner");
+                txtcategory.Items.Add("Desserts");
+                txtcategory.Items.Add("Quick Bites");
 
             }
             else
             {
-                addRecipeLabel.Text = Turkish.AddRecipeTurkish;
-                recipeNameLabel.Text = Turkish.RecipeNameTurkish;
-                categoryLabel.Text = Turkish.CategoryTurkish;
-                ingredientsLabel.Text = Turkish.IngredientsTurkish;
-                recipeLabel.Text = Turkish.RecipeTurkish;
-                notesLabel.Text = Turkish.NotesTurkish;
-                SaveButton.Text = Turkish.SaveButtonTurkish;
+                
+                recipeNameLabel.Text = Language.RecipeNameTurkish;
+                categoryLabel.Text = Language.CategoryTurkish;
+                ingredientsLabel.Text = Language.IngredientsTurkish;
+                recipeLabel.Text = Language.RecipeTurkish;
+                notesLabel.Text = Language.NotesTurkish;
+                SaveButton.Text = Language.SaveButtonTurkish;
+                CameraButton.Text = Language.TakePhotoButtonTurkish;
+                ChooseImage.Text = Language.ChooseImageButtonTurkish;
+
+                txtcategory.Items.Add("Kahvaltı");
+                txtcategory.Items.Add("Öğlen Yemeği");
+                txtcategory.Items.Add("Akşam Yemegi");
+                txtcategory.Items.Add("Tatlılar");
+                txtcategory.Items.Add("Aperatifler");
             }
 
 
@@ -82,7 +97,47 @@ namespace Recipe_App
                 txtcategory.Items.Add(item.Value.ToString());
             }
 
+            if (MainPage.TurkishClicked == false)
+            {
 
+                recipeNameLabel.Text = Language.RecipeNameEnglish;
+                categoryLabel.Text = Language.CategoryEnglish;
+                ingredientsLabel.Text = Language.IngredientsEnglish;
+                recipeLabel.Text = Language.RecipeEnglish;
+                notesLabel.Text = Language.NotesEnglish;
+                SaveButton.Text = Language.SaveButtonEnglish;
+                CameraButton.Text = Language.TakePhotoButtonEnglish;
+                ChooseImage.Text = Language.ChooseImageButtonEnglish;
+
+                txtcategory.Items.Add("Breakfast");
+                txtcategory.Items.Add("Lunch");
+                txtcategory.Items.Add("Dinner");
+                txtcategory.Items.Add("Desserts");
+                txtcategory.Items.Add("Quick Bites");
+               
+
+
+
+
+            }
+            else
+            {
+
+                recipeNameLabel.Text = Language.RecipeNameTurkish;
+                categoryLabel.Text = Language.CategoryTurkish;
+                ingredientsLabel.Text = Language.IngredientsTurkish;
+                recipeLabel.Text = Language.RecipeTurkish;
+                notesLabel.Text = Language.NotesTurkish;
+                SaveButton.Text = Language.SaveButtonTurkish;
+                CameraButton.Text = Language.TakePhotoButtonTurkish;
+                ChooseImage.Text = Language.ChooseImageButtonTurkish;
+
+                txtcategory.Items.Add("Kahvaltı");
+                txtcategory.Items.Add("Öğlen Yemeği");
+                txtcategory.Items.Add("Akşam Yemegi");
+                txtcategory.Items.Add("Tatlılar");
+                txtcategory.Items.Add("Aperatifler");
+            }
 
         }
 
@@ -104,7 +159,34 @@ namespace Recipe_App
 
         async void Click_Save(object sender, EventArgs e)
         {
-            var answer = await DisplayAlert("Save Recipe", "Are you sure?", "Yes", "No");
+            bool answer;
+            if (txtRecipeName.Text != null)
+            {
+                
+                if (MainPage.TurkishClicked == false)
+                {
+                    answer = await DisplayAlert("Save Recipe", "Are you sure?", "Yes", "No");
+                }
+                else
+                {
+                    answer = await DisplayAlert("Tarifi Ekle", "Emin misiniz?", "Evet", "Hayır");
+                }
+            }
+            else
+            {
+                if (MainPage.TurkishClicked == false)
+                {
+                   await DisplayAlert("", "Please fill out fields", "OK");
+                    answer = false;
+                }
+                else
+                {
+                    await DisplayAlert("", "Lütfen boşluklarını doldurun", "OK");
+                    answer = false;
+                }
+            }
+
+    
             if (answer == true)
             {
                 try
@@ -127,11 +209,32 @@ namespace Recipe_App
 
 
                                 entry.RecipeName = txtRecipeName.Text.ToUpper();
-
-                                entry.Category = txtcategory.SelectedItem.ToString();
-
-
-
+                                
+                    //we want to save each category only in english, even if user app is in turkish mode.
+                                if (txtcategory.SelectedItem.ToString() == "Kahvaltı")
+                                {
+                                    entry.Category = "Breakfast";
+                                }
+                                else if (txtcategory.SelectedItem.ToString() == "Öğlen Yemeği")
+                                {
+                                    entry.Category = "Lunch";
+                                }
+                                else if (txtcategory.SelectedItem.ToString() == "Akşam Yemegi")
+                                {
+                                    entry.Category = "Dinner";
+                                }
+                                else if (txtcategory.SelectedItem.ToString() == "Aperatifler")
+                                {
+                                    entry.Category = "Quick Bites";
+                                }
+                                else if (txtcategory.SelectedItem.ToString() == "Tatlılar")
+                                {
+                                    entry.Category = "Desserts";
+                                }
+                                else 
+                                {
+                                    entry.Category = txtcategory.SelectedItem.ToString();
+                                }
 
 
                                 entry.Recipe = txtRecipe.Text;
@@ -156,19 +259,43 @@ namespace Recipe_App
 
                                 if (i > 0)
                                 {
-
-                                    await DisplayAlert("New Recipe", "Save successful", "OK");
-                                    await Navigation.PopToRootAsync();
+                                    if(MainPage.TurkishClicked == false)
+                                    {
+                                        await DisplayAlert("New Recipe", "Save successful", "OK");
+                                        await Navigation.PopToRootAsync();
+                                    }
+                                    else
+                                    {
+                                        await DisplayAlert("Yeni Tarif", "Kayıt Başarılı", "OK");
+                                        await Navigation.PopToRootAsync();
+                                    }
+                                    
 
                                 }
                                 else
                                 {
-                                    await DisplayAlert("Oops!", "Try Again", "OK");
+                                    if(MainPage.TurkishClicked == false)
+                                    {
+                                        await DisplayAlert("Oops!", "Try Again", "OK");
+                                    }
+                                    else
+                                    {
+                                        await DisplayAlert("Oops!", "Tekrar Deneyin", "OK");
+                                    }
+                                    
                                 }
                             }
                             else
                             {
-                                await DisplayAlert("", "Please fill out fields", "");
+                                if(MainPage.TurkishClicked == false)
+                                {
+                                    await DisplayAlert("", "Please fill out fields", "");
+                                }
+                                else
+                                {
+                                    await DisplayAlert("", "Lütfen boşluklarını doldurun", "");
+                                }
+                               
                             }
                         }
                         else if (fileexist != null && passedSQLentry != null)
@@ -198,19 +325,41 @@ namespace Recipe_App
 
                                 if (i > 0)
                                 {
-
-                                    await DisplayAlert("Edit Recipe", "Save successful", "OK");
-                                   await Navigation.PopToRootAsync();
+                                    if(MainPage.TurkishClicked == false)
+                                    {
+                                        await DisplayAlert("Edit Recipe", "Save successful", "OK");
+                                        await Navigation.PopToRootAsync();
+                                    }
+                                    else
+                                    {
+                                        await DisplayAlert("Tarif düzenleme", "Başarılı", "OK");
+                                        await Navigation.PopToRootAsync();
+                                    }
+                                    
 
                                 }
                                 else
                                 {
-                                    await DisplayAlert("Oops!", "Try Again", "OK");
+                                    if (MainPage.TurkishClicked == false)
+                                    {
+                                        await DisplayAlert("Oops!", "Try Again", "OK");
+                                    }
+                                    else
+                                    {
+                                        await DisplayAlert("Oops!", "Tekrar Deneyin", "OK");
+                                    }
                                 }
                             }
                             else
                             {
-                                await DisplayAlert("", "Please fill out fields", "");
+                                if (MainPage.TurkishClicked == false)
+                                {
+                                    await DisplayAlert("", "Please fill out fields", "");
+                                }
+                                else
+                                {
+                                    await DisplayAlert("", "Lütfen boşluklarını doldurun", "");
+                                }
                             }
 
 
@@ -218,8 +367,18 @@ namespace Recipe_App
                         }
                         else if (fileexist != null && passedSQLentry == null)
                         {
-                            await DisplayAlert("Save Failed", "Recipe Already Exists ", "OK");
-                            txtRecipeName.Text = "";
+                            if(MainPage.TurkishClicked == false)
+                            {
+                                await DisplayAlert("Save Failed", "Recipe Already Exists ", "OK");
+                                txtRecipeName.Text = "";
+                            }
+                            else
+                            {
+                                await DisplayAlert("Tarif Ekleme Başarısız oldu", "Yeni Tarif Ekle", "OK");
+                                txtRecipeName.Text = "";
+                            }
+
+                            
 
 
                         }
@@ -282,7 +441,7 @@ namespace Recipe_App
                 {
                     SaveToAlbum = true,
                     Directory = "MyRecipes",
-                    Name = "test.jpg",
+                    Name = "recipe.jpg",
                     AllowCropping = true,
                     PhotoSize = PhotoSize.Medium,
                     CompressionQuality = 92,
@@ -309,8 +468,16 @@ namespace Recipe_App
                 });
             }
             else
-            {
-                await DisplayAlert("Permissions Denied", "Unable to take photos.", "OK");
+            {   
+                if(MainPage.TurkishClicked == false)
+                {
+                    await DisplayAlert("Permissions Denied", "Unable to take photos.", "OK");
+                }
+                else
+                {
+                    await DisplayAlert("Izin Verilmedi", "Lütfen izin veriniz", "OK");
+                }
+               
                
             }
 

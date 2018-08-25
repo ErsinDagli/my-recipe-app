@@ -33,7 +33,34 @@ namespace Recipe_App.Views
             editorIngredients.Text = sqlentryselected.Ingredients;
             editorNotes.Text = sqlentryselected.Notes;
 
-           
+
+
+            if (MainPage.TurkishClicked == false)
+            {
+               
+                recipeNameLabel.Text = Language.RecipeNameEnglish;
+                categoryLabel.Text = Language.CategoryEnglish;
+                ingredientsLabel.Text = Language.IngredientsEnglish;
+                recipeLabel.Text = Language.RecipeEnglish;
+                notesLabel.Text = Language.NotesEnglish;
+                EditRecipe.Text = Language.EditRecipeButtonEN;
+                Delete.Text = Language.DeleteButtonEN;
+
+
+            }
+            else
+            {
+                
+                recipeNameLabel.Text = Language.RecipeNameTurkish;
+                categoryLabel.Text = Language.CategoryTurkish;
+                ingredientsLabel.Text = Language.IngredientsTurkish;
+                recipeLabel.Text = Language.RecipeTurkish;
+                notesLabel.Text = Language.NotesTurkish;
+                EditRecipe.Text = Language.EditRecipeButtonTR;
+                Delete.Text = Language.DeleteButtonTR;
+
+            }
+
 
         }
 
@@ -41,8 +68,16 @@ namespace Recipe_App.Views
 
         private async void Delete_Clicked(object sender, EventArgs e)
         {
-
-            var answer = await DisplayAlert("Delete Recipe", "Are you sure?", "Yes", "No");
+            bool answer;
+            if(MainPage.TurkishClicked == false)
+            {
+                answer = await DisplayAlert("Delete Recipe", "Are you sure?", "Yes", "No");
+            }
+            else
+            {
+                answer = await DisplayAlert("Tarifi Sil", "Emin Misiniz?", "Evet", "Hayır");
+            }
+           
           if(answer == true)
             {
                 //App.CategoryOC.Remove(SQLentry);

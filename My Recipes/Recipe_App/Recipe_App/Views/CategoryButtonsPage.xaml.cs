@@ -1,6 +1,4 @@
-﻿using Recipe_App.Model;
-using Recipe_App.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -15,8 +13,7 @@ namespace Recipe_App.Views
 		public CategoryButtonsPage ()
 		{
 			InitializeComponent ();
-            //BindingContext = new SQLentry();
-            BindingContext = new Language();
+            
 
 
             BreakfastButton.BackgroundColor = GetRandomColor();
@@ -44,8 +41,8 @@ namespace Recipe_App.Views
                 button.Text = category.Value.ToString();
                 categoryButtonPageStack.Children.Add(button);
 
-                button.HeightRequest = 100;
-                button.WidthRequest = 100;
+                button.HeightRequest = 150;
+                button.WidthRequest = 150;
                 button.CornerRadius = 20;
 
                 //give the button a random colour
@@ -59,6 +56,32 @@ namespace Recipe_App.Views
 
             }
 
+
+
+            if(MainPage.TurkishClicked == false)
+            {
+                BreakfastButton.Text = Language.CategoryBreakfastEnglish;
+                Lunch.Text = Language.CategoryLunchEnglish;
+                Dinner.Text = Language.CategoryDinnerEnglish;
+                QuickBites.Text = Language.CategoryQuickBitesEN;
+                Desserts.Text = Language.CategoryDessertsEN;
+                Salads.Text = Language.CategorySaladsEN;
+                DeleteButtons.Text = Language.DeleteButtonEN;
+                SaveCategoryButton.Text = Language.SaveButtonEnglish;
+
+
+            }
+            else
+            {
+                BreakfastButton.Text = Language.CategoryBreakfastTurkish;
+                Lunch.Text = Language.CategoryLunchTurkish;
+                Dinner.Text = Language.CategoryDinnerTurkish;
+                QuickBites.Text = Language.CategoryQuickBitesTR;
+                Desserts.Text = Language.CategoryDessertsTR;
+                Salads.Text = Language.CategorySaladsTR;
+                DeleteButtons.Text = Language.DeleteButtonTR;
+                SaveCategoryButton.Text = Language.SaveButtonTurkish;
+            }
 
 
         }
@@ -91,7 +114,16 @@ namespace Recipe_App.Views
 
         private async Task DeleteButtons_Clicked(object sender, EventArgs e)
         {
-            var answer = await DisplayAlert("Delete Buttons", "Are you sure?", "Yes", "No");
+            bool answer;
+            if(MainPage.TurkishClicked == false)
+            {
+                answer = await DisplayAlert("Delete Buttons", "Are you sure?", "Yes", "No");
+            }
+            else
+            {
+                answer = await DisplayAlert("Tarifi Sil", "Emin Misiniz?", "Evet", "Hayır");
+            }
+            
             if (answer == true)
             {
                 List<Button> buttonList = new List<Button>();
@@ -173,8 +205,8 @@ namespace Recipe_App.Views
                 button.Text = AddCategoryEntry.Text;
                
                 button.CornerRadius = 20;
-                button.WidthRequest = 100;
-                button.HeightRequest = 100;
+                button.WidthRequest = 150;
+                button.HeightRequest = 150;
                 button.Clicked += async (s, f) => await Navigation.PushAsync(new Categories(AddCategoryEntry.Text));
                
                 if ((button.Text != "") || (button.Text != (null)))

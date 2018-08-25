@@ -15,7 +15,7 @@
                         BackgroundColor="MintCream" 
                         Padding="30">
 
-                        <Label Text="Quick Search"
+                        <Label x:Name="QuickSearchLabel"
                         VerticalOptions="Center" 
                         HorizontalOptions="Center"
                         FontSize="Large"

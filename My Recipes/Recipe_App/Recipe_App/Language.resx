@@ -123,29 +123,53 @@
   <data name="AddRecipeTurkish" xml:space="preserve">
     <value>Tarif Ekle</value>
   </data>
+  <data name="CategoriesTabEn" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="CategoriesTabTR" xml:space="preserve">
+    <value>Kategori</value>
+  </data>
   <data name="Category" xml:space="preserve">
-    <value />
+    <value>Category</value>
   </data>
   <data name="CategoryBreakfastEnglish" xml:space="preserve">
-    <value />
+    <value>Breakfast</value>
   </data>
   <data name="CategoryBreakfastTurkish" xml:space="preserve">
-    <value />
+    <value>Kahvaltı</value>
+  </data>
+  <data name="CategoryDessertsEN" xml:space="preserve">
+    <value>Desserts</value>
+  </data>
+  <data name="CategoryDessertsTR" xml:space="preserve">
+    <value>Tatlilar</value>
   </data>
   <data name="CategoryDinnerEnglish" xml:space="preserve">
-    <value />
+    <value>Dinner</value>
   </data>
   <data name="CategoryDinnerTurkish" xml:space="preserve">
-    <value />
+    <value>Akşam Yemeği</value>
   </data>
   <data name="CategoryEnglish" xml:space="preserve">
     <value>Category</value>
   </data>
   <data name="CategoryLunchEnglish" xml:space="preserve">
-    <value />
+    <value>Lunch</value>
   </data>
   <data name="CategoryLunchTurkish" xml:space="preserve">
-    <value />
+    <value>Öğlen Yemeği</value>
+  </data>
+  <data name="CategoryQuickBitesEN" xml:space="preserve">
+    <value>Quick Bites</value>
+  </data>
+  <data name="CategoryQuickBitesTR" xml:space="preserve">
+    <value>Aperatifler</value>
+  </data>
+  <data name="CategorySaladsEN" xml:space="preserve">
+    <value>Salads</value>
+  </data>
+  <data name="CategorySaladsTR" xml:space="preserve">
+    <value>Salatalar</value>
   </data>
   <data name="CategoryTurkish" xml:space="preserve">
     <value>Kategori</value>
@@ -154,19 +178,55 @@
     <value>Choose Photo</value>
   </data>
   <data name="ChooseImageButtonTurkish" xml:space="preserve">
-    <value>Resim Sec</value>
+    <value>Resim Seç</value>
+  </data>
+  <data name="DeleteButtonEN" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteButtonTR" xml:space="preserve">
+    <value>Sil</value>
+  </data>
+  <data name="DeleteRecipesButtonEN" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteRecipesButtonTR" xml:space="preserve">
+    <value>Sil</value>
+  </data>
+  <data name="EditRecipeButtonEN" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="EditRecipeButtonTR" xml:space="preserve">
+    <value>Düzenle</value>
   </data>
   <data name="IngredientsEnglish" xml:space="preserve">
     <value>Ingredients</value>
   </data>
   <data name="IngredientsTurkish" xml:space="preserve">
-    <value>Icindekiler</value>
+    <value>Malzemeler</value>
+  </data>
+  <data name="MainPageAddRecipeButtonEN" xml:space="preserve">
+    <value>Add Recipe</value>
+  </data>
+  <data name="MainPageAddRecipeButtonTR" xml:space="preserve">
+    <value>Tarif Ekle</value>
+  </data>
+  <data name="MainPageSearchRecipeButtonTR" xml:space="preserve">
+    <value>Tariflerim</value>
+  </data>
+  <data name="MainPageSearchRecipesbuttonEN" xml:space="preserve">
+    <value>Search Recipes</value>
   </data>
   <data name="NotesEnglish" xml:space="preserve">
     <value>Notes</value>
   </data>
   <data name="NotesTurkish" xml:space="preserve">
     <value>Notlar</value>
+  </data>
+  <data name="QuickSearchEN" xml:space="preserve">
+    <value>Quick Search</value>
+  </data>
+  <data name="QuickSearchTR" xml:space="preserve">
+    <value>Ara</value>
   </data>
   <data name="RecipeEnglish" xml:space="preserve">
     <value>Recipe</value>
@@ -184,12 +244,18 @@
     <value>Save</value>
   </data>
   <data name="SaveButtonTurkish" xml:space="preserve">
-    <value>Ekle</value>
+    <value>Kaydet</value>
+  </data>
+  <data name="SearchTabEN" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="SearchTabTR" xml:space="preserve">
+    <value>Ara</value>
   </data>
   <data name="TakePhotoButtonEnglish" xml:space="preserve">
     <value>Take Photo</value>
   </data>
   <data name="TakePhotoButtonTurkish" xml:space="preserve">
-    <value>Resim Cek</value>
+    <value>Resim çek</value>
   </data>
 </root>

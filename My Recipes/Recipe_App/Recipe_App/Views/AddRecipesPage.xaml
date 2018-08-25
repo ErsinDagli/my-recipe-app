@@ -11,7 +11,7 @@
 
 
 
-                <Label Text="Add Recipe!" x:Name="addRecipeLabel" FontAttributes="Bold" FontSize="Large" TextColor="BlueViolet" HorizontalOptions="Center"/>
+                
                 <Frame  x:Name="ImageFrame"
                     HeightRequest="200" 
                     WidthRequest="200" 
@@ -42,7 +42,7 @@
                     <Button x:Name="CameraButton" Text="{Binding TakeImageButton}" TextColor="White" Grid.Row="1" Grid.Column="0" Clicked="CameraButtonClicked" HeightRequest="40" WidthRequest="40" BorderRadius="20"  BackgroundColor="BlueViolet"/>
                     <Button x:Name="ChooseImage" Text="{Binding ChooseImageButton}" TextColor="White" Grid.Row="1" Grid.Column="1"  Clicked="ChooseImageClicked" HeightRequest="40" WidthRequest="40" BorderRadius="20" BackgroundColor="BlueViolet"/>
             </Grid>
-                <Label Text="Recipe Name" x:Name="recipeNameLabel" FontAttributes="Bold" FontSize="Medium" TextColor="Red" BackgroundColor="White" />
+                <Label x:Name="recipeNameLabel" FontAttributes="Bold" FontSize="Medium" TextColor="Red" BackgroundColor="White" />
 
 
                 <Frame CornerRadius="20"
@@ -50,24 +50,18 @@
                        BackgroundColor="LightBlue">
                     <Editor x:Name="txtRecipeName"  HorizontalOptions="FillAndExpand" VerticalOptions="Center" Grid.Row="3" BackgroundColor="LightBlue" />
                 </Frame>
-                <Label Text="Category" x:Name="categoryLabel" FontAttributes="Bold" FontSize="Medium" TextColor="ForestGreen" BackgroundColor="White"/>
+                <Label x:Name="categoryLabel" FontAttributes="Bold" FontSize="Medium" TextColor="ForestGreen" BackgroundColor="White"/>
                 <Frame CornerRadius="20"
                        IsClippedToBounds="True"
                        BackgroundColor="LightGreen">
                     <Picker x:Name="txtcategory" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Grid.Row="4" BackgroundColor="LightGreen" SelectedItem="{Binding SelectedCategory}">
-                        <Picker.Items >
-                            <x:String>Breakfast</x:String>
-                            <x:String>Lunch</x:String>
-                            <x:String>Dinner</x:String>
-                            <x:String>Desserts</x:String>
-                            <x:String>Quick Bites</x:String>
-                            <x:String>Salads</x:String>
+                        <Picker.Items>
+                            
                         </Picker.Items>
-
                     </Picker>
                 </Frame>
 
-                <Label Text="Ingredients" x:Name="ingredientsLabel" FontAttributes="Bold" FontSize="Medium" TextColor="Tomato" BackgroundColor="White"/>
+                <Label x:Name="ingredientsLabel" FontAttributes="Bold" FontSize="Medium" TextColor="Tomato" BackgroundColor="White"/>
                 
                 <Frame CornerRadius="20"
                        IsClippedToBounds="True"
@@ -78,13 +72,13 @@
                    
                 </Frame>
 
-                <Label Text="Recipe" x:Name="recipeLabel" FontAttributes="Bold" FontSize="Medium" TextColor="PaleTurquoise" BackgroundColor="White"/>
+                <Label x:Name="recipeLabel" FontAttributes="Bold" FontSize="Medium" TextColor="PaleTurquoise" BackgroundColor="White"/>
                 <Frame CornerRadius="20"
                        IsClippedToBounds="True"
                        BackgroundColor="HotPink">
                     <local1:ExpandableEditor x:Name="txtRecipe"  HorizontalOptions="FillAndExpand" VerticalOptions="Center" Grid.Row="6" BackgroundColor="HotPink"/>
                 </Frame>
-                <Label Text="Notes" x:Name="notesLabel" FontAttributes="Bold" FontSize="Medium" TextColor="DarkSalmon" BackgroundColor="White"/>
+                <Label  x:Name="notesLabel" FontAttributes="Bold" FontSize="Medium" TextColor="DarkSalmon" BackgroundColor="White"/>
                 <Frame CornerRadius="20"
                        IsClippedToBounds="True"
                        BackgroundColor="Olive">

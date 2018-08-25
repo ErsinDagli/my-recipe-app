@@ -42,6 +42,20 @@ namespace Recipe_App
 
             
             searchitemslistView.ItemsSource = RecipeNameOC;
+
+
+            if(MainPage.TurkishClicked == false)
+            {
+                QuickSearchLabel.Text = Language.QuickSearchEN;
+                searchbar.Placeholder = "Name";
+
+            }
+            else
+            {
+                QuickSearchLabel.Text = Language.QuickSearchTR;
+                searchbar.Placeholder = "Tarif";
+            }
+
         }
 
 

@@ -17,7 +17,19 @@ namespace Recipe_App
             
             BindingContext = new MainPageViewModel();
 
+            if(TurkishClicked == false)
+            {
+                AddRecipebutton.Text = Language.MainPageAddRecipeButtonEN;
+                SearchRecipeButton.Text = Language.MainPageSearchRecipesbuttonEN;
 
+
+            }
+            else
+            {
+                AddRecipebutton.Text = Language.MainPageAddRecipeButtonTR;
+                SearchRecipeButton.Text = Language.MainPageSearchRecipeButtonTR;
+
+            }
         
 
         }
@@ -36,13 +48,18 @@ namespace Recipe_App
         private void TurkishButton_Clicked(object sender, System.EventArgs e)
         {
             TurkishClicked = true;
+            AddRecipebutton.Text = Language.MainPageAddRecipeButtonTR;
+            SearchRecipeButton.Text = Language.MainPageSearchRecipeButtonTR;
+
 
 
         }
 
         private void EnglishButton_Clicked(object sender, System.EventArgs e)
         {
-           // TurkishClicked = false;
+            TurkishClicked = false;
+            AddRecipebutton.Text = Language.MainPageAddRecipeButtonEN;
+            SearchRecipeButton.Text = Language.MainPageSearchRecipesbuttonEN;
         }
     }
 }

@@ -37,7 +37,17 @@ namespace Recipe_App.Views
             //item source of list is the OC where only categories are the same as the selected category provided in constructor
            
             categoriesList.ItemsSource = CategoryOC;
-           
+
+            if(MainPage.TurkishClicked == false)
+            {
+                CategoryLabel.Text = Language.RecipeNameEnglish;
+            }
+            else
+            {
+                CategoryLabel.Text = Language.RecipeNameTurkish;
+            }
+            
+
         }
 
         protected override void OnAppearing()

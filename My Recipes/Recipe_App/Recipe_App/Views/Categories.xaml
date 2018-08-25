@@ -6,7 +6,7 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="30">
-                <Label Text="Recipes List:" FontAttributes="Bold" FontSize="Large" TextColor="BlueViolet"/>
+                <Label x:Name="CategoryLabel" FontAttributes="Bold" FontSize="Large" TextColor="BlueViolet"/>
                 <ListView x:Name="categoriesList" ItemSelected="categoriesList_ItemSelected" CachingStrategy="RecycleElement">
                     <ListView.ItemTemplate>
                         <DataTemplate>

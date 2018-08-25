@@ -36,25 +36,25 @@
                 </StackLayout>
 
 
-                <Label Text="Recipe Name:" FontAttributes="Bold" />
+                <Label x:Name="recipeNameLabel" FontAttributes="Bold" FontSize="Medium" TextColor="Red" />
                 <Frame CornerRadius="20" BackgroundColor="Yellow">
                     <Label BackgroundColor="Yellow" x:Name="editorRecipeName" FontAttributes="Bold" FontSize="Medium"  />
                 </Frame>
-                <Label Text="Category:" FontAttributes="Bold"  />
-                <Frame CornerRadius="20" BackgroundColor="Gainsboro">
-                    <Label x:Name="editorCategory" BackgroundColor="Gainsboro" FontAttributes="Bold" FontSize="Medium"/>
+                <Label x:Name="categoryLabel" FontAttributes="Bold" FontSize="Medium" TextColor="ForestGreen"/>
+                <Frame CornerRadius="20" BackgroundColor="LightCyan">
+                    <Label x:Name="editorCategory" BackgroundColor="LightCyan" FontAttributes="Bold" FontSize="Medium"/>
                 </Frame>
-                <Label Text="Ingredients:"  FontAttributes="Bold" />
+                <Label x:Name="ingredientsLabel" FontAttributes="Bold" FontSize="Medium" TextColor="Tomato"/>
                 <Frame CornerRadius="20" BackgroundColor="Honeydew">
                     <Label x:Name="editorIngredients" BackgroundColor="Honeydew" FontAttributes="Bold" FontSize="Medium"/>
                 </Frame>
-                <Label Text="Recipe:" FontAttributes="Bold" />
+                <Label x:Name="recipeLabel" FontAttributes="Bold" FontSize="Medium" TextColor="PaleTurquoise"/>
                 <Frame CornerRadius="20" BackgroundColor="LightCoral">
                     <Label x:Name="editorRecipe" BackgroundColor="LightCoral" FontAttributes="Bold" FontSize="Medium" />
                 </Frame>
-                <Label Text="Notes:" FontAttributes="Bold" />
-                <Frame CornerRadius="20" BackgroundColor="RosyBrown" >
-                    <Label x:Name="editorNotes" BackgroundColor="RosyBrown"   FontAttributes="Bold" FontSize="Medium"/>
+                <Label  x:Name="notesLabel" FontAttributes="Bold" FontSize="Medium" TextColor="DarkSalmon" />
+                <Frame CornerRadius="20" BackgroundColor="LawnGreen" >
+                    <Label x:Name="editorNotes" BackgroundColor="LawnGreen"   FontAttributes="Bold" FontSize="Medium"/>
                 </Frame>
                 <StackLayout Orientation="Horizontal">
                     <Button x:Name="Delete" Text="Delete Recipe" Clicked="Delete_Clicked" HorizontalOptions="CenterAndExpand"  BorderRadius="20" BackgroundColor="Purple" TextColor="white"/>

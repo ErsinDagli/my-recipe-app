@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using PCLStorage;
 
-
 namespace Recipe_App.ViewModels
 {
     public class SQLHelper

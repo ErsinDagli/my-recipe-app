@@ -1,10 +1,6 @@
 ﻿using Recipe_App.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,6 +12,18 @@ namespace Recipe_App.Views
         public TabbedPage1 ()
         {
             InitializeComponent();
+
+            if(MainPage.TurkishClicked == false)
+            {
+                RecipeSearchTab.Title = Language.SearchTabEN;
+                CategoryButtonsTab.Title = Language.CategoriesTabEn;
+            }
+            else
+            {
+                RecipeSearchTab.Title = Language.SearchTabTR;
+                CategoryButtonsTab.Title = Language.CategoriesTabTR;
+            }
         }
+        
     }
 }
