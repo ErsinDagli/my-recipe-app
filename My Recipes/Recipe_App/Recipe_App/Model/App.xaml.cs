@@ -26,6 +26,29 @@ namespace Recipe_App
             };
             NavigationPage.SetHasNavigationBar(MainPage, false);
 
+
+            SQLentry fileexist = App.Database.GetItem("SALMON WITH HERB SAUCE RAVIGOTE");
+            if (fileexist == null)
+            {
+                SQLentry stockRecipe1 = new SQLentry();
+                stockRecipe1.RecipeName = "SALMON WITH HERB SAUCE RAVIGOTE";
+                stockRecipe1.Category = "Dinner";
+                stockRecipe1.Ingredients = "250g salmon" + Environment.NewLine + "Handful of thyme" + Environment.NewLine + "Handful of rosemary"
+                    + Environment.NewLine + "2 lemons" + Environment.NewLine + "Vinegar" + Environment.NewLine + "250g prepared chips or potatoes";
+                stockRecipe1.Recipe = "Cook the salmon etc etc";
+
+                //this is how we use an IMAGE from the resources drawable. just quote the name of file with extension
+                //BE CAREFUL its best to use PNG extension. If you file is jpg, dont change it directly, better to open via paint and savea as png, otherwise becomes
+                //unusable currupt file
+                stockRecipe1.ImageFilePath = "stockRecipe1Salmon.png";
+
+
+                Database.SaveItem(stockRecipe1);
+            }
+               
+
+
+
         }
 
 
