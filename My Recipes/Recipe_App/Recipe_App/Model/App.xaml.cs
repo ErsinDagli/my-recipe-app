@@ -25,6 +25,7 @@ namespace Recipe_App
                 
             };
             NavigationPage.SetHasNavigationBar(MainPage, false);
+           
 
 
             SQLentry fileexist = App.Database.GetItem("SALMON WITH HERB SAUCE RAVIGOTE");
@@ -40,7 +41,7 @@ namespace Recipe_App
                 //this is how we use an IMAGE from the resources drawable. just quote the name of file with extension
                 //BE CAREFUL its best to use PNG extension. If you file is jpg, dont change it directly, better to open via paint and savea as png, otherwise becomes
                 //unusable currupt file
-                stockRecipe1.ImageFilePath = "stockRecipe1Salmon.png";
+                stockRecipe1.ImageFilePath = "salmon.png";
 
 
                 Database.SaveItem(stockRecipe1);

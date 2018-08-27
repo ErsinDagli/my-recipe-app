@@ -28,7 +28,41 @@ namespace Recipe_App.Views
             
                 
             editorRecipeName.Text = sqlentryselected.RecipeName;
-            editorCategory.Text  = sqlentryselected.Category;
+
+            //changing display of category based on turkish or english selected
+            if(MainPage.TurkishClicked == true)
+            {
+                if(sqlentryselected.Category == "Breakfast")
+                {
+                    editorCategory.Text = "Kahvaltı";
+
+                }
+                else if (sqlentryselected.Category == "Lunch")
+                {
+                    editorCategory.Text = "Öğlen Yemeği";
+                }
+                else if (sqlentryselected.Category == "Dinner")
+                {
+                    editorCategory.Text = "Akşam yemeği";
+                }
+                else if (sqlentryselected.Category == "Desserts")
+                {
+                    editorCategory.Text = "Tatlılar";
+                }
+                else if (sqlentryselected.Category == "Quick Bites")
+                {
+                    editorCategory.Text = "Aperatifler";
+                }else
+                {
+                    editorCategory.Text = sqlentryselected.Category;
+                }
+            }
+            else
+            {
+                editorCategory.Text = sqlentryselected.Category;
+            }
+
+            
             editorRecipe.Text = sqlentryselected.Recipe;
             editorIngredients.Text = sqlentryselected.Ingredients;
             editorNotes.Text = sqlentryselected.Notes;

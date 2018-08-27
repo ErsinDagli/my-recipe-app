@@ -47,7 +47,7 @@ namespace Recipe_App.Views
 
                 //give the button a random colour
                 button.BackgroundColor = GetRandomColor();
-
+                button.TextColor = GetRandomColor();
 
 
 
