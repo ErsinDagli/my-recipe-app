@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Recipe_App"
+             x:Class="Recipe_App.MainPage"
+             x:Name="MainContentPage"
+             
+             >
+
+    <StackLayout Padding="30" >
+        <!-- Place new controls here -->
+        <Button Text="TR" x:Name="TurkishButton" HorizontalOptions="End" BorderRadius="20" WidthRequest="100" HeightRequest="40" TextColor="White" BackgroundColor="Red" Clicked="TurkishButton_Clicked"/>
+        <Button Text="EN" x:Name="EnglishButton"  HorizontalOptions="End" BorderRadius="20" WidthRequest="100" HeightRequest="40" TextColor="White" BackgroundColor="Blue" Clicked="EnglishButton_Clicked"/>
+        <Label Text="" 
+               FontSize="Large"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               VerticalOptions="CenterAndExpand"
+               />
+        <Button x:Name="AddRecipebutton" Command="{Binding NavigateToAddRecipesPage}" 
+                HeightRequest="50"
+                WidthRequest="50" 
+                BorderRadius="20"
+                BackgroundColor="BlueViolet"
+                TextColor="White"/>
+        <Button x:Name="SearchRecipeButton" Command="{Binding NavigateToRecipeSearchPage}" 
+                BorderRadius="20" 
+                BackgroundColor="BlueViolet"
+                TextColor="White"/>
+
+    </StackLayout>
+
+</ContentPage>
