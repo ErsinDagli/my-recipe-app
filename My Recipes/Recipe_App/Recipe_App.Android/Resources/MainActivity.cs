@@ -29,15 +29,16 @@ namespace Recipe_App.Droid
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
 
+            Window.SetStatusBarColor(Android.Graphics.Color.White);
 
-            
+
         }
-    
 
 
 
-            
-        
+
+
+
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
         {

@@ -11,6 +11,17 @@
         <!-- Place new controls here -->
         <Button Text="TR" x:Name="TurkishButton" HorizontalOptions="End" BorderRadius="20" WidthRequest="100" HeightRequest="40" TextColor="White" BackgroundColor="Red" Clicked="TurkishButton_Clicked"/>
         <Button Text="EN" x:Name="EnglishButton"  HorizontalOptions="End" BorderRadius="20" WidthRequest="100" HeightRequest="40" TextColor="White" BackgroundColor="Blue" Clicked="EnglishButton_Clicked"/>
+
+        <Picker x:Name="LanguagePicker" SelectedIndexChanged="LanguagePicker_SelectedIndexChanged">
+            <Picker.Items>
+                <x:String>
+                    English
+                </x:String>
+                <x:String>
+                    Turkish
+                </x:String>
+            </Picker.Items>
+        </Picker>
         <Label Text="" 
                FontSize="Large"
                FontAttributes="Bold"
