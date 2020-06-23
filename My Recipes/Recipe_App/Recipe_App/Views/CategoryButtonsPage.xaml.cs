@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Recipe_App.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -10,6 +11,9 @@ namespace Recipe_App.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class CategoryButtonsPage : ContentPage
 	{
+
+        
+
 		public CategoryButtonsPage ()
 		{
 			InitializeComponent ();
@@ -28,33 +32,33 @@ namespace Recipe_App.Views
 
             //ADDING BUTTONS BASED ON PROPERTIES DICTIONARY
 
-            foreach (KeyValuePair<string, object> category in Application.Current.Properties)
-            {
-                //creating a new button for each category, giving its text as the category, use properties to store the category
+            //foreach (KeyValuePair<string, object> category in Application.Current.Properties)
+            //{
+            //    //creating a new button for each category, giving its text as the category, use properties to store the category
 
 
-                Button button = new Button();
+            //    Button button = new Button();
 
-                button.HorizontalOptions = LayoutOptions.Center;
-                button.VerticalOptions = LayoutOptions.Center;
-                // add a navigation to each button, navigate to a category page that contains a list of each item in the category
-                button.Text = category.Value.ToString();
-                categoryButtonPageStack.Children.Add(button);
+            //    button.HorizontalOptions = LayoutOptions.Center;
+            //    button.VerticalOptions = LayoutOptions.Center;
+            //    // add a navigation to each button, navigate to a category page that contains a list of each item in the category
+            //    button.Text = category.Value.ToString();
+            //    categoryButtonPageStack.Children.Add(button);
 
-                button.HeightRequest = 150;
-                button.WidthRequest = 150;
-                button.CornerRadius = 20;
+            //    button.HeightRequest = 150;
+            //    button.WidthRequest = 150;
+            //    button.CornerRadius = 20;
 
-                //give the button a random colour
-                button.BackgroundColor = GetRandomColor();
-                button.TextColor = GetRandomColor();
-
-
-
-                button.Clicked += async (sender, e) => await Navigation.PushAsync(new Categories(category.Value.ToString()));
+            //    //give the button a random colour
+            //    button.BackgroundColor = GetRandomColor();
+            //    button.TextColor = Color.Black;
 
 
-            }
+
+            //    button.Clicked += async (sender, e) => await Navigation.PushAsync(new Categories(category.Value.ToString()));
+
+
+            //}
 
 
 
@@ -66,7 +70,6 @@ namespace Recipe_App.Views
                 QuickBites.Text = Language.CategoryQuickBitesEN;
                 Desserts.Text = Language.CategoryDessertsEN;
                 Salads.Text = Language.CategorySaladsEN;
-                DeleteButtons.Text = Language.DeleteButtonEN;
                 SaveCategoryButton.Text = Language.SaveButtonEnglish;
 
 
@@ -79,7 +82,6 @@ namespace Recipe_App.Views
                 QuickBites.Text = Language.CategoryQuickBitesTR;
                 Desserts.Text = Language.CategoryDessertsTR;
                 Salads.Text = Language.CategorySaladsTR;
-                DeleteButtons.Text = Language.DeleteButtonTR;
                 SaveCategoryButton.Text = Language.SaveButtonTurkish;
             }
 
@@ -90,6 +92,12 @@ namespace Recipe_App.Views
         protected override void OnAppearing()
         {
             BackgroundImage = "pictwoinone.png";
+
+
+            //if (App.CategoryDeleted)
+            //{
+
+            //}
         }
 
         protected override void OnDisappearing()
@@ -112,38 +120,7 @@ namespace Recipe_App.Views
 
 
 
-        private async Task DeleteButtons_Clicked(object sender, EventArgs e)
-        {
-            bool answer;
-            if(MainPage.TurkishClicked == false)
-            {
-                answer = await DisplayAlert("Delete Buttons", "Are you sure?", "Yes", "No");
-            }
-            else
-            {
-                answer = await DisplayAlert("Tarifi Sil", "Emin Misiniz?", "Evet", "Hayır");
-            }
-            
-            if (answer == true)
-            {
-                List<Button> buttonList = new List<Button>();
-                foreach (var children in categoryButtonPageStack.Children)
-                {
-                    if ((children.GetType() == typeof(Button)))
-                    {
-                        buttonList.Add(children as Button);
-                    }
-                }
-                foreach (var ch in buttonList)
-                {
-                    categoryButtonPageStack.Children.Remove(ch as Button);
-                }
-
-                Application.Current.Properties.Clear();
-            }
-
-              
-        }
+   
 
 
 
@@ -207,12 +184,24 @@ namespace Recipe_App.Views
                 button.CornerRadius = 20;
                 button.WidthRequest = 150;
                 button.HeightRequest = 150;
+                button.Margin = new Thickness(5);
                 button.Clicked += async (s, f) => await Navigation.PushAsync(new Categories(AddCategoryEntry.Text));
                
                 if ((button.Text != "") || (button.Text != (null)))
                 {
                     categoryButtonPageStack.Children.Add(button);
-                    Application.Current.Properties[$"{AddCategoryEntry.Text}"] = AddCategoryEntry.Text;
+
+                    //save to properties
+                    //Application.Current.Properties[$"{AddCategoryEntry.Text}"] = AddCategoryEntry.Text;
+
+
+
+                    //save to SQL!
+
+                    Category c = new Category();
+                    c.CategoryName = AddCategoryEntry.Text;
+
+                    App.Database.SaveCategory(c);
                 }
 
                

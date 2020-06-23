@@ -1,6 +1,8 @@
 ﻿using Plugin.Media.Abstractions;
 using Recipe_App.ViewModels;
 using System;
+using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -77,8 +79,6 @@ namespace Recipe_App.Views
                 ingredientsLabel.Text = Language.IngredientsEnglish;
                 recipeLabel.Text = Language.RecipeEnglish;
                 notesLabel.Text = Language.NotesEnglish;
-                EditRecipe.Text = Language.EditRecipeButtonEN;
-                Delete.Text = Language.DeleteButtonEN;
 
 
             }
@@ -90,8 +90,7 @@ namespace Recipe_App.Views
                 ingredientsLabel.Text = Language.IngredientsTurkish;
                 recipeLabel.Text = Language.RecipeTurkish;
                 notesLabel.Text = Language.NotesTurkish;
-                EditRecipe.Text = Language.EditRecipeButtonTR;
-                Delete.Text = Language.DeleteButtonTR;
+               
 
             }
 
@@ -156,14 +155,36 @@ namespace Recipe_App.Views
         
         }
 
-       
-
-        
 
 
+        public async Task ShareText(SQLentry recipe)
+        {
+            await Share.RequestAsync(new ShareTextRequest
+            {
+                Title = recipe.RecipeName,
+                Text = 
+                "Recipe Name:" + Environment.NewLine +
+                recipe.RecipeName + Environment.NewLine +
+                "--" +
+                "Category:" + Environment.NewLine +
+                
+                recipe.Category + Environment.NewLine +
+                "--" +
+                 "Ingredients:" + Environment.NewLine +
+                recipe.Ingredients + Environment.NewLine +
+                "--" +
+                 "Recipe:" + Environment.NewLine +
+                 recipe.Recipe + Environment.NewLine +
+                 "--" +
+                  "Notes:" + Environment.NewLine +
+                 recipe.Notes + Environment.NewLine
 
-        
+            });
+        }
 
-       
+        private async void ShareButton_Clicked(object sender, EventArgs e)
+        {
+           await ShareText(SQLentry);
+        }
     }
 }

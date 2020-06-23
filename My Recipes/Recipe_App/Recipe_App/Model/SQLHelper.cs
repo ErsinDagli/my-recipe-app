@@ -17,9 +17,62 @@ namespace Recipe_App.ViewModels
             database = GetConnection();
             // create the tables  
             database.CreateTable<SQLentry>();
-           
-            
+
+            database.CreateTable<Category>();
+
         }
+
+        /// <summary>
+        /// CATEGORY methods
+        /// </summary>
+        /// <returns></returns>
+        /// 
+
+        public Category GetCategoryByName(string CategoryName)
+        {
+            lock (locker)
+            {
+                return database.Table<Category>().FirstOrDefault(x => x.CategoryName == CategoryName);
+            }
+        }
+        public IEnumerable<Category> GetCategories()
+        {
+            lock (locker)
+            {
+                return (from i in database.Table<Category>() select i).ToList();
+            }
+        }
+        public int SaveCategory(Category item)
+        {
+            lock (locker)
+            {
+                if (item.Id != 0)
+                {
+                    //Update Item  
+                    database.Update(item);
+                    return item.Id;
+                }
+                else
+                {
+                    //Insert item  
+                    return database.Insert(item);
+                }
+            }
+        }
+
+        public void DeleteCategory(int categoryId)
+        {
+            lock (locker)
+            {
+                database.Delete<Category>(categoryId);
+            }
+        }
+
+
+        /// <summary>
+        /// RECIPE METHODS
+        /// </summary>
+        /// <returns></returns>
 
         public IEnumerable<SQLentry> GetItems()
         {

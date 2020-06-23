@@ -4,10 +4,10 @@
              x:Class="Recipe_App.AddRecipesPage"
                xmlns:local="clr-namespace:Recipe_App"
              xmlns:local1="clr-namespace:Recipe_App.Views"
-             >
+             Title="Add Recipe">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="{Binding Save}" x:Name="SaveButton"
-                 Order="Primary" Clicked="Click_Save"
+                 Order="Primary" Clicked="Click_Save" 
                  Priority="0" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
@@ -18,13 +18,13 @@
 
                 
                 <Frame  x:Name="ImageFrame"
-                    HeightRequest="200" 
-                    WidthRequest="200" 
+                    HeightRequest="300" 
+                    WidthRequest="300" 
                     HorizontalOptions="Center"
                    Padding="0,0,0,0"
                     CornerRadius="30"
                     >
-                    <Image x:Name="RecipeImage" Grid.Row="0" HorizontalOptions="Center" HeightRequest="200" WidthRequest="200" Aspect="AspectFill" />
+                    <Image x:Name="RecipeImage" Grid.Row="0" HorizontalOptions="Center" HeightRequest="300" WidthRequest="300" Aspect="AspectFill" />
                        
 
                     
@@ -44,50 +44,68 @@
                 </Grid.ColumnDefinitions>
 
 
-                    <Button x:Name="CameraButton" Text="{Binding TakeImageButton}" TextColor="White" Grid.Row="1" Grid.Column="0" Clicked="CameraButtonClicked" HeightRequest="40" WidthRequest="40" BorderRadius="20"  BackgroundColor="BlueViolet"/>
-                    <Button x:Name="ChooseImage" Text="{Binding ChooseImageButton}" TextColor="White" Grid.Row="1" Grid.Column="1"  Clicked="ChooseImageClicked" HeightRequest="40" WidthRequest="40" BorderRadius="20" BackgroundColor="BlueViolet"/>
+                    <Button x:Name="CameraButton" Text="{Binding TakeImageButton}" TextColor="White" Grid.Row="1" Grid.Column="0" Clicked="CameraButtonClicked" HeightRequest="40" WidthRequest="40" BorderRadius="20"  BackgroundColor="LightBlue"/>
+                    <Button x:Name="ChooseImage" Text="{Binding ChooseImageButton}" TextColor="White" Grid.Row="1" Grid.Column="1"  Clicked="ChooseImageClicked" HeightRequest="40" WidthRequest="40" BorderRadius="20" BackgroundColor="LightBlue"/>
             </Grid>
-                <Label x:Name="recipeNameLabel" FontAttributes="Bold" FontSize="Medium" TextColor="Red" BackgroundColor="Transparent" />
 
 
                 <Frame CornerRadius="20"
                        IsClippedToBounds="True"
                        BackgroundColor="LightBlue">
-                    <Editor x:Name="txtRecipeName"  HorizontalOptions="FillAndExpand" VerticalOptions="Center" Grid.Row="3" BackgroundColor="LightBlue" />
+                    <StackLayout>
+                        <Label x:Name="recipeNameLabel" FontAttributes="Bold" FontSize="Medium" TextColor="White" BackgroundColor="Transparent" />
+
+                        <Editor x:Name="txtRecipeName"  HorizontalOptions="FillAndExpand" VerticalOptions="Center" Grid.Row="3" BackgroundColor="LightBlue" />
+
+                    </StackLayout>
                 </Frame>
-                <Label x:Name="categoryLabel" FontAttributes="Bold" FontSize="Medium" TextColor="ForestGreen" BackgroundColor="Transparent"/>
                 <Frame CornerRadius="20"
                        IsClippedToBounds="True"
                        BackgroundColor="LightGreen">
-                    <Picker x:Name="txtcategory" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Grid.Row="4" BackgroundColor="LightGreen" SelectedItem="{Binding SelectedCategory}">
+
+                    <StackLayout>
+                        <Label x:Name="categoryLabel" FontAttributes="Bold" FontSize="Medium" TextColor="White" BackgroundColor="Transparent"/>
+
+                        <Picker x:Name="txtcategory" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Grid.Row="4" BackgroundColor="LightGreen" SelectedItem="{Binding SelectedCategory}">
                         <Picker.Items>
-                            
+
                         </Picker.Items>
-                    </Picker>
+                        </Picker> 
+                        
+                    </StackLayout>
+                   
                 </Frame>
 
-                <Label x:Name="ingredientsLabel" FontAttributes="Bold" FontSize="Medium" TextColor="Tomato" BackgroundColor="Transparent"/>
                 
                 <Frame CornerRadius="20"
                        IsClippedToBounds="True"
                       BackgroundColor="Beige"
                        >
-                    
+                    <StackLayout>
+                        <Label x:Name="ingredientsLabel" FontAttributes="Bold" FontSize="Medium" TextColor="White" BackgroundColor="Transparent"/>
                         <local1:ExpandableEditor x:Name="txtIngredients"  HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Grid.Row="5" BackgroundColor="Beige"/>
+
+                    </StackLayout>
                    
                 </Frame>
 
-                <Label x:Name="recipeLabel" FontAttributes="Bold" FontSize="Medium" TextColor="PaleTurquoise" BackgroundColor="Transparent"/>
                 <Frame CornerRadius="20"
                        IsClippedToBounds="True"
                        BackgroundColor="HotPink">
-                    <local1:ExpandableEditor x:Name="txtRecipe"  HorizontalOptions="FillAndExpand" VerticalOptions="Center" Grid.Row="6" BackgroundColor="HotPink"/>
+                    <StackLayout>
+                        <Label x:Name="recipeLabel" FontAttributes="Bold" FontSize="Medium" TextColor="White" BackgroundColor="Transparent"/>
+                        <local1:ExpandableEditor x:Name="txtRecipe"  HorizontalOptions="FillAndExpand" VerticalOptions="Center" Grid.Row="6" BackgroundColor="HotPink"/>
+
+                    </StackLayout>
                 </Frame>
-                <Label  x:Name="notesLabel" FontAttributes="Bold" FontSize="Medium" TextColor="DarkSalmon" BackgroundColor="White"/>
                 <Frame CornerRadius="20"
                        IsClippedToBounds="True"
                        BackgroundColor="Olive">
-                    <local1:ExpandableEditor x:Name="txtNotes"   HorizontalOptions="FillAndExpand" VerticalOptions="Center" Grid.Row="7" BackgroundColor="Olive"/>
+                    <StackLayout>
+                        <Label  x:Name="notesLabel" FontAttributes="Bold" FontSize="Medium" TextColor="White" BackgroundColor="Transparent"/>
+                        <local1:ExpandableEditor x:Name="txtNotes"   HorizontalOptions="FillAndExpand" VerticalOptions="Center" Grid.Row="7" BackgroundColor="Olive"/>
+
+                    </StackLayout>
                 </Frame>
                
         </StackLayout>

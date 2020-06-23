@@ -27,4 +27,15 @@
   <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
     <item name="colorAccent">#FF4081</item>
   </style>
+
+<style name="AppToolbarTheme" parent="Theme.AppCompat.NoActionBar">
+  <item name="android:colorBackground">#FFFFFF</item>
+  <item name="android:textColor">#000080</item>
+</style>
+  
+ <style name="MenuItemTextAppearance">
+    <item name="android:textColor">#000</item> 
+  </style>
+
+
 </resources>

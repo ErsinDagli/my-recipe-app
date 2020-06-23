@@ -46,13 +46,13 @@ namespace Recipe_App
 
             if(MainPage.TurkishClicked == false)
             {
-                QuickSearchLabel.Text = Language.QuickSearchEN;
+                Title = Language.QuickSearchEN;
                 searchbar.Placeholder = "Name";
 
             }
             else
             {
-                QuickSearchLabel.Text = Language.QuickSearchTR;
+                Title = Language.QuickSearchTR;
                 searchbar.Placeholder = "Tarif";
             }
 

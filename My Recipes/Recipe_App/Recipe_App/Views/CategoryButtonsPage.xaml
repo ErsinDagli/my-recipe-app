@@ -3,11 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Recipe_App.Views.CategoryButtonsPage"
              >
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+" x:Name="AddCategoryButton"
+                 Order="Primary" Clicked="AddCategoryButton_Clicked" 
+                 Priority="0" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+        <Style TargetType="Button">
+            <Setter Property="TextColor" Value="Black"/>
+        </Style>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <ScrollView>
-           
-                <StackLayout x:Name="buttonStack" Padding="20">
-                    <Entry x:Name="AddCategoryEntry" IsVisible="False" />
+        <ScrollView >
+
+          
+                <StackLayout x:Name="buttonStack" Padding="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Entry x:Name="AddCategoryEntry" IsVisible="False" Placeholder="Type a new category name" />
                     <Button x:Name="SaveCategoryButton" 
                             Text="Save" 
                             CornerRadius="20"
@@ -15,32 +27,27 @@
                             Clicked="SaveCategoryButton_Clicked" IsVisible="False"
                             BackgroundColor="Purple"
                             TextColor="White"/>
-                        <Button x:Name="AddCategoryButton" 
-                            Text="+"
-                            CornerRadius="20"
-                            HorizontalOptions="End"
-                            BackgroundColor="Purple"
-                            TextColor="White"
-                                Clicked="AddCategoryButton_Clicked"/>
 
+                <!--<CollectionView>
+                    
+                </CollectionView>-->
+                    
 
                     <FlexLayout x:Name="categoryButtonPageStack" 
-                        AlignItems="Center"
+                     Direction="Row"
                         Wrap="Wrap"
                         JustifyContent="SpaceEvenly"
-                        FlowDirection="LeftToRight"
-                        FlexLayout.Grow="1"
-                        Padding="30"
-                            Margin="60,0,0,0">
+                        FlowDirection="LeftToRight" >
+                
 
 
-
-                        <Button x:Name="BreakfastButton" Text="{Binding Breakfast}" TextColor="Purple" HeightRequest="150" WidthRequest="150" CornerRadius="20" Clicked="BreakfastButton_Clicked"/>
-                        <Button x:Name="Lunch"  Text="{Binding Lunch}" TextColor="Red" HeightRequest="150" WidthRequest="150" CornerRadius="20" Clicked="Lunch_Clicked"/>
-                        <Button x:Name="Dinner"  Text="{Binding Dinner}" TextColor="Green" HeightRequest="150" WidthRequest="150" CornerRadius="20" Clicked="Dinner_Clicked"/>
-                        <Button x:Name="Desserts"  Text="{Binding Desserts}" TextColor="Brown" HeightRequest="150" WidthRequest="150" CornerRadius="20" Clicked="Desserts_Clicked"/>
-                        <Button x:Name="QuickBites"  Text="{Binding Quickbites}" TextColor="Blue" HeightRequest="150" WidthRequest="150" CornerRadius="20" Clicked="QuickBites_Clicked"/>
-                         <Button x:Name="Salads"  Text="{Binding Salads}" TextColor="Orange" HeightRequest="150" WidthRequest="150" CornerRadius="20" Clicked="Salads_Clicked"/>
+                        <Button Margin="5" x:Name="BreakfastButton" Text="{Binding Breakfast}"  HeightRequest="150" WidthRequest="150" CornerRadius="20" Clicked="BreakfastButton_Clicked"/>
+                    <Button Margin="5"  x:Name="Lunch"  Text="{Binding Lunch}"  HeightRequest="150" WidthRequest="150" CornerRadius="20" Clicked="Lunch_Clicked"/>
+                   
+                     <Button Margin="5"  x:Name="Dinner"  Text="{Binding Dinner}"  HeightRequest="150" WidthRequest="150" CornerRadius="20" Clicked="Dinner_Clicked"/>
+                    <Button Margin="5"  x:Name="Desserts"  Text="{Binding Desserts}"  HeightRequest="150" WidthRequest="150" CornerRadius="20" Clicked="Desserts_Clicked"/>
+                    <Button Margin="5"  x:Name="QuickBites"  Text="{Binding Quickbites}" HeightRequest="150" WidthRequest="150" CornerRadius="20" Clicked="QuickBites_Clicked"/>
+                    <Button Margin="5"  x:Name="Salads"  Text="{Binding Salads}"  HeightRequest="150" WidthRequest="150" CornerRadius="20" Clicked="Salads_Clicked"/>
 
 
 
@@ -48,17 +55,12 @@
                 
                 
 
-                    <Button x:Name="DeleteButtons"
-                        Text="Delete"
-                        HorizontalOptions="Center"
-                        Clicked="DeleteButtons_Clicked"
-                        VerticalOptions="EndAndExpand"
-                        BorderRadius="20" 
-                        TextColor="White"
-                    BackgroundColor="Purple"/>
+                  
                 
             </StackLayout>
             
         </ScrollView>
     </ContentPage.Content>
+
+ 
 </ContentPage>

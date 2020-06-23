@@ -146,7 +146,7 @@ namespace Recipe_App
         protected override void OnAppearing()
         {
             BackgroundImage = "AddRecipesPageBackground.png";
-            Opacity = 0.5f;
+           // Opacity = 0.5f;
         }
 
 

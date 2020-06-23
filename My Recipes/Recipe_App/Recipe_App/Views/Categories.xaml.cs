@@ -19,6 +19,8 @@ namespace Recipe_App.Views
         public Categories (string selectedcategory)
 		{
 			InitializeComponent ();
+
+
             BindingContext = new SQLentry();
             SelectedCategory = selectedcategory;
 
@@ -40,22 +42,25 @@ namespace Recipe_App.Views
 
             if(MainPage.TurkishClicked == false)
             {
-                CategoryLabel.Text = Language.RecipeNameEnglish;
+                CategoryLabel.Text = Language.RecipeEnglish;
             }
             else
             {
-                CategoryLabel.Text = Language.RecipeNameTurkish;
+                CategoryLabel.Text = Language.RecipeTurkish;
             }
-            
+
+
+
+            Title = SelectedCategory;
 
         }
 
-        protected override void OnAppearing()
-        {
-            categoriesList.ItemsSource = CategoryOC;
-        }
+       // protected override void OnAppearing()
+       // {
+           // categoriesList.ItemsSource = CategoryOC;
+       // }
 
-        private async Task categoriesList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void categoriesList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             //a copy of the navigation technique in the recipessearchpage list
 
@@ -73,5 +78,35 @@ namespace Recipe_App.Views
                 await Navigation.PushAsync(new RecipeDisplayPage(mychoice));
             }
         }
+
+        private async void DeleteButton_Clicked(object sender, System.EventArgs e)
+        {
+            bool answer;
+            if (MainPage.TurkishClicked == false)
+            {
+                answer = await DisplayAlert("Delete Buttons", "Are you sure?", "Yes", "No");
+            }
+            else
+            {
+                answer = await DisplayAlert("Tarifi Sil", "Emin Misiniz?", "Evet", "Hayır");
+            }
+
+            if (answer == true)
+            {
+                //delete category
+                var cat = App.Database.GetCategoryByName(SelectedCategory);
+                if (cat != null)
+                {
+                    App.Database.DeleteCategory(cat.Id);
+
+
+                    await Navigation.PopAsync();
+                }
+
+
+            }
+        }
+
+     
     }
 }

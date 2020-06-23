@@ -47,14 +47,18 @@ namespace Recipe_App
 
         private void TurkishButton_Clicked(object sender, System.EventArgs e)
         {
-          
 
+            TurkishClicked = true;
+            AddRecipebutton.Text = Language.MainPageAddRecipeButtonTR;
+            SearchRecipeButton.Text = Language.MainPageSearchRecipeButtonTR;
 
         }
 
         private void EnglishButton_Clicked(object sender, System.EventArgs e)
         {
-          
+            TurkishClicked = false;
+            AddRecipebutton.Text = Language.MainPageAddRecipeButtonEN;
+            SearchRecipeButton.Text = Language.MainPageSearchRecipesbuttonEN;
         }
 
         private void LanguagePicker_SelectedIndexChanged(object sender, System.EventArgs e)

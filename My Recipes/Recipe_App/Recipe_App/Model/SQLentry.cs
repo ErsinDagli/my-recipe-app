@@ -16,13 +16,14 @@ namespace Recipe_App.ViewModels
         public string Notes { get; set; }
         public string ImageFilePath { get; set; }
         
-        
-        
+ 
+    }
 
 
-
-
-
-
+    public class Category
+    {
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+        public string CategoryName { get; set; }
     }
 }

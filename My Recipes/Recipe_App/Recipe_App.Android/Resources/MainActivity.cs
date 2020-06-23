@@ -22,6 +22,8 @@ namespace Recipe_App.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
+            Xamarin.Essentials.Platform.Init(this, bundle); // add this line to your code, it may also be called: bundle
+
             //fastrenderer calling to sped up procesess
             Forms.SetFlags("FastRenderers_Experimental");
             CrossCurrentActivity.Current.Init(this, bundle);
@@ -29,7 +31,13 @@ namespace Recipe_App.Droid
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
 
-            Window.SetStatusBarColor(Android.Graphics.Color.White);
+            //sets the status bar to white and icons to black
+            Window.SetStatusBarColor(Android.Graphics.Color.LightBlue);
+            //if (Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.M)
+            //{
+            //    var flag = (Android.Views.StatusBarVisibility)Android.Views.SystemUiFlags.LightStatusBar;
+            //    Window.DecorView.SystemUiVisibility =  flag ;
+            //}
 
 
         }
@@ -42,7 +50,13 @@ namespace Recipe_App.Droid
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
         {
+
+            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
             Plugin.Permissions.PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
         }
     }
 }

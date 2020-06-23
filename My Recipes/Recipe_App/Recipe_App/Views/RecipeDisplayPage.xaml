@@ -3,6 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Recipe_App.Views.RecipeDisplayPage"
              >
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="share.png" x:Name="ShareButton"
+                 Order="Primary" Clicked="ShareButton_Clicked" 
+                 Priority="0" />
+        <ToolbarItem IconImageSource="delete.png" x:Name="DeleteRecipeButton"
+                 Order="Primary" Clicked="Delete_Clicked" 
+                 Priority="0" />
+        <ToolbarItem  x:Name="EditButton" IconImageSource="edit.png" 
+                 Order="Primary" Clicked="EditRecipe_Clicked" 
+                 Priority="0" />
+    </ContentPage.ToolbarItems>
     <ContentPage.Content >
         <ScrollView >
             <StackLayout Padding="30" x:Name="myStack" Opacity="1">
@@ -56,10 +67,7 @@
                 <Frame CornerRadius="20" BackgroundColor="LawnGreen" >
                     <Label x:Name="editorNotes" BackgroundColor="LawnGreen"   FontAttributes="Bold" FontSize="Medium"/>
                 </Frame>
-                <StackLayout Orientation="Horizontal">
-                    <Button x:Name="Delete" Text="Delete Recipe" Clicked="Delete_Clicked" HorizontalOptions="CenterAndExpand"  BorderRadius="20" BackgroundColor="Purple" TextColor="white"/>
-                    <Button x:Name="EditRecipe" Text="Edit Recipe" Clicked="EditRecipe_Clicked" HorizontalOptions="CenterAndExpand"  BorderRadius="20" BackgroundColor="Purple" TextColor="white"/>
-                </StackLayout>
+         
 
 
                
