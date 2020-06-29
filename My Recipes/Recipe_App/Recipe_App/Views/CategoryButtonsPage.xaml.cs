@@ -1,6 +1,7 @@
 ﻿using Recipe_App.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -11,24 +12,59 @@ namespace Recipe_App.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class CategoryButtonsPage : ContentPage
 	{
+        Color redColor = Color.FromRgba(190, 104, 100, 190);
 
-        
+        void ReloadButtons()
+        {
+            //get categories
+            var categories = App.Database.GetCategories();
+
+            foreach (var category in categories)
+            {
+
+                Button button = new Button();
+
+                button.HorizontalOptions = LayoutOptions.Center;
+                button.VerticalOptions = LayoutOptions.Center;
+                // add a navigation to each button, navigate to a category page that contains a list of each item in the category
+                button.Text = category.CategoryName +
+                    Environment.NewLine + 
+                    "Total Recipes " + 
+                    App.Database.GetCountRecipesInCategory(category.CategoryName);
+
+                categoryButtonPageStack.Children.Add(button);
+
+                button.HeightRequest = 150;
+                button.WidthRequest = 150;
+                button.CornerRadius = 20;
+
+                //give the button a random colour
+                button.BackgroundColor = GetRandomColor();
+                button.TextColor = Color.Black;
+
+
+
+                button.Clicked += async (sender, e) => await Navigation.PushAsync(new Categories(category.CategoryName));
+
+
+            }
+        }
 
 		public CategoryButtonsPage ()
 		{
 			InitializeComponent ();
-            
 
 
-            BreakfastButton.BackgroundColor = GetRandomColor();
-            Lunch.BackgroundColor = GetRandomColor();
-            Dinner.BackgroundColor = GetRandomColor();
-            Desserts.BackgroundColor = GetRandomColor();
-            QuickBites.BackgroundColor = GetRandomColor();
-            Salads.BackgroundColor = GetRandomColor();
+
+            BreakfastButton.BackgroundColor = redColor;
+            Lunch.BackgroundColor = redColor;
+            Dinner.BackgroundColor = redColor;
+            Desserts.BackgroundColor = redColor;
+            QuickBites.BackgroundColor = redColor;
+            Salads.BackgroundColor = redColor;
 
 
-           
+            ReloadButtons();
 
             //ADDING BUTTONS BASED ON PROPERTIES DICTIONARY
 
@@ -62,7 +98,7 @@ namespace Recipe_App.Views
 
 
 
-            if(MainPage.TurkishClicked == false)
+            if (MainPage.TurkishClicked == false)
             {
                 BreakfastButton.Text = Language.CategoryBreakfastEnglish;
                 Lunch.Text = Language.CategoryLunchEnglish;
@@ -86,23 +122,64 @@ namespace Recipe_App.Views
             }
 
 
+            //setup count category recipes
+            CountRecipesPerCategory();
+
+        }
+
+        void CountRecipesPerCategory()
+        {
+            BreakfastButton.Text += 
+                   Environment.NewLine +
+                   "Total Recipes " +
+                   App.Database.GetCountRecipesInCategory("Breakfast");
+
+            Lunch.Text +=
+               Environment.NewLine +
+               "Total Recipes " +
+               App.Database.GetCountRecipesInCategory("Lunch");
+
+            Dinner.Text +=
+              Environment.NewLine +
+              "Total Recipes " +
+              App.Database.GetCountRecipesInCategory("Dinner");
+
+         
+
+            QuickBites.Text +=
+              Environment.NewLine +
+              "Total Recipes " +
+              App.Database.GetCountRecipesInCategory("QuickBites");
+
+            Desserts.Text +=
+              Environment.NewLine +
+              "Total Recipes " +
+              App.Database.GetCountRecipesInCategory("Desserts");
+
+            Salads.Text +=
+              Environment.NewLine +
+              "Total Recipes " +
+              App.Database.GetCountRecipesInCategory("Salads");
+
         }
 
 
         protected override void OnAppearing()
         {
-            BackgroundImage = "pictwoinone.png";
+            BackgroundImageSource = "pictwoinone.png";
 
 
-            //if (App.CategoryDeleted)
-            //{
+            if (App.CategoryDeleted)
+            {
+                ReloadButtons();
 
-            //}
+                App.CategoryDeleted = false;
+            }
         }
 
         protected override void OnDisappearing()
         {
-            BackgroundImage = null;
+            BackgroundImageSource = null;
         }
        
 
@@ -186,7 +263,7 @@ namespace Recipe_App.Views
                 button.HeightRequest = 150;
                 button.Margin = new Thickness(5);
                 button.Clicked += async (s, f) => await Navigation.PushAsync(new Categories(AddCategoryEntry.Text));
-               
+               button.BackgroundColor = redColor;
                 if ((button.Text != "") || (button.Text != (null)))
                 {
                     categoryButtonPageStack.Children.Add(button);

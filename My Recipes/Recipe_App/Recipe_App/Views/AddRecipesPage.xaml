@@ -21,10 +21,16 @@
                     HeightRequest="300" 
                     WidthRequest="300" 
                     HorizontalOptions="Center"
-                   Padding="0,0,0,0"
-                    CornerRadius="30"
+                   Padding="0,0,0,0" IsClippedToBounds="True"
+                    CornerRadius="150"
                     >
-                    <Image x:Name="RecipeImage" Grid.Row="0" HorizontalOptions="Center" HeightRequest="300" WidthRequest="300" Aspect="AspectFill" />
+                    <ImageButton 
+                        x:Name="RecipeImage"
+                        Grid.Row="0" BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                        HeightRequest="300" Clicked="RecipeImage_Clicked"
+                        WidthRequest="300" 
+                        Aspect="AspectFill" />
                        
 
                     
@@ -34,7 +40,7 @@
 
 
                
-            <Grid Padding="30">
+            <Grid Padding="30, 0, 30, 30">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
@@ -79,11 +85,11 @@
                 
                 <Frame CornerRadius="20"
                        IsClippedToBounds="True"
-                      BackgroundColor="Beige"
+                      BackgroundColor="Red"
                        >
                     <StackLayout>
                         <Label x:Name="ingredientsLabel" FontAttributes="Bold" FontSize="Medium" TextColor="White" BackgroundColor="Transparent"/>
-                        <local1:ExpandableEditor x:Name="txtIngredients"  HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Grid.Row="5" BackgroundColor="Beige"/>
+                        <local1:ExpandableEditor x:Name="txtIngredients"  HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Grid.Row="5" BackgroundColor="Red"/>
 
                     </StackLayout>
                    

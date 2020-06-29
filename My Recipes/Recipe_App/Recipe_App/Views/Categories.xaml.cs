@@ -33,6 +33,9 @@ namespace Recipe_App.Views
             {
                 if (!CategoryOC.Contains(item))
                 {
+                    if (string.IsNullOrWhiteSpace(item.ImageFilePath))
+                        item.ImageFilePath = "recipeplaceholder.png";
+
                     CategoryOC.Add(item);
                 }
             }
@@ -84,11 +87,11 @@ namespace Recipe_App.Views
             bool answer;
             if (MainPage.TurkishClicked == false)
             {
-                answer = await DisplayAlert("Delete Buttons", "Are you sure?", "Yes", "No");
+                answer = await DisplayAlert("Delete this category", "Are you sure?", "Yes", "No");
             }
             else
             {
-                answer = await DisplayAlert("Tarifi Sil", "Emin Misiniz?", "Evet", "Hayır");
+                answer = await DisplayAlert("Kategoriyi sil", "Emin Misiniz?", "Evet", "Hayır");
             }
 
             if (answer == true)
@@ -99,6 +102,7 @@ namespace Recipe_App.Views
                 {
                     App.Database.DeleteCategory(cat.Id);
 
+                    App.CategoryDeleted = true;
 
                     await Navigation.PopAsync();
                 }

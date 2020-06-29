@@ -35,6 +35,10 @@ namespace Recipe_App
             {
                 if ((!RecipeNameOC.Contains(item)))
                 {
+                    if (string.IsNullOrWhiteSpace(item.ImageFilePath))
+                        item.ImageFilePath = "recipeplaceholder.png";
+
+
                     RecipeNameOC.Add(item);
                 }
 

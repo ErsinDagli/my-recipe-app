@@ -12,7 +12,7 @@
         <ToolbarItem Text="English"
                  Order="Secondary" Clicked="EnglishButton_Clicked" 
                  Priority="1" />
-        <ToolbarItem Text="Turkish"
+        <ToolbarItem Text="Turkish" 
                  Order="Secondary" Clicked="TurkishButton_Clicked" 
                  Priority="2" />
     </ContentPage.ToolbarItems>

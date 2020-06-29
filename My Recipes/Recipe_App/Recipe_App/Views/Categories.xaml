@@ -9,7 +9,7 @@
                  Priority="0" />
     </ContentPage.ToolbarItems>
     <ScrollView>
-            <StackLayout Padding="30">
+            <StackLayout Padding="15">
                 <Label x:Name="CategoryLabel" FontAttributes="Bold" FontSize="Large" TextColor="Black"/>
             <ListView x:Name="categoriesList" ItemSelected="categoriesList_ItemSelected"
                           CachingStrategy="RecycleElement"   RowHeight="100"
@@ -19,8 +19,8 @@
                             <ViewCell>
                                 <StackLayout Orientation="Horizontal" 
                                 HorizontalOptions="FillAndExpand"
-                                Margin="20, 10, 20, 0" >
-                                <Frame CornerRadius="40" IsClippedToBounds="True"
+                                Padding="0,5,0,5" >
+                                <Frame  CornerRadius="40" IsClippedToBounds="True"
                                            HeightRequest="80"  Padding="0"
                                            WidthRequest="80">
                                     <Image Source="{Binding ImageFilePath}" 
@@ -30,7 +30,10 @@
                                           Aspect="AspectFill"
                                            />
                                 </Frame>
-                                <Label  Text="{Binding RecipeName}" HorizontalOptions="StartAndExpand" FontAttributes="Bold" FontSize="Medium"/>
+                                <Label  Text="{Binding RecipeName}"
+                                        VerticalOptions="CenterAndExpand"
+                                        HorizontalOptions="StartAndExpand"
+                                        FontAttributes="Bold" FontSize="Medium"/>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>

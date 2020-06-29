@@ -7,7 +7,8 @@ using Xamarin.Forms.Xaml;
 using Recipe_App.ViewModels;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
-
+using Recipe_App.Views;
+using System.Threading.Tasks;
 
 namespace Recipe_App
 {
@@ -145,48 +146,63 @@ namespace Recipe_App
 
         protected override void OnAppearing()
         {
-            BackgroundImage = "AddRecipesPageBackground.png";
+            BackgroundImageSource = "AddRecipesPageBackground.png";
            // Opacity = 0.5f;
         }
 
 
         protected override void OnDisappearing()
         {
-           
-                BackgroundImage = null;
+
+            BackgroundImageSource = null;
 
         }
 
 
-        protected override bool OnBackButtonPressed()
-        {
-            // If you want to continue going back
-            if (saved == false)
-            {
-                var answer = DisplayAlert("Oops!", "Exit without saving?", "Yes", "No");
-                if (answer.Equals(true))
-                {
+        //protected override bool OnBackButtonPressed()
+        //{
+        //    // If you want to continue going back
+        //    if(!string.IsNullOrWhiteSpace(txtRecipeName.Text) ||
+        //        txtcategory.SelectedItem != null || 
+        //        !string.IsNullOrWhiteSpace(txtIngredients.Text) || 
+        //        !string.IsNullOrWhiteSpace(txtRecipe.Text) || 
+        //    !string.IsNullOrWhiteSpace(txtNotes.Text))               
+        //    {
+        //        DisplayAlert("", "Exit without saving?", "Yes", "No")
+        //           .ContinueWith((answer) =>
+        //           {
+        //               if (answer.Result == true)
+        //               {
+        //                   return false;
 
-                    Navigation.PopToRootAsync();
-                    return false;
+        //               }
+        //               else
+        //               {
+        //                   return true;
 
-                }
-                else
-                {
-                    return true;
-                }
-            }
-            else
-            {
+        //               }
 
-                Navigation.PopToRootAsync();
-                saved = false;
-                return false;
 
-            }
-          
+        //           });
 
-        }
+
+
+
+        //    }
+        //    else
+        //    {
+        //        return false;
+
+        //    }
+
+
+
+
+
+
+
+
+        //}
 
 
 
@@ -194,7 +210,6 @@ namespace Recipe_App
 
         async void Click_Save(object sender, EventArgs e)
         {
-            bool saved = true;
 
             bool answer;
             if (txtRecipeName.Text != null)
@@ -294,21 +309,25 @@ namespace Recipe_App
 
 
                                 if (i > 0)
-                                {
-                                    if(MainPage.TurkishClicked == false)
+                                 {
+                                        entry.RecipeID = i;
+
+                                    if (MainPage.TurkishClicked == false)
                                     {
                                         await DisplayAlert("New Recipe", "Save successful!", "OK");
-                                        await Navigation.PopToRootAsync();
+
+
                                     }
                                     else
                                     {
                                         await DisplayAlert("Yeni Tarif", "Kayıt Başarılı!", "OK");
-                                        await Navigation.PopToRootAsync();
                                     }
-                                    
+                                    await Navigation.PopToRootAsync();
 
-                                }
-                                else
+                                    await Navigation.PushAsync(new RecipeDisplayPage(entry));
+
+                            }
+                            else
                                 {
                                     if(MainPage.TurkishClicked == false)
                                     {
@@ -334,7 +353,7 @@ namespace Recipe_App
                                
                             }
                         }
-                        else if (fileexist != null && passedSQLentry != null)
+                        else if (fileexist != null && passedSQLentry != null)  //edit of recipe
                         {
                             if (txtRecipeName.Text != null)
                             {
@@ -569,6 +588,29 @@ namespace Recipe_App
                     
 
 
+
+        }
+
+        private void RecipeImage_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                if (PicTakenFile != null)
+                {
+                    Navigation.PushAsync(new ImagePage(PicTakenFile.Path));
+
+                }
+                else if (!string.IsNullOrWhiteSpace(passedSQLentry.ImageFilePath))
+                {
+                    Navigation.PushAsync(new ImagePage(passedSQLentry.ImageFilePath));
+
+                }
+            }
+            catch
+            {
+
+            }
+           
 
         }
     }

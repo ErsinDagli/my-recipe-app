@@ -42,6 +42,14 @@ namespace Recipe_App.ViewModels
                 return (from i in database.Table<Category>() select i).ToList();
             }
         }
+
+        public int GetCountRecipesInCategory(string categoryname)
+        {
+            lock (locker)
+            {
+                return (from i in database.Table<SQLentry>().Where(x=> x.Category == categoryname) select i).Count();
+            }
+        }
         public int SaveCategory(Category item)
         {
             lock (locker)

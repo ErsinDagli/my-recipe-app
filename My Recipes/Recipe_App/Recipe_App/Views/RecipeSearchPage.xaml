@@ -19,9 +19,9 @@
                      
 
                         <SearchBar x:Name="searchbar" Placeholder="Name"  
-                    TextChanged="searchbar_TextChanged"  Margin="0"
-                    HorizontalOptions="FillAndExpand"  
-                    VerticalOptions="Center"
+                    TextChanged="searchbar_TextChanged" 
+                    HorizontalOptions="FillAndExpand"   BackgroundColor="Transparent"
+                    VerticalOptions="Center" Margin="0, 5, 0, 10"
                     HeightRequest="40"
                                    
                     >
@@ -36,10 +36,10 @@
                                   CachingStrategy="RecycleElement" HasUnevenRows="True">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <ViewCell  >
+                                    <ViewCell>
                                         <StackLayout
                                             Orientation="Horizontal" 
-                                             HorizontalOptions="FillAndExpand" >
+                                             HorizontalOptions="FillAndExpand" Padding="0,5,0,5">
                                     <Frame CornerRadius="40" IsClippedToBounds="True"
                                            HeightRequest="80"  Padding="0"
                                            WidthRequest="80">
@@ -50,13 +50,13 @@
                                           Aspect="AspectFill"
                                            />
                                     </Frame>
-                                           
+
 
                                     <Label  Text="{Binding RecipeName}" 
-                                                HorizontalOptions="StartAndExpand"
-                                                TextColor="Black" VerticalOptions="CenterAndExpand"
-                                                FontAttributes="Bold" Margin="20, 0,0,0"/>
-                                   
+                                            HorizontalOptions="StartAndExpand"
+                                            TextColor="Black" VerticalOptions="CenterAndExpand"
+                                            FontAttributes="Bold" Margin="20, 0,0,0"/>
+
                                 </StackLayout>
                                     </ViewCell>
                                 </DataTemplate>

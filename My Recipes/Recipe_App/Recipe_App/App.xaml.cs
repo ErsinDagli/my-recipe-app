@@ -71,6 +71,7 @@ namespace Recipe_App
         }
 
         public object Glide { get; }
+        public static bool CategoryDeleted { get; internal set; }
 
         private static SQLHelper database;
 

@@ -21,24 +21,19 @@
 
                    
                     <Frame  
-                    HeightRequest="200" 
-                    WidthRequest="200" 
+                    HeightRequest="300" 
+                    WidthRequest="300" 
                     HorizontalOptions="Center"
                    Padding="0,0,0,0"
-                    CornerRadius="30">
-                        <Image x:Name="imgRecipe" 
+                    CornerRadius="150">
+                        <ImageButton x:Name="imgRecipe" 
                                  Source="{Binding ImageFilePath}"
                                 HorizontalOptions="FillAndExpand"
                                VerticalOptions="FillAndExpand"
-                               Aspect="AspectFill"
-                               >
-                            <Image.GestureRecognizers>
-                                <PinchGestureRecognizer x:Name="pinchGesture" 
-                                               
-                                                 />
-                            </Image.GestureRecognizers>
+                               Aspect="AspectFill" Clicked="ImgRecipe_Clicked"
+                               />
 
-                        </Image>
+
                     </Frame>
 
                     
@@ -64,8 +59,8 @@
                     <Label x:Name="editorRecipe" BackgroundColor="LightCoral" FontAttributes="Bold" FontSize="Medium" />
                 </Frame>
                 <Label  x:Name="notesLabel" FontAttributes="Bold" FontSize="Medium" TextColor="DarkSalmon" />
-                <Frame CornerRadius="20" BackgroundColor="LawnGreen" >
-                    <Label x:Name="editorNotes" BackgroundColor="LawnGreen"   FontAttributes="Bold" FontSize="Medium"/>
+                <Frame CornerRadius="20" BackgroundColor="LightGreen" >
+                    <Label x:Name="editorNotes" BackgroundColor="LightGreen"   FontAttributes="Bold" FontSize="Medium"/>
                 </Frame>
          
 

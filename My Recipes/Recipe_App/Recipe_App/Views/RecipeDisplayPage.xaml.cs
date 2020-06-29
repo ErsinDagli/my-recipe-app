@@ -186,5 +186,19 @@ namespace Recipe_App.Views
         {
            await ShareText(SQLentry);
         }
+
+        private void ImgRecipe_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                if (PicTakenFile != null)
+                    Navigation.PushAsync(new ImagePage(SQLentry.ImageFilePath));
+            }
+            catch
+            {
+
+            }
+           
+        }
     }
 }
