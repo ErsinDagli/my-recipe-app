@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddRecipeEnglish" xml:space="preserve">
-    <value>Add Recipe</value>
+    <value>New Recipe</value>
   </data>
   <data name="AddRecipeTurkish" xml:space="preserve">
     <value>Tarif Ekle</value>
   </data>
   <data name="CategoriesTabEn" xml:space="preserve">
-    <value>Category</value>
+    <value>Categories</value>
   </data>
   <data name="CategoriesTabTR" xml:space="preserve">
     <value>Kategori</value>
   </data>
   <data name="Category" xml:space="preserve">
-    <value>Category</value>
+    <value>Categories</value>
   </data>
   <data name="CategoryBreakfastEnglish" xml:space="preserve">
     <value>Breakfast</value>
@@ -151,7 +151,7 @@
     <value>Akşam Yemeği</value>
   </data>
   <data name="CategoryEnglish" xml:space="preserve">
-    <value>Category</value>
+    <value>Categories</value>
   </data>
   <data name="CategoryLunchEnglish" xml:space="preserve">
     <value>Lunch</value>
@@ -175,7 +175,7 @@
     <value>Kategori</value>
   </data>
   <data name="ChooseImageButtonEnglish" xml:space="preserve">
-    <value>Choose Photo</value>
+    <value>Select Photo</value>
   </data>
   <data name="ChooseImageButtonTurkish" xml:space="preserve">
     <value>Resim Seç</value>
@@ -205,7 +205,7 @@
     <value>Malzemeler</value>
   </data>
   <data name="MainPageAddRecipeButtonEN" xml:space="preserve">
-    <value>Add Recipe</value>
+    <value>New Recipe</value>
   </data>
   <data name="MainPageAddRecipeButtonTR" xml:space="preserve">
     <value>Tarif Ekle</value>
@@ -214,7 +214,7 @@
     <value>Tariflerim</value>
   </data>
   <data name="MainPageSearchRecipesbuttonEN" xml:space="preserve">
-    <value>Search Recipes</value>
+    <value>Search</value>
   </data>
   <data name="NotesEnglish" xml:space="preserve">
     <value>Notes</value>

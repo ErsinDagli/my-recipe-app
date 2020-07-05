@@ -39,7 +39,7 @@ namespace Recipe_App.ViewModels
         {
             lock (locker)
             {
-                return (from i in database.Table<Category>() select i).ToList();
+                return (from i in database.Table<Category>() select i).OrderBy(x => x.CategoryName).ToList();
             }
         }
 
@@ -47,7 +47,7 @@ namespace Recipe_App.ViewModels
         {
             lock (locker)
             {
-                return (from i in database.Table<SQLentry>().Where(x=> x.Category == categoryname) select i).Count();
+                return (from i in database.Table<SQLentry>().Where(x=> x.Category.ToLower() == categoryname.ToLower()) select i).Count();
             }
         }
         public int SaveCategory(Category item)
@@ -104,6 +104,14 @@ namespace Recipe_App.ViewModels
             
 
         }
+        public List<SQLentry> SearchRecipeInCategory(string recipeName, string category)
+        {
+
+            return database.Table<SQLentry>().Where(x=> x.Category == category).Where(e => e.RecipeName.Contains(recipeName)).OrderBy(c => c.RecipeName).ToList();
+
+
+        }
+        
 
         public List<SQLentry> GetCategory(string category)
         {

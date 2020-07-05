@@ -14,7 +14,7 @@ namespace Recipe_App.ViewModels
 
         public Command NavigateToRecipeSearchPage => new Command(async () =>
 
-          await Application.Current.MainPage.Navigation.PushAsync(new TabbedPage1() {  BarBackgroundColor = Color.Black }));
+          await Application.Current.MainPage.Navigation.PushAsync(new TabbedPage1() {  BarBackgroundColor = Color.White, BarTextColor = Color.Black }));
 
 
 

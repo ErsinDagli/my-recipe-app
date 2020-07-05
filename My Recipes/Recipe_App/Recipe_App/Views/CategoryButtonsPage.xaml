@@ -2,9 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Recipe_App.Views.CategoryButtonsPage"
-             >
+             BackgroundColor="White" x:Name="ButtonsPage">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="+" x:Name="AddCategoryButton"
+        <ToolbarItem IconImageSource="plus2.png" x:Name="AddCategoryButton"
                  Order="Primary" Clicked="AddCategoryButton_Clicked" 
                  Priority="0" />
     </ContentPage.ToolbarItems>
@@ -19,18 +19,30 @@
 
           
                 <StackLayout x:Name="buttonStack" Padding="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                    <Entry x:Name="AddCategoryEntry" IsVisible="False" Placeholder="Type a new category name" />
-                    <Button x:Name="SaveCategoryButton" 
+                <Frame CornerRadius="20" x:Name="NewCategoryFrame" IsVisible="False">
+                    <StackLayout>
+                        <Entry x:Name="AddCategoryEntry"  Placeholder="Type a new category name" />
+                        <StackLayout Orientation="Horizontal">
+                            <Button x:Name="SaveCategoryButton" 
                             Text="Save" 
                             CornerRadius="20"
                             HorizontalOptions="End"
-                            Clicked="SaveCategoryButton_Clicked" IsVisible="False"
-                            BackgroundColor="Purple"
+                            Clicked="SaveCategoryButton_Clicked" 
+                            BackgroundColor="DarkGreen"
                             TextColor="White"/>
+                            <Button x:Name="CancelCategoryButton" 
+                            Text="Cancel" 
+                            CornerRadius="20"
+                            HorizontalOptions="End"
+                            Clicked="CancelCategoryButton_Clicked" 
+                            BackgroundColor="Red"
+                            TextColor="White"/>
+                        </StackLayout>
+                       
+                    </StackLayout>
+                </Frame>
+                   
 
-                <!--<CollectionView>
-                    
-                </CollectionView>-->
                     
 
                     <FlexLayout x:Name="categoryButtonPageStack" 
@@ -38,17 +50,69 @@
                         Wrap="Wrap"
                         JustifyContent="SpaceEvenly"
                         FlowDirection="LeftToRight" >
-                
 
+                    <Frame Margin="0" x:Name="BreakfastFrame" HeightRequest="150" WidthRequest="150" CornerRadius="20"  HasShadow="false">
+                        <StackLayout>
+                            <Label x:Name="BreakfastButton" FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center" BackgroundColor="Transparent"  VerticalTextAlignment="Center" />
 
-                        <Button Margin="5" x:Name="BreakfastButton" Text="{Binding Breakfast}"  HeightRequest="150" WidthRequest="150" CornerRadius="20" Clicked="BreakfastButton_Clicked"/>
-                    <Button Margin="5"  x:Name="Lunch"  Text="{Binding Lunch}"  HeightRequest="150" WidthRequest="150" CornerRadius="20" Clicked="Lunch_Clicked"/>
-                   
-                     <Button Margin="5"  x:Name="Dinner"  Text="{Binding Dinner}"  HeightRequest="150" WidthRequest="150" CornerRadius="20" Clicked="Dinner_Clicked"/>
-                    <Button Margin="5"  x:Name="Desserts"  Text="{Binding Desserts}"  HeightRequest="150" WidthRequest="150" CornerRadius="20" Clicked="Desserts_Clicked"/>
-                    <Button Margin="5"  x:Name="QuickBites"  Text="{Binding Quickbites}" HeightRequest="150" WidthRequest="150" CornerRadius="20" Clicked="QuickBites_Clicked"/>
-                    <Button Margin="5"  x:Name="Salads"  Text="{Binding Salads}"  HeightRequest="150" WidthRequest="150" CornerRadius="20" Clicked="Salads_Clicked"/>
+                            <Image Source="catBrekky.png" HeightRequest="100" WidthRequest="100" />
+                        </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="Breakfast" />
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                    <Frame Margin="0" x:Name="LunchFrame" HeightRequest="150" WidthRequest="150" CornerRadius="20"  HasShadow="false">
+                        <StackLayout>
+                            <Label x:Name="Lunch" VerticalTextAlignment="Center" FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center" />
 
+                            <Image Source="catLunch.png"  HeightRequest="100" WidthRequest="100" />
+                        </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="Lunch" />
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                    <Frame x:Name="DinnerFrame"  HeightRequest="150" WidthRequest="150" CornerRadius="20"  HasShadow="false">
+                        <StackLayout Margin="-10,-15,-10,-15">
+                            <Label x:Name="Dinner" VerticalTextAlignment="Center" FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+
+                            <Image Source="catDinner.png"  HeightRequest="100" WidthRequest="100" />
+                        </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="Dinner" />
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                    <Frame x:Name="DessertFrame"  HeightRequest="150" WidthRequest="150" CornerRadius="20"  HasShadow="false">
+                        <StackLayout Margin="-10,-15,-10,-15">
+                            <Label x:Name="Desserts"  VerticalTextAlignment="Center"  FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+
+                            <Image Source="catDessert.png"  HeightRequest="100" WidthRequest="100" />
+                        </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="Desserts" />
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                    <Frame x:Name="QuickBitesFrame" HeightRequest="150" WidthRequest="150" CornerRadius="20"  HasShadow="false">
+                        <StackLayout Margin="-10,-15,-10,-15">
+                            <Label x:Name="QuickBites" VerticalTextAlignment="Center"  FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+
+                            <Image   />
+                        </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="Quick Bites" />
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                    <Frame x:Name="SaladsFrame"  HeightRequest="150" WidthRequest="150" CornerRadius="20"  HasShadow="false">
+                        <StackLayout Margin="-10,-15,-10,-15">
+                            <Label x:Name="Salads" VerticalTextAlignment="Center"  FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+
+                            <Image Source="catSalad.png"  HeightRequest="100" WidthRequest="100" />
+                        </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="Salads" />
+                        </Frame.GestureRecognizers>
+                    </Frame>
+
+                  
 
 
                 </FlexLayout>

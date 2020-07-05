@@ -26,7 +26,14 @@ namespace Recipe_App
         public RecipeSearchPage()
         {
             InitializeComponent();
+
+
+
             BindingContext = new SQLentry();
+
+
+
+
 
             //we check if theres duplicate values, if so we dont add it
             RecipeNameOC = new ObservableCollection<SQLentry>();
@@ -67,13 +74,15 @@ namespace Recipe_App
         protected override void OnAppearing()
         {
             searchitemslistView.ItemsSource = RecipeNameOC;
+
+
         }
 
 
-        
 
 
-       
+
+
 
         //search an item as a list in the database, we display all items in the list, the list updates as searched
         private void searchbar_TextChanged(object sender, TextChangedEventArgs e)
@@ -115,12 +124,14 @@ namespace Recipe_App
         }
 
 
-        
 
 
 
 
+     
 
 
-}
+
+
+    }
 }

@@ -61,7 +61,7 @@ namespace Recipe_App {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add Recipe.
+        ///   Looks up a localized string similar to New Recipe.
         /// </summary>
         internal static string AddRecipeEnglish {
             get {
@@ -79,7 +79,7 @@ namespace Recipe_App {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Category.
+        ///   Looks up a localized string similar to Categories.
         /// </summary>
         internal static string CategoriesTabEn {
             get {
@@ -97,7 +97,7 @@ namespace Recipe_App {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Category.
+        ///   Looks up a localized string similar to Categories.
         /// </summary>
         internal static string Category {
             get {
@@ -160,7 +160,7 @@ namespace Recipe_App {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Category.
+        ///   Looks up a localized string similar to Categories.
         /// </summary>
         internal static string CategoryEnglish {
             get {
@@ -232,7 +232,7 @@ namespace Recipe_App {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Choose Photo.
+        ///   Looks up a localized string similar to Select Photo.
         /// </summary>
         internal static string ChooseImageButtonEnglish {
             get {
@@ -322,7 +322,7 @@ namespace Recipe_App {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add Recipe.
+        ///   Looks up a localized string similar to New Recipe.
         /// </summary>
         internal static string MainPageAddRecipeButtonEN {
             get {
@@ -349,7 +349,7 @@ namespace Recipe_App {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search Recipes.
+        ///   Looks up a localized string similar to Search.
         /// </summary>
         internal static string MainPageSearchRecipesbuttonEN {
             get {

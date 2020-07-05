@@ -20,11 +20,8 @@ namespace Recipe_App
 
             MainPage = new NavigationPage(new MainPage())
             {
-                BarBackgroundColor = Color.LightBlue,
-                BarTextColor= Color.White,
-                
-                
-                
+                BarBackgroundColor = Color.White,
+                BarTextColor= Color.Black,
                 
             };
             NavigationPage.SetHasNavigationBar(MainPage, false);

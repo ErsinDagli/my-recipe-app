@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Collections.ObjectModel;
-
+using System;
 
 namespace Recipe_App.Views
 {
@@ -22,6 +22,9 @@ namespace Recipe_App.Views
 
 
             BindingContext = new SQLentry();
+
+            SetUpNavBar();
+
             SelectedCategory = selectedcategory;
 
 
@@ -45,11 +48,11 @@ namespace Recipe_App.Views
 
             if(MainPage.TurkishClicked == false)
             {
-                CategoryLabel.Text = Language.RecipeEnglish;
+                CategoryLabel.Text = SelectedCategory;
             }
             else
             {
-                CategoryLabel.Text = Language.RecipeTurkish;
+                CategoryLabel.Text = SelectedCategory;
             }
 
 
@@ -82,6 +85,9 @@ namespace Recipe_App.Views
             }
         }
 
+        //delete category event
+
+
         private async void DeleteButton_Clicked(object sender, System.EventArgs e)
         {
             bool answer;
@@ -102,7 +108,9 @@ namespace Recipe_App.Views
                 {
                     App.Database.DeleteCategory(cat.Id);
 
-                    App.CategoryDeleted = true;
+                    //send deleted event
+                    MessagingCenter.Send<Categories, string>(this, "Deleted", SelectedCategory);
+
 
                     await Navigation.PopAsync();
                 }
@@ -111,6 +119,56 @@ namespace Recipe_App.Views
             }
         }
 
-     
+
+        void SetUpNavBar()
+        {
+            try
+            {
+                var frame = new Frame()
+                {
+                    CornerRadius = 10,
+                    HeightRequest = 40,
+                    WidthRequest = 40,
+                    IsClippedToBounds = true,
+                    Padding = 0,
+                    VerticalOptions = LayoutOptions.FillAndExpand,
+                    HorizontalOptions = LayoutOptions.FillAndExpand,
+                    BackgroundColor = Color.LightBlue
+
+                };
+
+                SearchBar sb = new SearchBar();
+                sb.HorizontalOptions = LayoutOptions.FillAndExpand;
+                sb.VerticalOptions = LayoutOptions.FillAndExpand;
+                sb.BackgroundColor = Color.Transparent;
+                sb.TextChanged += searchbar_TextChanged;
+                sb.HeightRequest = 40;
+                sb.Behaviors.Add(new TextChangedBehavior());
+                sb.Placeholder = "Recipe name";
+                 frame.Content = sb;
+
+                StackLayout chatNavBarLayout = new StackLayout() { Orientation = StackOrientation.Horizontal, HorizontalOptions = LayoutOptions.FillAndExpand };
+                 chatNavBarLayout.Children.Add(frame);
+               // chatNavBarLayout.Children.Add(new Label() { Text = "test" });
+
+                NavigationPage.SetTitleView(this, chatNavBarLayout);
+            }
+            catch (Exception e)
+            {
+
+            }
+
+
+           
+
+        }
+        private void searchbar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+
+            categoriesList.ItemsSource = App.Database.SearchRecipeInCategory(e.NewTextValue.ToUpper(), SelectedCategory);
+
+
+        }
     }
 }

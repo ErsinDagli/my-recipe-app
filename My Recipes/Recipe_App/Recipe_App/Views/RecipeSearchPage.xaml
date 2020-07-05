@@ -5,7 +5,7 @@
              xmlns:local="clr-namespace:Recipe_App.ViewModels"
              x:Class="Recipe_App.RecipeSearchPage"
              BackgroundImage="MyRecipesSearchBackgroundEdited.png"
-             Title="Search">
+             Title="Search"  BackgroundColor="White">
 
     <ContentPage.Content>
         <ScrollView>
@@ -16,20 +16,22 @@
                         BackgroundColor="White" 
                         Padding="15">
 
-                     
 
-                        <SearchBar x:Name="searchbar" Placeholder="Name"  
+                <Frame IsClippedToBounds="True" HeightRequest="40" CornerRadius="15" HorizontalOptions="FillAndExpand" BackgroundColor="LightBlue">
+                    <SearchBar x:Name="searchbar" Placeholder="Name"  
                     TextChanged="searchbar_TextChanged" 
                     HorizontalOptions="FillAndExpand"   BackgroundColor="Transparent"
                     VerticalOptions="Center" Margin="0, 5, 0, 10"
                     HeightRequest="40"
                                    
                     >
-                            <SearchBar.Behaviors>
-                                <local:TextChangedBehavior />
-                            </SearchBar.Behaviors>
+                        <SearchBar.Behaviors>
+                            <local:TextChangedBehavior />
+                        </SearchBar.Behaviors>
 
-                        </SearchBar>
+                    </SearchBar>
+                </Frame>
+                  
                         
                         <ListView x:Name="searchitemslistView" RowHeight="100"
                                   ItemSelected="searchitemslist_ItemSelected"  

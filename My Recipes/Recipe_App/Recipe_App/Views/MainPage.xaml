@@ -4,45 +4,28 @@
              xmlns:local="clr-namespace:Recipe_App"
              x:Class="Recipe_App.MainPage"
              x:Name="MainContentPage"            
-             >
+              BackgroundColor="White">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Language" 
-                 Order="Primary"
-                 Priority="0" />
+
         <ToolbarItem Text="English"
                  Order="Secondary" Clicked="EnglishButton_Clicked" 
                  Priority="1" />
-        <ToolbarItem Text="Turkish" 
+        <ToolbarItem Text="Türkçe" 
                  Order="Secondary" Clicked="TurkishButton_Clicked" 
                  Priority="2" />
     </ContentPage.ToolbarItems>
     <StackLayout Padding="30" >
         <!-- Place new controls here -->
 
-        <!--<Picker Title="Select a language" x:Name="LanguagePicker" SelectedIndexChanged="LanguagePicker_SelectedIndexChanged" HorizontalOptions="EndAndExpand" WidthRequest="100">
-            <Picker.Items >
-                <x:String>
-                    English
-                </x:String>
-                <x:String>
-                    Turkish
-                </x:String>
-            </Picker.Items>
-        </Picker>-->
-        <Label Text="" 
-               FontSize="Large"
-               FontAttributes="Bold"
-               HorizontalOptions="Center"
-               VerticalOptions="CenterAndExpand"
-               />
+
         <Button x:Name="AddRecipebutton" Command="{Binding NavigateToAddRecipesPage}" 
-                HeightRequest="50"
+                HeightRequest="50" VerticalOptions="EndAndExpand"
                 WidthRequest="50" 
                 BorderRadius="20"
                 BackgroundColor="LightBlue"
                 TextColor="White"/>
         <Button x:Name="SearchRecipeButton" Command="{Binding NavigateToRecipeSearchPage}" 
-                BorderRadius="20" 
+                BorderRadius="20"   VerticalOptions="End"
                 BackgroundColor="LightBlue"
                 TextColor="White"/>
 

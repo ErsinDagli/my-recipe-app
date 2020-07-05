@@ -27,8 +27,8 @@ namespace Recipe_App.Views
 
 
             imgRecipe.Source = sqlentryselected.ImageFilePath;
-            
-                
+
+
             editorRecipeName.Text = sqlentryselected.RecipeName;
 
             //changing display of category based on turkish or english selected

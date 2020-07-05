@@ -17,7 +17,7 @@ namespace Recipe_App
     public partial class AddRecipesPage : ContentPage
     {
         
-       public static MediaFile PicTakenFile { get; set; }
+       public  MediaFile PicTakenFile { get; set; }
        public string SelectedCategory { get; set; }
        public SQLentry passedSQLentry { get; set; }
        public bool saved;
@@ -26,20 +26,24 @@ namespace Recipe_App
         public AddRecipesPage()
         {
             InitializeComponent();
-            //BindingContext = new Language();
             
 
             //update picker values with colletion
-            foreach (var item in Application.Current.Properties)
+            //foreach (var item in Application.Current.Properties)
+            //{
+            //    txtcategory.Items.Add(item.Value.ToString());
+            //}
+            
+            foreach(var category in App.Database.GetCategories())
             {
-                txtcategory.Items.Add(item.Value.ToString());
-            }
-            
-            
+               txtcategory.Items.Add(category.CategoryName.ToString());
 
-            if(MainPage.TurkishClicked == false)
+            }
+
+
+            if (MainPage.TurkishClicked == false)
             {
-                
+                Title = Language.AddRecipeEnglish;
                 recipeNameLabel.Text = Language.RecipeNameEnglish;
                 categoryLabel.Text = Language.CategoryEnglish;
                 ingredientsLabel.Text = Language.IngredientsEnglish;
@@ -59,7 +63,8 @@ namespace Recipe_App
             }
             else
             {
-                
+                Title = Language.AddRecipeTurkish;
+
                 recipeNameLabel.Text = Language.RecipeNameTurkish;
                 categoryLabel.Text = Language.CategoryTurkish;
                 ingredientsLabel.Text = Language.IngredientsTurkish;
@@ -87,17 +92,25 @@ namespace Recipe_App
 
             RecipeImage.Source = sqlentry.ImageFilePath;
             txtRecipeName.Text = sqlentry.RecipeName;
-            txtcategory.SelectedItem = sqlentry.Category;
             txtIngredients.Text = sqlentry.Ingredients;
             txtRecipe.Text = sqlentry.Recipe;
             txtNotes.Text = sqlentry.Notes;
 
-          
 
-            foreach (var item in Application.Current.Properties)
+
+            //foreach (var item in Application.Current.Properties)
+            //{
+            //    txtcategory.Items.Add(item.Value.ToString());
+            //}
+
+            foreach (var category in App.Database.GetCategories())
             {
-                txtcategory.Items.Add(item.Value.ToString());
+                txtcategory.Items.Add(category.CategoryName.ToString());
+
             }
+
+            txtcategory.SelectedItem = sqlentry.Category;
+
 
             if (MainPage.TurkishClicked == false)
             {

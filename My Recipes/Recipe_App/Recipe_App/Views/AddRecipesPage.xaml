@@ -5,12 +5,18 @@
                xmlns:local="clr-namespace:Recipe_App"
              xmlns:local1="clr-namespace:Recipe_App.Views"
              Title="Add Recipe">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="{Binding Save}" x:Name="SaveButton"
+    <!--<ContentPage.ToolbarItems>
+          <ToolbarItem Text="{Binding Save}"  x:Name="SaveButton"
                  Order="Primary" Clicked="Click_Save" 
                  Priority="0" />
-    </ContentPage.ToolbarItems>
+    </ContentPage.ToolbarItems>-->
+    <NavigationPage.TitleView>
+        <Button BackgroundColor="Transparent" TextColor="Black" HorizontalOptions="End" Text="{Binding Save}"  x:Name="SaveButton" Clicked="Click_Save"   />
+    </NavigationPage.TitleView>
+
+
     <ContentPage.Content>
+       
         <ScrollView>
             <StackLayout Padding="20" >
 

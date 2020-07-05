@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -37,9 +38,9 @@ namespace Recipe_App.Views
                 button.HeightRequest = 150;
                 button.WidthRequest = 150;
                 button.CornerRadius = 20;
-
+                button.Margin = new Thickness(5);
                 //give the button a random colour
-                button.BackgroundColor = GetRandomColor();
+                button.BackgroundColor = redColor;
                 button.TextColor = Color.Black;
 
 
@@ -56,45 +57,17 @@ namespace Recipe_App.Views
 
 
 
-            BreakfastButton.BackgroundColor = redColor;
-            Lunch.BackgroundColor = redColor;
-            Dinner.BackgroundColor = redColor;
-            Desserts.BackgroundColor = redColor;
-            QuickBites.BackgroundColor = redColor;
-            Salads.BackgroundColor = redColor;
+            BreakfastFrame.BackgroundColor = GetRandomColor();
+            LunchFrame.BackgroundColor = GetRandomColor();
+            DinnerFrame.BackgroundColor = GetRandomColor();
+            DessertFrame.BackgroundColor = GetRandomColor();
+            QuickBitesFrame.BackgroundColor = GetRandomColor();
+            SaladsFrame.BackgroundColor = GetRandomColor();
 
 
             ReloadButtons();
 
-            //ADDING BUTTONS BASED ON PROPERTIES DICTIONARY
 
-            //foreach (KeyValuePair<string, object> category in Application.Current.Properties)
-            //{
-            //    //creating a new button for each category, giving its text as the category, use properties to store the category
-
-
-            //    Button button = new Button();
-
-            //    button.HorizontalOptions = LayoutOptions.Center;
-            //    button.VerticalOptions = LayoutOptions.Center;
-            //    // add a navigation to each button, navigate to a category page that contains a list of each item in the category
-            //    button.Text = category.Value.ToString();
-            //    categoryButtonPageStack.Children.Add(button);
-
-            //    button.HeightRequest = 150;
-            //    button.WidthRequest = 150;
-            //    button.CornerRadius = 20;
-
-            //    //give the button a random colour
-            //    button.BackgroundColor = GetRandomColor();
-            //    button.TextColor = Color.Black;
-
-
-
-            //    button.Clicked += async (sender, e) => await Navigation.PushAsync(new Categories(category.Value.ToString()));
-
-
-            //}
 
 
 
@@ -125,41 +98,63 @@ namespace Recipe_App.Views
             //setup count category recipes
             CountRecipesPerCategory();
 
+
+
+            try
+            {
+                MessagingCenter.Subscribe<Categories, string>(this, "Deleted", (sender, deletedCat) => {
+
+
+                    var buttonToDelete = categoryButtonPageStack.Children.Where(x => ((Button)x).Text.Contains(deletedCat)).FirstOrDefault();
+
+                    if(buttonToDelete != null)
+                        categoryButtonPageStack.Children.Remove(buttonToDelete);
+
+                  
+
+                });
+
+            }
+            catch (Exception e)
+            {
+
+            }
+          
         }
 
         void CountRecipesPerCategory()
         {
-            BreakfastButton.Text += 
-                   Environment.NewLine +
-                   "Total Recipes " +
-                   App.Database.GetCountRecipesInCategory("Breakfast");
+            //BreakfastButton.Text += 
+            //       Environment.NewLine +
+            //       "Total Recipes " +
+            //       App.Database.GetCountRecipesInCategory("Breakfast");
 
-            Lunch.Text +=
-               Environment.NewLine +
-               "Total Recipes " +
-               App.Database.GetCountRecipesInCategory("Lunch");
+            //Lunch.Text +=
+            //   Environment.NewLine +
+            //   "Total Recipes " +
+            //   App.Database.GetCountRecipesInCategory("Lunch");
 
-            Dinner.Text +=
-              Environment.NewLine +
-              "Total Recipes " +
-              App.Database.GetCountRecipesInCategory("Dinner");
+            //Dinner.Text +=
+            //  Environment.NewLine +
+            //  "Total Recipes " +
+            //  App.Database.GetCountRecipesInCategory("Dinner");
 
          
 
-            QuickBites.Text +=
-              Environment.NewLine +
-              "Total Recipes " +
-              App.Database.GetCountRecipesInCategory("QuickBites");
+            //QuickBites.Text +=
+            //  Environment.NewLine +
+            //  "Total Recipes " +
+            //  App.Database.GetCountRecipesInCategory("Quick Bites");
 
-            Desserts.Text +=
-              Environment.NewLine +
-              "Total Recipes " +
-              App.Database.GetCountRecipesInCategory("Desserts");
+            //Desserts.Text +=
+            //  Environment.NewLine +
+            //  "Total Recipes " +
+            //  App.Database.GetCountRecipesInCategory("Desserts");
 
-            Salads.Text +=
-              Environment.NewLine +
-              "Total Recipes " +
-              App.Database.GetCountRecipesInCategory("Salads");
+            //Salads.Text +=
+            //  Environment.NewLine +
+            //  "Total Recipes " +
+            //  App.Database.GetCountRecipesInCategory("Salads");
 
         }
 
@@ -169,12 +164,7 @@ namespace Recipe_App.Views
             BackgroundImageSource = "pictwoinone.png";
 
 
-            if (App.CategoryDeleted)
-            {
-                ReloadButtons();
-
-                App.CategoryDeleted = false;
-            }
+          
         }
 
         protected override void OnDisappearing()
@@ -199,52 +189,12 @@ namespace Recipe_App.Views
 
    
 
-
-
-        private async void BreakfastButton_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new Categories("Breakfast"));
-        }
-
-        private async void Lunch_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new Categories("Lunch"));
-        }
-
-        private async void Dinner_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new Categories("Dinner"));
-        }
-
-        private async void Desserts_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new Categories("Desserts"));
-        }
-
-        private async void QuickBites_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new Categories("Quick Bites"));
-        }
-
-        private async void Salads_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new Categories("Salads"));
-        }
-
-
-
         private void AddCategoryButton_Clicked(object sender, EventArgs e)
         {
-            AddCategoryEntry.IsVisible = true;
-            SaveCategoryButton.IsVisible = true;
+            NewCategoryFrame.IsVisible = true;
 
             categoryButtonPageStack.Unfocus();
             categoryButtonPageStack.Opacity = 0.25;
-            
-            
-           
-
-
             
             
 
@@ -281,19 +231,25 @@ namespace Recipe_App.Views
                     App.Database.SaveCategory(c);
                 }
 
-               
-               
-            
 
-                    AddCategoryEntry.IsVisible = false;
-                SaveCategoryButton.IsVisible = false;
+
+
+                NewCategoryFrame.IsVisible = false;
+
+                categoryButtonPageStack.Focus();
                 categoryButtonPageStack.Opacity = 1;
+
+
                 
-               
+         
+
+
+
             } else
             {
-                AddCategoryEntry.IsVisible = false;
-                SaveCategoryButton.IsVisible = false;
+                NewCategoryFrame.IsVisible = false;
+
+                categoryButtonPageStack.Focus();
                 categoryButtonPageStack.Opacity = 1;
                
             }
@@ -301,6 +257,28 @@ namespace Recipe_App.Views
 
           
 
+
+        }
+
+        private void CancelCategoryButton_Clicked(object sender, EventArgs e)
+        {
+            NewCategoryFrame.IsVisible = false;
+
+            categoryButtonPageStack.Focus();
+            categoryButtonPageStack.Opacity = 1;
+        }
+
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            try
+            {
+                await Navigation.PushAsync(new Categories(((TappedEventArgs)e).Parameter.ToString()));
+
+            }
+            catch
+            {
+
+            }
 
         }
     }
