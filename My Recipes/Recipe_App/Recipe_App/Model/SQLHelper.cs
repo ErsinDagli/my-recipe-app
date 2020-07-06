@@ -35,6 +35,18 @@ namespace Recipe_App.ViewModels
                 return database.Table<Category>().FirstOrDefault(x => x.CategoryName == CategoryName);
             }
         }
+
+        public int EditCategory(Category cat)
+        {
+            lock (locker)
+            {
+
+                //Update Item  
+                
+                return database.Update(cat);
+            }
+        }
+
         public IEnumerable<Category> GetCategories()
         {
             lock (locker)

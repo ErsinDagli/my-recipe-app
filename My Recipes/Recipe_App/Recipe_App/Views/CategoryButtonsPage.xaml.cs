@@ -20,8 +20,31 @@ namespace Recipe_App.Views
             //get categories
             var categories = App.Database.GetCategories();
 
+            int col = 1;
             foreach (var category in categories)
             {
+                Frame f = new Frame() {
+                    HeightRequest = 150, WidthRequest = 150 ,CornerRadius = 20, BackgroundColor = redColor, HasShadow = false,
+                };
+
+
+                var tapGestureRecognizer = new TapGestureRecognizer();
+                tapGestureRecognizer.Tapped += TapGestureRecognizer_Tapped;
+                tapGestureRecognizer.CommandParameter = category.CategoryName;
+                f.GestureRecognizers.Add(tapGestureRecognizer);
+
+               StackLayout sl = new StackLayout();
+                sl.Margin = new Thickness(-10, -15, -10, -15);
+                sl.Children.Add(new Label() {
+                    Text = category.CategoryName,
+                    VerticalTextAlignment = TextAlignment.Center, FontSize = 25,
+                    FontAttributes = FontAttributes.Bold,
+                    HorizontalTextAlignment = TextAlignment.Center, TextColor = Color.White
+                });
+
+                sl.Children.Add(new Image() { HeightRequest = 100, WidthRequest = 100, Source = category.ImageFilePath});
+
+                f.Content = sl;
 
                 Button button = new Button();
 
@@ -33,22 +56,29 @@ namespace Recipe_App.Views
                     "Total Recipes " + 
                     App.Database.GetCountRecipesInCategory(category.CategoryName);
 
-                categoryButtonPageStack.Children.Add(button);
-
-                button.HeightRequest = 150;
-                button.WidthRequest = 150;
-                button.CornerRadius = 20;
-                button.Margin = new Thickness(5);
-                //give the button a random colour
-                button.BackgroundColor = redColor;
-                button.TextColor = Color.Black;
+                if(col % 2 == 0)
+                    stack2.Children.Add(f);
+                else
+                    stack1.Children.Add(f);
 
 
+                //button.HeightRequest = 150;
+                //button.WidthRequest = 150;
+                //button.CornerRadius = 20;
+                //button.Margin = new Thickness(5);
+                ////give the button a random colour
+                //button.BackgroundColor = redColor;
+                //button.TextColor = Color.Black;
 
-                button.Clicked += async (sender, e) => await Navigation.PushAsync(new Categories(category.CategoryName));
 
 
+                //button.Clicked += async (sender, e) => await Navigation.PushAsync(new Categories(category.CategoryName));
+
+
+                col++;
             }
+
+            col = 1;
         }
 
 		public CategoryButtonsPage ()
@@ -57,12 +87,12 @@ namespace Recipe_App.Views
 
 
 
-            BreakfastFrame.BackgroundColor = GetRandomColor();
-            LunchFrame.BackgroundColor = GetRandomColor();
-            DinnerFrame.BackgroundColor = GetRandomColor();
-            DessertFrame.BackgroundColor = GetRandomColor();
-            QuickBitesFrame.BackgroundColor = GetRandomColor();
-            SaladsFrame.BackgroundColor = GetRandomColor();
+            BreakfastFrame.BackgroundColor = redColor;
+            LunchFrame.BackgroundColor = redColor;
+            DinnerFrame.BackgroundColor = redColor;
+            DessertFrame.BackgroundColor = redColor;
+            QuickBitesFrame.BackgroundColor = redColor;
+            SaladsFrame.BackgroundColor = redColor;
 
 
             ReloadButtons();
@@ -105,11 +135,18 @@ namespace Recipe_App.Views
                 MessagingCenter.Subscribe<Categories, string>(this, "Deleted", (sender, deletedCat) => {
 
 
-                    var buttonToDelete = categoryButtonPageStack.Children.Where(x => ((Button)x).Text.Contains(deletedCat)).FirstOrDefault();
-
+                    var buttonToDelete = stack1.Children.Where(x => ((Button)x).Text.Contains(deletedCat)).FirstOrDefault();
                     if(buttonToDelete != null)
-                        categoryButtonPageStack.Children.Remove(buttonToDelete);
+                        stack1.Children.Remove(buttonToDelete);
+                    else
+                    {
+                        buttonToDelete = stack2.Children.Where(x => ((Button)x).Text.Contains(deletedCat)).FirstOrDefault();
+                        stack2.Children.Remove(buttonToDelete);
 
+                    }
+
+
+                   
                   
 
                 });
@@ -189,8 +226,9 @@ namespace Recipe_App.Views
 
    
 
-        private void AddCategoryButton_Clicked(object sender, EventArgs e)
+        private async void AddCategoryButton_Clicked(object sender, EventArgs e)
         {
+            await scroll.ScrollToAsync(0, 0, false);
             NewCategoryFrame.IsVisible = true;
 
             categoryButtonPageStack.Unfocus();

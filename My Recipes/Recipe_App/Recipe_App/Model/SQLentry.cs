@@ -25,5 +25,6 @@ namespace Recipe_App.ViewModels
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public string CategoryName { get; set; }
+        public string ImageFilePath { get; set;  }
     }
 }

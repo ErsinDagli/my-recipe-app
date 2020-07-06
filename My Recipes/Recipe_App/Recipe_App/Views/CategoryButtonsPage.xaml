@@ -15,7 +15,7 @@
         </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <ScrollView >
+        <ScrollView x:Name="scroll">
 
           
                 <StackLayout x:Name="buttonStack" Padding="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -41,11 +41,82 @@
                        
                     </StackLayout>
                 </Frame>
-                   
 
+                <Grid x:Name="categoryButtonPageStack">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="0" x:Name="stack1">
+                        <Frame Margin="0" x:Name="BreakfastFrame" HeightRequest="150" WidthRequest="150" CornerRadius="20"  HasShadow="false">
+                            <StackLayout>
+                                <Label x:Name="BreakfastButton" FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center" BackgroundColor="Transparent"  VerticalTextAlignment="Center" />
+
+                                <Image Source="catBrekky.png" HeightRequest="100" WidthRequest="100" />
+                            </StackLayout>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="Breakfast" />
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                        <Frame x:Name="DinnerFrame"  HeightRequest="150" WidthRequest="150" CornerRadius="20"  HasShadow="false">
+                            <StackLayout Margin="-10,-15,-10,-15">
+                                <Label x:Name="Dinner" VerticalTextAlignment="Center" FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+
+                                <Image Source="catDinner.png"  HeightRequest="100" WidthRequest="100" />
+                            </StackLayout>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="Dinner" />
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                        <Frame x:Name="DessertFrame"  HeightRequest="150" WidthRequest="150" CornerRadius="20"  HasShadow="false">
+                            <StackLayout Margin="-10,-15,-10,-15">
+                                <Label x:Name="Desserts"  VerticalTextAlignment="Center"  FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+
+                                <Image Source="catDessert.png"  HeightRequest="100" WidthRequest="100" />
+                            </StackLayout>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="Desserts" />
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                      
+                    </StackLayout>
+                    <StackLayout Grid.Column="1" Margin="0,80,0,0" x:Name="stack2">
+                        <Frame Margin="0" x:Name="LunchFrame" HeightRequest="150" WidthRequest="150" CornerRadius="20"  HasShadow="false">
+                            <StackLayout>
+                                <Label x:Name="Lunch" VerticalTextAlignment="Center" FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+
+                                <Image Source="catLunch.png"  HeightRequest="100" WidthRequest="100" />
+                            </StackLayout>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="Lunch" />
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                      
+                        <Frame x:Name="SaladsFrame"  HeightRequest="150" WidthRequest="150" CornerRadius="20"  HasShadow="false">
+                            <StackLayout Margin="-10,-15,-10,-15">
+                                <Label x:Name="Salads" VerticalTextAlignment="Center"  FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+
+                                <Image Source="catSalad.png"  HeightRequest="100" WidthRequest="100" />
+                            </StackLayout>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="Salads" />
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                        <Frame x:Name="QuickBitesFrame" HeightRequest="150" WidthRequest="150" CornerRadius="20"  HasShadow="false">
+                            <StackLayout Margin="-10,-15,-10,-15">
+                                <Label x:Name="QuickBites" VerticalTextAlignment="Center"  FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+
+                                <Image   />
+                            </StackLayout>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="Quick Bites" />
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                    </StackLayout>
+                </Grid>
                     
 
-                    <FlexLayout x:Name="categoryButtonPageStack" 
+                    <!--<FlexLayout x:Name="categoryButtonPageStack" 
                      Direction="Row"
                         Wrap="Wrap"
                         JustifyContent="SpaceEvenly"
@@ -115,7 +186,7 @@
                   
 
 
-                </FlexLayout>
+                </FlexLayout>-->
                 
                 
 
