@@ -53,6 +53,7 @@
                                 <Label x:Name="BreakfastButton" FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center" BackgroundColor="Transparent"  VerticalTextAlignment="Center" />
 
                                 <Image Source="catBrekky.png" HeightRequest="100" WidthRequest="100" />
+                                <Label x:Name="breaklbl" FontSize="15" HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold" Margin="0, 5, 0, 0"/>
                             </StackLayout>
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="Breakfast" />
@@ -63,6 +64,8 @@
                                 <Label x:Name="Dinner" VerticalTextAlignment="Center" FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center" />
 
                                 <Image Source="catDinner.png"  HeightRequest="100" WidthRequest="100" />
+                                <Label x:Name="dinnerlbl" FontSize="15" HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold" Margin="0, 5, 0, 0"/>
+
                             </StackLayout>
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="Dinner" />
@@ -73,6 +76,8 @@
                                 <Label x:Name="Desserts"  VerticalTextAlignment="Center"  FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
 
                                 <Image Source="catDessert.png"  HeightRequest="100" WidthRequest="100" />
+                                <Label x:Name="dessertslbl" FontSize="15" HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold" Margin="0, 5, 0, 0"/>
+
                             </StackLayout>
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="Desserts" />
@@ -86,6 +91,8 @@
                                 <Label x:Name="Lunch" VerticalTextAlignment="Center" FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center" />
 
                                 <Image Source="catLunch.png"  HeightRequest="100" WidthRequest="100" />
+                                <Label x:Name="lunchlbl" FontSize="15" HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold" Margin="0, 5, 0, 0"/>
+
                             </StackLayout>
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="Lunch" />
@@ -97,6 +104,8 @@
                                 <Label x:Name="Salads" VerticalTextAlignment="Center"  FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center" />
 
                                 <Image Source="catSalad.png"  HeightRequest="100" WidthRequest="100" />
+                                <Label x:Name="saladslbl" FontSize="15" HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold" Margin="0, 5, 0, 0"/>
+
                             </StackLayout>
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="Salads" />
@@ -107,6 +116,8 @@
                                 <Label x:Name="QuickBites" VerticalTextAlignment="Center"  FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center" />
 
                                 <Image   />
+                                <Label x:Name="biteslbl" FontSize="15" HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold" Margin="0, 5, 0, 0"/>
+
                             </StackLayout>
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="Quick Bites" />

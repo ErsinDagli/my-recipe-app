@@ -37,6 +37,17 @@ namespace Recipe_App.Views
                 DeleteButton.IconImageSource = "";
             }
 
+            if (selectedcategory == "Breakfast")
+                CatImage.Source = "catBrekky.png";
+            else if(selectedcategory == "Lunch")
+                CatImage.Source = "catLunch.png";
+            else if (selectedcategory == "Dinner")
+                CatImage.Source = "catDinner.png";
+            else if (selectedcategory == "Salads")
+                CatImage.Source = "catSalads.png";
+            else if (selectedcategory == "Quick Bites")
+                CatImage.Source = "catBrekky.png";
+
 
 
             BindingContext = new SQLentry();
@@ -45,24 +56,45 @@ namespace Recipe_App.Views
 
             SelectedCategory = selectedcategory;
 
-
-          
-            CategoryOC = new ObservableCollection<SQLentry>();
-            categoryListEntries = App.Database.GetCategory(selectedcategory);
-
-            foreach (var item in categoryListEntries)
+            //get category image
+            try
             {
-                if (!CategoryOC.Contains(item))
-                {
-                    if (string.IsNullOrWhiteSpace(item.ImageFilePath))
-                        item.ImageFilePath = "recipeplaceholder.png";
-
-                    CategoryOC.Add(item);
-                }
+                var category = App.Database.GetCategoryByName(selectedcategory);
+                CatImage.Source = category.ImageFilePath;
             }
+            catch
+            {
+
+            }
+
+
+            try
+            {
+                CategoryOC = new ObservableCollection<SQLentry>();
+                categoryListEntries = App.Database.GetCategory(selectedcategory);
+
+                foreach (var item in categoryListEntries)
+                {
+                    if (!CategoryOC.Contains(item))
+                    {
+                        if (string.IsNullOrWhiteSpace(item.ImageFilePath))
+                            item.ImageFilePath = "recipeplaceholder.png";
+
+                        CategoryOC.Add(item);
+                    }
+                }
+
+
+                categoriesList.ItemsSource = CategoryOC;
+
+            }
+            catch
+            {
+
+            }
+           
             //item source of list is the OC where only categories are the same as the selected category provided in constructor
            
-            categoriesList.ItemsSource = CategoryOC;
 
             if(MainPage.TurkishClicked == false)
             {
@@ -332,8 +364,19 @@ namespace Recipe_App.Views
 
                     CatImage.Source = ImageSource.FromStream(() => stream);
 
+                    //save image for category
+                    var currentCategory = App.Database.GetCategoryByName(SelectedCategory);
+                    if (currentCategory != null)
+                    {
+                        currentCategory.ImageFilePath = file.Path.ToString();
+                    }
+
+                    App.Database.EditCategory(currentCategory);
+
+
                     PicTakenFile = file;
-                   // file.Dispose();
+
+                    file.Dispose();
 
                 };
             }

@@ -10,9 +10,10 @@
     </ContentPage.ToolbarItems>
     <ScrollView>
             <StackLayout Padding="15">
-                <Label x:Name="CategoryLabel" FontAttributes="Bold" FontSize="Large" TextColor="Black"/>
-            <Image x:Name="CatImage" WidthRequest="200" HeightRequest="200" HorizontalOptions="CenterAndExpand" VerticalOptions="Start"/>
-            <Button x:Name="CameraButtonCat" Text="{Binding TakeImageButton}" TextColor="White" Grid.Row="1" Grid.Column="0" Clicked="CameraButtonClicked" HeightRequest="40" WidthRequest="40" BorderRadius="20"  BackgroundColor="LightBlue"/>
+                <Label HorizontalOptions="CenterAndExpand"   x:Name="CategoryLabel" FontAttributes="Bold" FontSize="Large" TextColor="Black"/>
+                 <Image x:Name="CatImage" WidthRequest="200" HeightRequest="200" HorizontalOptions="CenterAndExpand" VerticalOptions="Start"/>
+           
+                <Button x:Name="CameraButtonCat" Text="{Binding TakeImageButton}" TextColor="White" Grid.Row="1" Grid.Column="0" Clicked="CameraButtonClicked" HeightRequest="40" WidthRequest="40" BorderRadius="20"  BackgroundColor="LightBlue"/>
             <Button x:Name="ChooseImageCat" Text="{Binding ChooseImageButton}" TextColor="White" Grid.Row="1" Grid.Column="1"  Clicked="ChooseImageClicked" HeightRequest="40" WidthRequest="40" BorderRadius="20" BackgroundColor="LightBlue"/>
 
             <ListView x:Name="categoriesList" ItemSelected="categoriesList_ItemSelected"

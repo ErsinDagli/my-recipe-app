@@ -24,7 +24,7 @@ namespace Recipe_App.Views
             foreach (var category in categories)
             {
                 Frame f = new Frame() {
-                    HeightRequest = 150, WidthRequest = 150 ,CornerRadius = 20, BackgroundColor = redColor, HasShadow = false,
+                    HeightRequest = 200, WidthRequest = 150 ,CornerRadius = 20, BackgroundColor = redColor, HasShadow = true,
                 };
 
 
@@ -33,28 +33,49 @@ namespace Recipe_App.Views
                 tapGestureRecognizer.CommandParameter = category.CategoryName;
                 f.GestureRecognizers.Add(tapGestureRecognizer);
 
-               StackLayout sl = new StackLayout();
-                sl.Margin = new Thickness(-10, -15, -10, -15);
+               StackLayout sl = new StackLayout() { VerticalOptions= LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand};
+                //sl.Margin = new Thickness(-10, -15, -10, -15);
+                sl.Margin = new Thickness(0, 5, 0, 5);
+
                 sl.Children.Add(new Label() {
                     Text = category.CategoryName,
                     VerticalTextAlignment = TextAlignment.Center, FontSize = 25,
                     FontAttributes = FontAttributes.Bold,
                     HorizontalTextAlignment = TextAlignment.Center, TextColor = Color.White
+                    ,VerticalOptions  = LayoutOptions.Start
                 });
 
-                sl.Children.Add(new Image() { HeightRequest = 100, WidthRequest = 100, Source = category.ImageFilePath});
+                Frame imageFrame = new Frame()
+                {
+                    Margin = new Thickness(0),
+                    Padding = new Thickness(0),
+                    HorizontalOptions = LayoutOptions.Center,
+                    VerticalOptions = LayoutOptions.Center,
+                    HeightRequest = 100,
+                    WidthRequest = 100,
+                    CornerRadius = 100,
+                    IsClippedToBounds = true,
+                    BackgroundColor = Color.Transparent,
+                    Content = new Image() {Aspect = Aspect.Fill, HeightRequest = 100, WidthRequest = 100, Source = category.ImageFilePath, HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center }
+                    
+                 };
+
+                sl.Children.Add(imageFrame);
+                sl.Children.Add(new Label()
+                {
+                    Margin = new Thickness(0, 5, 0, 0),
+                    Text = App.Database.GetCountRecipesInCategory(category.CategoryName) == 1 ? App.Database.GetCountRecipesInCategory(category.CategoryName).ToString() + " recipe" : App.Database.GetCountRecipesInCategory(category.CategoryName).ToString()  + " recipes",
+                    VerticalTextAlignment = TextAlignment.Center,
+                    FontSize = 15,
+                    FontAttributes = FontAttributes.Bold,
+                    HorizontalTextAlignment = TextAlignment.Center,
+                    TextColor = Color.White ,
+                    VerticalOptions = LayoutOptions.Center
+                });
 
                 f.Content = sl;
 
-                Button button = new Button();
 
-                button.HorizontalOptions = LayoutOptions.Center;
-                button.VerticalOptions = LayoutOptions.Center;
-                // add a navigation to each button, navigate to a category page that contains a list of each item in the category
-                button.Text = category.CategoryName +
-                    Environment.NewLine + 
-                    "Total Recipes " + 
-                    App.Database.GetCountRecipesInCategory(category.CategoryName);
 
                 if(col % 2 == 0)
                     stack2.Children.Add(f);
@@ -161,37 +182,25 @@ namespace Recipe_App.Views
 
         void CountRecipesPerCategory()
         {
-            //BreakfastButton.Text += 
-            //       Environment.NewLine +
-            //       "Total Recipes " +
-            //       App.Database.GetCountRecipesInCategory("Breakfast");
+            breaklbl.Text = App.Database.GetCountRecipesInCategory("Breakfast") == 1 ? App.Database.GetCountRecipesInCategory("Breakfast").ToString() + " recipe" : App.Database.GetCountRecipesInCategory("Breakfast").ToString() + " recipes";
 
-            //Lunch.Text +=
-            //   Environment.NewLine +
-            //   "Total Recipes " +
-            //   App.Database.GetCountRecipesInCategory("Lunch");
 
-            //Dinner.Text +=
-            //  Environment.NewLine +
-            //  "Total Recipes " +
-            //  App.Database.GetCountRecipesInCategory("Dinner");
+            lunchlbl.Text = App.Database.GetCountRecipesInCategory("Lunch") == 1 ? App.Database.GetCountRecipesInCategory("Lunch").ToString() + " recipe" : App.Database.GetCountRecipesInCategory("Lunch").ToString() + " recipes";
 
-         
 
-            //QuickBites.Text +=
-            //  Environment.NewLine +
-            //  "Total Recipes " +
-            //  App.Database.GetCountRecipesInCategory("Quick Bites");
+            dinnerlbl.Text = App.Database.GetCountRecipesInCategory("Dinner") == 1 ? App.Database.GetCountRecipesInCategory("Dinner").ToString() + " recipe" : App.Database.GetCountRecipesInCategory("Dinner").ToString() + " recipes";
 
-            //Desserts.Text +=
-            //  Environment.NewLine +
-            //  "Total Recipes " +
-            //  App.Database.GetCountRecipesInCategory("Desserts");
 
-            //Salads.Text +=
-            //  Environment.NewLine +
-            //  "Total Recipes " +
-            //  App.Database.GetCountRecipesInCategory("Salads");
+
+
+            biteslbl.Text = App.Database.GetCountRecipesInCategory("Quick Bites") == 1 ? App.Database.GetCountRecipesInCategory("Quick Bites").ToString() + " recipe" : App.Database.GetCountRecipesInCategory("Quick Bites").ToString() + " recipes";
+
+
+            dessertslbl.Text = App.Database.GetCountRecipesInCategory("Desserts") == 1 ? App.Database.GetCountRecipesInCategory("Desserts").ToString() + " recipe" : App.Database.GetCountRecipesInCategory("Desserts").ToString() + " recipes";
+
+
+            saladslbl.Text = App.Database.GetCountRecipesInCategory("Salads") == 1 ? App.Database.GetCountRecipesInCategory("Salads").ToString() + " recipe" : App.Database.GetCountRecipesInCategory("Salads").ToString() + " recipes";
+
 
         }
 
