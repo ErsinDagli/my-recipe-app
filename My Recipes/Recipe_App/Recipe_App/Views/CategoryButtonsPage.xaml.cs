@@ -15,6 +15,32 @@ namespace Recipe_App.Views
 	{
         Color redColor = Color.FromRgba(190, 104, 100, 190);
 
+        //void SetButtonFrameColors()
+        //{
+        //    var categories = App.Database.GetCategories();
+
+            
+        //    foreach (var category in categories)
+        //    {
+        //        Frame f = new Frame()
+        //        {
+        //            HeightRequest = 200,
+        //            WidthRequest = 150,
+        //            CornerRadius = 20,
+        //            BackgroundColor = redColor,
+        //            HasShadow = true,
+        //        };
+
+        //        //if (Application.Current.Properties.ContainsKey(category.CategoryName + "-color"))
+        //        //{
+        //        //    f.BackgroundColor = (Color)Application.Current.Properties[category.CategoryName + "-color"];
+        //        //}
+
+        
+        //    }
+
+        //}
+
         void ReloadButtons()
         {
             //get categories
@@ -27,6 +53,12 @@ namespace Recipe_App.Views
                     HeightRequest = 200, WidthRequest = 150 ,CornerRadius = 20, BackgroundColor = redColor, HasShadow = true,
                 };
 
+                if (!string.IsNullOrWhiteSpace(category.ButtonColorHex))
+                    f.BackgroundColor =  Color.FromHex(category.ButtonColorHex);
+                //if (Application.Current.Properties.ContainsKey(category.CategoryName + "-color"))
+                //{
+                //    f.BackgroundColor = (Color)Application.Current.Properties[category.CategoryName + "-color"];
+                //}
 
                 var tapGestureRecognizer = new TapGestureRecognizer();
                 tapGestureRecognizer.Tapped += TapGestureRecognizer_Tapped;
@@ -45,22 +77,27 @@ namespace Recipe_App.Views
                     ,VerticalOptions  = LayoutOptions.Start
                 });
 
-                Frame imageFrame = new Frame()
+                if (!string.IsNullOrWhiteSpace(category.ImageFilePath))
                 {
-                    Margin = new Thickness(0),
-                    Padding = new Thickness(0),
-                    HorizontalOptions = LayoutOptions.Center,
-                    VerticalOptions = LayoutOptions.Center,
-                    HeightRequest = 100,
-                    WidthRequest = 100,
-                    CornerRadius = 100,
-                    IsClippedToBounds = true,
-                    BackgroundColor = Color.Transparent,
-                    Content = new Image() {Aspect = Aspect.Fill, HeightRequest = 100, WidthRequest = 100, Source = category.ImageFilePath, HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center }
-                    
-                 };
+                    Frame imageFrame = new Frame()
+                    {
+                        Margin = new Thickness(0),
+                        Padding = new Thickness(0),
+                        HorizontalOptions = LayoutOptions.Center,
+                        VerticalOptions = LayoutOptions.Center,
+                        HeightRequest = 100,
+                        WidthRequest = 100,
+                        CornerRadius = 100,
+                        IsClippedToBounds = true,
+                        BackgroundColor = Color.Transparent,
+                        Content = new Image() { Aspect = Aspect.Fill, HeightRequest = 100, WidthRequest = 100, Source = category.ImageFilePath, HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center }
+                    };
 
-                sl.Children.Add(imageFrame);
+                    sl.Children.Add(imageFrame);
+                }
+
+             
+
                 sl.Children.Add(new Label()
                 {
                     Margin = new Thickness(0, 5, 0, 0),
@@ -70,7 +107,7 @@ namespace Recipe_App.Views
                     FontAttributes = FontAttributes.Bold,
                     HorizontalTextAlignment = TextAlignment.Center,
                     TextColor = Color.White ,
-                    VerticalOptions = LayoutOptions.Center
+                    VerticalOptions = LayoutOptions.EndAndExpand
                 });
 
                 f.Content = sl;
@@ -114,6 +151,32 @@ namespace Recipe_App.Views
             DessertFrame.BackgroundColor = redColor;
             QuickBitesFrame.BackgroundColor = redColor;
             SaladsFrame.BackgroundColor = redColor;
+
+
+            if (Application.Current.Properties.ContainsKey("Breakfast-color"))
+            {
+                BreakfastFrame.BackgroundColor = (Color)Application.Current.Properties["Breakfast-color"];
+            }
+            if (Application.Current.Properties.ContainsKey("Lunch-color"))
+            {
+                LunchFrame.BackgroundColor = (Color)Application.Current.Properties["Lunch-color"];
+            }
+            if (Application.Current.Properties.ContainsKey("Dinner-color"))
+            {
+                DinnerFrame.BackgroundColor = (Color)Application.Current.Properties["Dinner-color"];
+            }
+            if (Application.Current.Properties.ContainsKey("Desserts-color"))
+            {
+                DessertFrame.BackgroundColor = (Color)Application.Current.Properties["Desserts-color"];
+            }
+            if (Application.Current.Properties.ContainsKey("Quick Bites-color"))
+            {
+                QuickBites.BackgroundColor = (Color)Application.Current.Properties["Quick Bites-color"];
+            }
+            if (Application.Current.Properties.ContainsKey("Salads-color"))
+            {
+                SaladsFrame.BackgroundColor = (Color)Application.Current.Properties["Salads-color"];
+            }
 
 
             ReloadButtons();
@@ -177,29 +240,32 @@ namespace Recipe_App.Views
             {
 
             }
+
+
+         
           
         }
 
         void CountRecipesPerCategory()
         {
-            breaklbl.Text = App.Database.GetCountRecipesInCategory("Breakfast") == 1 ? App.Database.GetCountRecipesInCategory("Breakfast").ToString() + " recipe" : App.Database.GetCountRecipesInCategory("Breakfast").ToString() + " recipes";
+            breaklbl.Text = App.Database.GetCountRecipesInCategory("Breakfast") == 1 ?  "1 recipe" : App.Database.GetCountRecipesInCategory("Breakfast").ToString() + " recipes";
 
 
-            lunchlbl.Text = App.Database.GetCountRecipesInCategory("Lunch") == 1 ? App.Database.GetCountRecipesInCategory("Lunch").ToString() + " recipe" : App.Database.GetCountRecipesInCategory("Lunch").ToString() + " recipes";
+            lunchlbl.Text = App.Database.GetCountRecipesInCategory("Lunch") == 1 ? "1 recipe" : App.Database.GetCountRecipesInCategory("Lunch").ToString() + " recipes";
 
 
-            dinnerlbl.Text = App.Database.GetCountRecipesInCategory("Dinner") == 1 ? App.Database.GetCountRecipesInCategory("Dinner").ToString() + " recipe" : App.Database.GetCountRecipesInCategory("Dinner").ToString() + " recipes";
+            dinnerlbl.Text = App.Database.GetCountRecipesInCategory("Dinner") == 1 ? "1 recipe" : App.Database.GetCountRecipesInCategory("Dinner").ToString() + " recipes";
 
 
 
 
-            biteslbl.Text = App.Database.GetCountRecipesInCategory("Quick Bites") == 1 ? App.Database.GetCountRecipesInCategory("Quick Bites").ToString() + " recipe" : App.Database.GetCountRecipesInCategory("Quick Bites").ToString() + " recipes";
+            biteslbl.Text = App.Database.GetCountRecipesInCategory("Quick Bites") == 1 ? "1 recipe" : App.Database.GetCountRecipesInCategory("Quick Bites").ToString() + " recipes";
 
 
-            dessertslbl.Text = App.Database.GetCountRecipesInCategory("Desserts") == 1 ? App.Database.GetCountRecipesInCategory("Desserts").ToString() + " recipe" : App.Database.GetCountRecipesInCategory("Desserts").ToString() + " recipes";
+            dessertslbl.Text = App.Database.GetCountRecipesInCategory("Desserts") == 1 ? "1 recipe" : App.Database.GetCountRecipesInCategory("Desserts").ToString() + " recipes";
 
 
-            saladslbl.Text = App.Database.GetCountRecipesInCategory("Salads") == 1 ? App.Database.GetCountRecipesInCategory("Salads").ToString() + " recipe" : App.Database.GetCountRecipesInCategory("Salads").ToString() + " recipes";
+            saladslbl.Text = App.Database.GetCountRecipesInCategory("Salads") == 1 ? "1 recipe" : App.Database.GetCountRecipesInCategory("Salads").ToString() + " recipes";
 
 
         }
@@ -209,8 +275,44 @@ namespace Recipe_App.Views
         {
             BackgroundImageSource = "pictwoinone.png";
 
+            try
+            {
+                if (Application.Current.Properties.ContainsKey("Breakfast-color"))
+                {
+                    BreakfastFrame.BackgroundColor = (Color)Application.Current.Properties["Breakfast-color"];
+                }
+                if (Application.Current.Properties.ContainsKey("Lunch-color"))
+                {
+                    LunchFrame.BackgroundColor = (Color)Application.Current.Properties["Lunch-color"];
+                }
+                if (Application.Current.Properties.ContainsKey("Dinner-color"))
+                {
+                    DinnerFrame.BackgroundColor = (Color)Application.Current.Properties["Dinner-color"];
+                }
+                if (Application.Current.Properties.ContainsKey("Desserts-color"))
+                {
+                    DessertFrame.BackgroundColor = (Color)Application.Current.Properties["Desserts-color"];
+                }
+                if (Application.Current.Properties.ContainsKey("Quick Bites-color"))
+                {
+                    QuickBitesFrame.BackgroundColor = (Color)Application.Current.Properties["Quick Bites-color"];
+                }
+                if (Application.Current.Properties.ContainsKey("Salads-color"))
+                {
+                    SaladsFrame.BackgroundColor = (Color)Application.Current.Properties["Salads-color"];
+                }
 
+
+                ReloadButtons();
+            }
+            catch
+            {
+
+            }
           
+
+
+
         }
 
         protected override void OnDisappearing()
@@ -227,6 +329,7 @@ namespace Recipe_App.Views
         {
             Random rnd = new Random();
             var color = Color.FromHsla(rand.NextDouble(),rand.NextDouble(), rand.NextDouble(), rand.NextDouble());
+
             return color;
             
         }
@@ -265,11 +368,7 @@ namespace Recipe_App.Views
                 {
                     categoryButtonPageStack.Children.Add(button);
 
-                    //save to properties
-                    //Application.Current.Properties[$"{AddCategoryEntry.Text}"] = AddCategoryEntry.Text;
-
-
-
+                   
                     //save to SQL!
 
                     Category c = new Category();

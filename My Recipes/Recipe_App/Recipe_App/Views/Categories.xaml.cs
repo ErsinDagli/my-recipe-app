@@ -99,19 +99,34 @@ namespace Recipe_App.Views
             if(MainPage.TurkishClicked == false)
             {
                 CategoryLabel.Text = SelectedCategory;
-                CameraButtonCat.Text = Language.TakePhotoButtonEnglish;
-                ChooseImageCat.Text = Language.ChooseImageButtonEnglish;
+              //  CameraButtonCat.Text = Language.TakePhotoButtonEnglish;
+                //ChooseImageCat.Text = Language.ChooseImageButtonEnglish;
             }
             else
             {
                 CategoryLabel.Text = SelectedCategory;
-                CameraButtonCat.Text = Language.TakePhotoButtonTurkish;
-                ChooseImageCat.Text = Language.ChooseImageButtonTurkish;
+               // CameraButtonCat.Text = Language.TakePhotoButtonTurkish;
+                //ChooseImageCat.Text = Language.ChooseImageButtonTurkish;
             }
 
 
 
             Title = SelectedCategory;
+
+
+     
+
+            try
+            {
+                if (Application.Current.Properties.ContainsKey($"{SelectedCategory}-color"))
+                     catFrame.BackgroundColor = (Color)Application.Current.Properties[$"{SelectedCategory}-color"];
+            }
+            catch
+            {
+
+            }
+          
+
 
         }
 
@@ -383,6 +398,27 @@ namespace Recipe_App.Views
 
 
 
+
+        }
+
+
+        public static Color GetRandomColor()
+        {
+            Random rand = new Random();
+            var color = Color.FromHsla(rand.NextDouble(), rand.NextDouble(), rand.NextDouble(), rand.NextDouble());
+            return color;
+
+        }
+
+
+        private void Colorbutton_Clicked(object sender, EventArgs e)
+        {
+            catFrame.BackgroundColor = GetRandomColor();
+
+            var buttonHexColor = catFrame.BackgroundColor.ToHex();
+
+            App.Database.UpdateCategoryColor(SelectedCategory, buttonHexColor);
+            //Application.Current.Properties[$"{SelectedCategory}-color"] = catFrame.BackgroundColor;
 
         }
     }

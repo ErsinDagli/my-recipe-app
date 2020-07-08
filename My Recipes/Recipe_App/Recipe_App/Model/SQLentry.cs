@@ -26,5 +26,6 @@ namespace Recipe_App.ViewModels
         public int Id { get; set; }
         public string CategoryName { get; set; }
         public string ImageFilePath { get; set;  }
+        public string ButtonColorHex { get; set; }
     }
 }

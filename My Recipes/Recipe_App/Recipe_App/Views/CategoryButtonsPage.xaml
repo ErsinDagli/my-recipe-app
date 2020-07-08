@@ -48,12 +48,12 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <StackLayout Grid.Column="0" x:Name="stack1">
-                        <Frame Margin="0" x:Name="BreakfastFrame" HeightRequest="150" WidthRequest="150" CornerRadius="20"  HasShadow="false">
-                            <StackLayout>
-                                <Label x:Name="BreakfastButton" FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center" BackgroundColor="Transparent"  VerticalTextAlignment="Center" />
+                        <Frame  x:Name="BreakfastFrame" HeightRequest="150" WidthRequest="150" CornerRadius="20"  HasShadow="false">
+                            <StackLayout Margin="-10,-15,-10,-15">
+                                <Label x:Name="BreakfastButton" TextColor="White" FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center" BackgroundColor="Transparent"  VerticalTextAlignment="Center" />
 
                                 <Image Source="catBrekky.png" HeightRequest="100" WidthRequest="100" />
-                                <Label x:Name="breaklbl" FontSize="15" HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold" Margin="0, 5, 0, 0"/>
+                                <Label x:Name="breaklbl" VerticalOptions="End" FontSize="15" HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold" Margin="0, 5, 0, 0"/>
                             </StackLayout>
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="Breakfast" />
@@ -61,10 +61,10 @@
                         </Frame>
                         <Frame x:Name="DinnerFrame"  HeightRequest="150" WidthRequest="150" CornerRadius="20"  HasShadow="false">
                             <StackLayout Margin="-10,-15,-10,-15">
-                                <Label x:Name="Dinner" VerticalTextAlignment="Center" FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                                <Label x:Name="Dinner" TextColor="White" VerticalTextAlignment="Center" FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center" />
 
                                 <Image Source="catDinner.png"  HeightRequest="100" WidthRequest="100" />
-                                <Label x:Name="dinnerlbl" FontSize="15" HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold" Margin="0, 5, 0, 0"/>
+                                <Label x:Name="dinnerlbl" VerticalOptions="End" FontSize="15" HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold" Margin="0, 5, 0, 0"/>
 
                             </StackLayout>
                             <Frame.GestureRecognizers>
@@ -73,10 +73,10 @@
                         </Frame>
                         <Frame x:Name="DessertFrame"  HeightRequest="150" WidthRequest="150" CornerRadius="20"  HasShadow="false">
                             <StackLayout Margin="-10,-15,-10,-15">
-                                <Label x:Name="Desserts"  VerticalTextAlignment="Center"  FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                                <Label x:Name="Desserts" TextColor="White" VerticalTextAlignment="Center"  FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
 
                                 <Image Source="catDessert.png"  HeightRequest="100" WidthRequest="100" />
-                                <Label x:Name="dessertslbl" FontSize="15" HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold" Margin="0, 5, 0, 0"/>
+                                <Label x:Name="dessertslbl" VerticalOptions="End" FontSize="15" HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold" Margin="0, 5, 0, 0"/>
 
                             </StackLayout>
                             <Frame.GestureRecognizers>
@@ -86,12 +86,12 @@
                       
                     </StackLayout>
                     <StackLayout Grid.Column="1" Margin="0,80,0,0" x:Name="stack2">
-                        <Frame Margin="0" x:Name="LunchFrame" HeightRequest="150" WidthRequest="150" CornerRadius="20"  HasShadow="false">
-                            <StackLayout>
-                                <Label x:Name="Lunch" VerticalTextAlignment="Center" FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                        <Frame  x:Name="LunchFrame" HeightRequest="150" WidthRequest="150" CornerRadius="20"  HasShadow="false">
+                            <StackLayout Margin="-10,-15,-10,-15">
+                                <Label x:Name="Lunch" TextColor="White" VerticalTextAlignment="Center" FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center" />
 
                                 <Image Source="catLunch.png"  HeightRequest="100" WidthRequest="100" />
-                                <Label x:Name="lunchlbl" FontSize="15" HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold" Margin="0, 5, 0, 0"/>
+                                <Label x:Name="lunchlbl" VerticalOptions="End" FontSize="15" HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold" Margin="0, 5, 0, 0"/>
 
                             </StackLayout>
                             <Frame.GestureRecognizers>
@@ -101,10 +101,10 @@
                       
                         <Frame x:Name="SaladsFrame"  HeightRequest="150" WidthRequest="150" CornerRadius="20"  HasShadow="false">
                             <StackLayout Margin="-10,-15,-10,-15">
-                                <Label x:Name="Salads" VerticalTextAlignment="Center"  FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                                <Label x:Name="Salads" TextColor="White" VerticalTextAlignment="Center"  FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center" />
 
                                 <Image Source="catSalad.png"  HeightRequest="100" WidthRequest="100" />
-                                <Label x:Name="saladslbl" FontSize="15" HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold" Margin="0, 5, 0, 0"/>
+                                <Label x:Name="saladslbl" VerticalOptions="End" FontSize="15" HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold" Margin="0, 5, 0, 0"/>
 
                             </StackLayout>
                             <Frame.GestureRecognizers>
@@ -113,10 +113,10 @@
                         </Frame>
                         <Frame x:Name="QuickBitesFrame" HeightRequest="150" WidthRequest="150" CornerRadius="20"  HasShadow="false">
                             <StackLayout Margin="-10,-15,-10,-15">
-                                <Label x:Name="QuickBites" VerticalTextAlignment="Center"  FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                                <Label x:Name="QuickBites" TextColor="White" VerticalTextAlignment="Center"  FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center" />
 
                                 <Image   />
-                                <Label x:Name="biteslbl" FontSize="15" HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold" Margin="0, 5, 0, 0"/>
+                                <Label x:Name="biteslbl" VerticalOptions="End" FontSize="15" HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold" Margin="0, 5, 0, 0"/>
 
                             </StackLayout>
                             <Frame.GestureRecognizers>

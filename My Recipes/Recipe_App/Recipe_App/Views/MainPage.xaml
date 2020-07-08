@@ -5,7 +5,7 @@
              x:Class="Recipe_App.MainPage"
              x:Name="MainContentPage"            
               BackgroundColor="White">
-    <ContentPage.ToolbarItems>
+    <!--<ContentPage.ToolbarItems>
 
         <ToolbarItem Text="English"
                  Order="Secondary" Clicked="EnglishButton_Clicked" 
@@ -13,7 +13,14 @@
         <ToolbarItem Text="Türkçe" 
                  Order="Secondary" Clicked="TurkishButton_Clicked" 
                  Priority="2" />
-    </ContentPage.ToolbarItems>
+    </ContentPage.ToolbarItems>-->
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Button HorizontalOptions="End" Text="EN" WidthRequest="60" BackgroundColor="Transparent" Clicked="EnglishButton_Clicked"></Button>
+            <Button HorizontalOptions="End" Text="TR" WidthRequest="60" BackgroundColor="Transparent" Clicked="TurkishButton_Clicked"></Button>
+
+        </StackLayout>
+    </NavigationPage.TitleView>
     <StackLayout Padding="30" >
         <!-- Place new controls here -->
 

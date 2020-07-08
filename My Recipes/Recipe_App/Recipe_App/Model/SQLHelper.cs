@@ -130,7 +130,24 @@ namespace Recipe_App.ViewModels
             return database.Table<SQLentry>().Where(c => c.Category == category).ToList();
         }
         
+        public int UpdateCategoryColor(string categoryName, string ColorHex)
+        {
+            lock (locker)
+            {
+                var category = database.Table<Category>().Where(x => x.CategoryName == categoryName).FirstOrDefault();
 
+                if (category != null)
+                {
+                    category.ButtonColorHex = ColorHex;
+                    //Update Item  
+
+                    return database.Update(category);
+                }
+
+                return 0;
+               
+            }
+        }
 
 
         public int SaveItem(SQLentry item)

@@ -8,17 +8,33 @@
                  Order="Primary" Clicked="DeleteButton_Clicked" 
                  Priority="0" />
     </ContentPage.ToolbarItems>
-    <ScrollView>
             <StackLayout Padding="15">
-                <Label HorizontalOptions="CenterAndExpand"   x:Name="CategoryLabel" FontAttributes="Bold" FontSize="Large" TextColor="Black"/>
-                 <Image x:Name="CatImage" WidthRequest="200" HeightRequest="200" HorizontalOptions="CenterAndExpand" VerticalOptions="Start"/>
-           
-                <Button x:Name="CameraButtonCat" Text="{Binding TakeImageButton}" TextColor="White" Grid.Row="1" Grid.Column="0" Clicked="CameraButtonClicked" HeightRequest="40" WidthRequest="40" BorderRadius="20"  BackgroundColor="LightBlue"/>
-            <Button x:Name="ChooseImageCat" Text="{Binding ChooseImageButton}" TextColor="White" Grid.Row="1" Grid.Column="1"  Clicked="ChooseImageClicked" HeightRequest="40" WidthRequest="40" BorderRadius="20" BackgroundColor="LightBlue"/>
+             
+
 
             <ListView x:Name="categoriesList" ItemSelected="categoriesList_ItemSelected"
                           CachingStrategy="RecycleElement"   RowHeight="100"
                           HasUnevenRows="True" >
+                <ListView.Header>
+                    <StackLayout>
+                        <Label HorizontalOptions="CenterAndExpand"   x:Name="CategoryLabel" FontAttributes="Bold" FontSize="Large" TextColor="Black"/>
+                    <Frame x:Name="catFrame" CornerRadius="40" BackgroundColor="IndianRed" HasShadow="True">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <Frame  HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="200" WidthRequest="200" CornerRadius="100" IsClippedToBounds="True" Padding="0">
+                                    <Image Aspect="AspectFill" x:Name="CatImage" WidthRequest="200" HeightRequest="200" HorizontalOptions="CenterAndExpand" VerticalOptions="Start"/>
+                                </Frame>
+                                <StackLayout HorizontalOptions="End">
+                                    <ImageButton BackgroundColor="Transparent" x:Name="CameraButtonCat" Source="cameraicon.png" Clicked="CameraButtonClicked" HeightRequest="60" WidthRequest="60" />
+                                    <ImageButton BackgroundColor="Transparent" x:Name="ChooseImageCat" Source="filesicon.png"  Clicked="ChooseImageClicked" HeightRequest="60" WidthRequest="60" />
+                                    <ImageButton BackgroundColor="Transparent" x:Name="colorbutton" Source="coloricon.png"  Clicked="Colorbutton_Clicked" HeightRequest="60" WidthRequest="60" />
+
+                             </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                   
+
+                </ListView.Header>
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -45,7 +61,6 @@
                     </ListView.ItemTemplate>
                 </ListView>
         </StackLayout>
-        </ScrollView>
 
 
       
