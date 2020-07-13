@@ -44,10 +44,11 @@ namespace Recipe_App.Views
             else if (selectedcategory == "Dinner")
                 CatImage.Source = "catDinner.png";
             else if (selectedcategory == "Salads")
-                CatImage.Source = "catSalads.png";
+                CatImage.Source = "catSalad.png";
             else if (selectedcategory == "Quick Bites")
                 CatImage.Source = "catBrekky.png";
-
+            else if (selectedcategory == "Desserts")
+                CatImage.Source = "catDessert.png";
 
 
             BindingContext = new SQLentry();
@@ -417,8 +418,8 @@ namespace Recipe_App.Views
 
             var buttonHexColor = catFrame.BackgroundColor.ToHex();
 
-            App.Database.UpdateCategoryColor(SelectedCategory, buttonHexColor);
-            //Application.Current.Properties[$"{SelectedCategory}-color"] = catFrame.BackgroundColor;
+          //  App.Database.UpdateCategoryColor(SelectedCategory, buttonHexColor);
+            Application.Current.Properties[$"{SelectedCategory}-color"] = catFrame.BackgroundColor;
 
         }
     }

@@ -14,132 +14,36 @@ namespace Recipe_App.Views
 	public partial class CategoryButtonsPage : ContentPage
 	{
         Color redColor = Color.FromRgba(190, 104, 100, 190);
+        int addColumn = 0;
 
-        //void SetButtonFrameColors()
-        //{
-        //    var categories = App.Database.GetCategories();
-
-            
-        //    foreach (var category in categories)
-        //    {
-        //        Frame f = new Frame()
-        //        {
-        //            HeightRequest = 200,
-        //            WidthRequest = 150,
-        //            CornerRadius = 20,
-        //            BackgroundColor = redColor,
-        //            HasShadow = true,
-        //        };
-
-        //        //if (Application.Current.Properties.ContainsKey(category.CategoryName + "-color"))
-        //        //{
-        //        //    f.BackgroundColor = (Color)Application.Current.Properties[category.CategoryName + "-color"];
-        //        //}
-
-        
-        //    }
-
-        //}
-
-        void ReloadButtons()
+        void SetButtonFrameColors()
         {
-            //get categories
             var categories = App.Database.GetCategories();
 
-            int col = 1;
+
             foreach (var category in categories)
             {
-                Frame f = new Frame() {
-                    HeightRequest = 200, WidthRequest = 150 ,CornerRadius = 20, BackgroundColor = redColor, HasShadow = true,
+                Frame f = new Frame()
+                {
+                    HeightRequest = 200,
+                    WidthRequest = 150,
+                    CornerRadius = 20,
+                    BackgroundColor = redColor,
+                    HasShadow = true,
                 };
 
-                if (!string.IsNullOrWhiteSpace(category.ButtonColorHex))
-                    f.BackgroundColor =  Color.FromHex(category.ButtonColorHex);
-                //if (Application.Current.Properties.ContainsKey(category.CategoryName + "-color"))
-                //{
-                //    f.BackgroundColor = (Color)Application.Current.Properties[category.CategoryName + "-color"];
-                //}
-
-                var tapGestureRecognizer = new TapGestureRecognizer();
-                tapGestureRecognizer.Tapped += TapGestureRecognizer_Tapped;
-                tapGestureRecognizer.CommandParameter = category.CategoryName;
-                f.GestureRecognizers.Add(tapGestureRecognizer);
-
-               StackLayout sl = new StackLayout() { VerticalOptions= LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand};
-                //sl.Margin = new Thickness(-10, -15, -10, -15);
-                sl.Margin = new Thickness(0, 5, 0, 5);
-
-                sl.Children.Add(new Label() {
-                    Text = category.CategoryName,
-                    VerticalTextAlignment = TextAlignment.Center, FontSize = 25,
-                    FontAttributes = FontAttributes.Bold,
-                    HorizontalTextAlignment = TextAlignment.Center, TextColor = Color.White
-                    ,VerticalOptions  = LayoutOptions.Start
-                });
-
-                if (!string.IsNullOrWhiteSpace(category.ImageFilePath))
+                if (Application.Current.Properties.ContainsKey(category.CategoryName + "-color"))
                 {
-                    Frame imageFrame = new Frame()
-                    {
-                        Margin = new Thickness(0),
-                        Padding = new Thickness(0),
-                        HorizontalOptions = LayoutOptions.Center,
-                        VerticalOptions = LayoutOptions.Center,
-                        HeightRequest = 100,
-                        WidthRequest = 100,
-                        CornerRadius = 100,
-                        IsClippedToBounds = true,
-                        BackgroundColor = Color.Transparent,
-                        Content = new Image() { Aspect = Aspect.Fill, HeightRequest = 100, WidthRequest = 100, Source = category.ImageFilePath, HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center }
-                    };
-
-                    sl.Children.Add(imageFrame);
+                    f.BackgroundColor = (Color)Application.Current.Properties[category.CategoryName + "-color"];
                 }
 
-             
 
-                sl.Children.Add(new Label()
-                {
-                    Margin = new Thickness(0, 5, 0, 0),
-                    Text = App.Database.GetCountRecipesInCategory(category.CategoryName) == 1 ? App.Database.GetCountRecipesInCategory(category.CategoryName).ToString() + " recipe" : App.Database.GetCountRecipesInCategory(category.CategoryName).ToString()  + " recipes",
-                    VerticalTextAlignment = TextAlignment.Center,
-                    FontSize = 15,
-                    FontAttributes = FontAttributes.Bold,
-                    HorizontalTextAlignment = TextAlignment.Center,
-                    TextColor = Color.White ,
-                    VerticalOptions = LayoutOptions.EndAndExpand
-                });
-
-                f.Content = sl;
-
-
-
-                if(col % 2 == 0)
-                    stack2.Children.Add(f);
-                else
-                    stack1.Children.Add(f);
-
-
-                //button.HeightRequest = 150;
-                //button.WidthRequest = 150;
-                //button.CornerRadius = 20;
-                //button.Margin = new Thickness(5);
-                ////give the button a random colour
-                //button.BackgroundColor = redColor;
-                //button.TextColor = Color.Black;
-
-
-
-                //button.Clicked += async (sender, e) => await Navigation.PushAsync(new Categories(category.CategoryName));
-
-
-                col++;
             }
 
-            col = 1;
         }
 
-		public CategoryButtonsPage ()
+
+        public CategoryButtonsPage ()
 		{
 			InitializeComponent ();
 
@@ -219,19 +123,19 @@ namespace Recipe_App.Views
                 MessagingCenter.Subscribe<Categories, string>(this, "Deleted", (sender, deletedCat) => {
 
 
-                    var buttonToDelete = stack1.Children.Where(x => ((Button)x).Text.Contains(deletedCat)).FirstOrDefault();
-                    if(buttonToDelete != null)
+                    var buttonToDelete = stack1.Children.Where(x => (((StackLayout)((Frame)x).Content).Children.FirstOrDefault() as Label)?.Text.Contains(deletedCat) == true).FirstOrDefault();
+                    if (buttonToDelete != null)
                         stack1.Children.Remove(buttonToDelete);
                     else
                     {
-                        buttonToDelete = stack2.Children.Where(x => ((Button)x).Text.Contains(deletedCat)).FirstOrDefault();
+                        buttonToDelete = stack2.Children.Where(x => (((StackLayout)((Frame)x).Content).Children.FirstOrDefault() as Label)?.Text.Contains(deletedCat) == true).FirstOrDefault();
                         stack2.Children.Remove(buttonToDelete);
 
                     }
 
 
-                   
-                  
+
+
 
                 });
 
@@ -244,6 +148,116 @@ namespace Recipe_App.Views
 
          
           
+        }
+
+
+
+
+        void ReloadButtons()
+        {
+            //get categories
+            var categories = App.Database.GetCategories();
+
+            int col = 1;
+            foreach (var category in categories)
+            {
+                Frame f = new Frame()
+                {
+                    HeightRequest = 200,
+                    WidthRequest = 150,
+                    CornerRadius = 20,
+                    BackgroundColor = redColor,
+                    HasShadow = true,
+                };
+
+                //if (!string.IsNullOrWhiteSpace(category.ButtonColorHex))
+                //    f.BackgroundColor = Color.FromHex(category.ButtonColorHex);
+                if (Application.Current.Properties.ContainsKey(category.CategoryName + "-color"))
+                {
+                    f.BackgroundColor = (Color)Application.Current.Properties[category.CategoryName + "-color"];
+                }
+
+                var tapGestureRecognizer = new TapGestureRecognizer();
+                tapGestureRecognizer.Tapped += TapGestureRecognizer_Tapped;
+                tapGestureRecognizer.CommandParameter = category.CategoryName;
+                f.GestureRecognizers.Add(tapGestureRecognizer);
+
+                StackLayout sl = new StackLayout() { VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand };
+                //sl.Margin = new Thickness(-10, -15, -10, -15);
+                sl.Margin = new Thickness(0, 5, 0, 5);
+
+                sl.Children.Add(new Label()
+                {
+                    Text = category.CategoryName,
+                    VerticalTextAlignment = TextAlignment.Center,
+                    FontSize = 25,
+                    FontAttributes = FontAttributes.Bold,
+                    HorizontalTextAlignment = TextAlignment.Center,
+                    TextColor = Color.White
+                    ,
+                    VerticalOptions = LayoutOptions.Start
+                });
+
+                if (!string.IsNullOrWhiteSpace(category.ImageFilePath))
+                {
+                    Frame imageFrame = new Frame()
+                    {
+                        Margin = new Thickness(0),
+                        Padding = new Thickness(0),
+                        HorizontalOptions = LayoutOptions.Center,
+                        VerticalOptions = LayoutOptions.Center,
+                        HeightRequest = 100,
+                        WidthRequest = 100,
+                        CornerRadius = 100,
+                        IsClippedToBounds = true,
+                        BackgroundColor = Color.Transparent,
+                        Content = new Image() { Aspect = Aspect.Fill, HeightRequest = 100, WidthRequest = 100, Source = category.ImageFilePath, HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center }
+                    };
+
+                    sl.Children.Add(imageFrame);
+                }
+
+
+
+                sl.Children.Add(new Label()
+                {
+                    Margin = new Thickness(0, 5, 0, 0),
+                    Text = App.Database.GetCountRecipesInCategory(category.CategoryName) == 1 ? App.Database.GetCountRecipesInCategory(category.CategoryName).ToString() + " recipe" : App.Database.GetCountRecipesInCategory(category.CategoryName).ToString() + " recipes",
+                    VerticalTextAlignment = TextAlignment.Center,
+                    FontSize = 15,
+                    FontAttributes = FontAttributes.Bold,
+                    HorizontalTextAlignment = TextAlignment.Center,
+                    TextColor = Color.White,
+                    VerticalOptions = LayoutOptions.EndAndExpand
+                });
+
+                f.Content = sl;
+
+
+
+                if (col % 2 == 0)
+                    stack2.Children.Add(f);
+                else
+                    stack1.Children.Add(f);
+
+
+                //button.HeightRequest = 150;
+                //button.WidthRequest = 150;
+                //button.CornerRadius = 20;
+                //button.Margin = new Thickness(5);
+                ////give the button a random colour
+                //button.BackgroundColor = redColor;
+                //button.TextColor = Color.Black;
+
+
+
+                //button.Clicked += async (sender, e) => await Navigation.PushAsync(new Categories(category.CategoryName));
+
+
+                col++;
+            }
+
+            col = 1;
         }
 
         void CountRecipesPerCategory()
@@ -302,8 +316,8 @@ namespace Recipe_App.Views
                     SaladsFrame.BackgroundColor = (Color)Application.Current.Properties["Salads-color"];
                 }
 
-
-                ReloadButtons();
+                SetButtonFrameColors();
+               // ReloadButtons();
             }
             catch
             {
@@ -350,32 +364,112 @@ namespace Recipe_App.Views
 
         }
 
-        private void SaveCategoryButton_Clicked(object sender, EventArgs e)
+        private async void SaveCategoryButton_Clicked(object sender, EventArgs e)
         {
             //dont create a button if no text was supplied to new category
             if (((AddCategoryEntry.Text != null) && (AddCategoryEntry.Text != "")))
             {
-                Button button = new Button();
-                button.Text = AddCategoryEntry.Text;
-               
-                button.CornerRadius = 20;
-                button.WidthRequest = 150;
-                button.HeightRequest = 150;
-                button.Margin = new Thickness(5);
-                button.Clicked += async (s, f) => await Navigation.PushAsync(new Categories(AddCategoryEntry.Text));
-               button.BackgroundColor = redColor;
-                if ((button.Text != "") || (button.Text != (null)))
+                Category c = new Category();
+                c.CategoryName = AddCategoryEntry.Text;
+
+                var result = App.Database.SaveCategory(c);
+                if (result == 0)
                 {
-                    categoryButtonPageStack.Children.Add(button);
+                    await DisplayAlert("That category already exists", "", "cancel");
+                    return;
 
-                   
-                    //save to SQL!
-
-                    Category c = new Category();
-                    c.CategoryName = AddCategoryEntry.Text;
-
-                    App.Database.SaveCategory(c);
                 }
+
+                // Button button = new Button();
+                // button.Text = AddCategoryEntry.Text;
+
+                // button.CornerRadius = 20;
+                // button.WidthRequest = 150;
+                // button.HeightRequest = 150;
+                // button.Margin = new Thickness(5);
+                // button.Clicked += async (s, f) => await Navigation.PushAsync(new Categories(AddCategoryEntry.Text));
+                //button.BackgroundColor = redColor;
+
+                Frame f = new Frame()
+                {
+                    HeightRequest = 200,
+                    WidthRequest = 150,
+                    CornerRadius = 20,
+                    BackgroundColor = redColor,
+                    HasShadow = true,
+                };
+
+      
+                //if (Application.Current.Properties.ContainsKey(category.CategoryName + "-color"))
+                //{
+                //    f.BackgroundColor = (Color)Application.Current.Properties[category.CategoryName + "-color"];
+                //}
+
+                var tapGestureRecognizer = new TapGestureRecognizer();
+                tapGestureRecognizer.Tapped += TapGestureRecognizer_Tapped;
+                tapGestureRecognizer.CommandParameter = AddCategoryEntry.Text;
+                f.GestureRecognizers.Add(tapGestureRecognizer);
+
+                StackLayout sl = new StackLayout() { VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand };
+                //sl.Margin = new Thickness(-10, -15, -10, -15);
+                sl.Margin = new Thickness(0, 5, 0, 5);
+
+                sl.Children.Add(new Label()
+                {
+                    Text = AddCategoryEntry.Text,
+                    VerticalTextAlignment = TextAlignment.Center,
+                    FontSize = 25,
+                    FontAttributes = FontAttributes.Bold,
+                    HorizontalTextAlignment = TextAlignment.Center,
+                    TextColor = Color.White
+                    ,
+                    VerticalOptions = LayoutOptions.Start
+                });
+
+                //if (!string.IsNullOrWhiteSpace(category.ImageFilePath))
+                //{
+                //    Frame imageFrame = new Frame()
+                //    {
+                //        Margin = new Thickness(0),
+                //        Padding = new Thickness(0),
+                //        HorizontalOptions = LayoutOptions.Center,
+                //        VerticalOptions = LayoutOptions.Center,
+                //        HeightRequest = 100,
+                //        WidthRequest = 100,
+                //        CornerRadius = 100,
+                //        IsClippedToBounds = true,
+                //        BackgroundColor = Color.Transparent,
+                //        Content = new Image() { Aspect = Aspect.Fill, HeightRequest = 100, WidthRequest = 100, Source = category.ImageFilePath, HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center }
+                //    };
+
+                //    sl.Children.Add(imageFrame);
+                //}
+
+
+
+                sl.Children.Add(new Label()
+                {
+                    Margin = new Thickness(0, 5, 0, 0),
+                    Text = App.Database.GetCountRecipesInCategory(AddCategoryEntry.Text) == 1 ? App.Database.GetCountRecipesInCategory(AddCategoryEntry.Text).ToString() + " recipe" : App.Database.GetCountRecipesInCategory(AddCategoryEntry.Text).ToString() + " recipes",
+                    VerticalTextAlignment = TextAlignment.Center,
+                    FontSize = 15,
+                    FontAttributes = FontAttributes.Bold,
+                    HorizontalTextAlignment = TextAlignment.Center,
+                    TextColor = Color.White,
+                    VerticalOptions = LayoutOptions.EndAndExpand
+                });
+
+                f.Content = sl;
+
+
+
+                if(addColumn % 2 == 0)
+                    stack2.Children.Add(f);
+              else
+                    stack1.Children.Add(f);
+
+
+                addColumn++;
 
 
 
@@ -386,12 +480,23 @@ namespace Recipe_App.Views
                 categoryButtonPageStack.Opacity = 1;
 
 
-                
-         
+                //scroll to bottom
+                try
+                {
+                    var lastChild = stack2.Children.LastOrDefault();
+                    if (lastChild != null)
+                       await scroll.ScrollToAsync(lastChild, ScrollToPosition.MakeVisible, true);
+                }
+                catch
+                {
+
+                }
 
 
 
-            } else
+
+            }
+            else
             {
                 NewCategoryFrame.IsVisible = false;
 

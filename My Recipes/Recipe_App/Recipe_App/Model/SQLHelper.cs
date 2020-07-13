@@ -75,7 +75,11 @@ namespace Recipe_App.ViewModels
                 else
                 {
                     //Insert item  
-                    return database.Insert(item);
+                    //check if category exists before insert
+                    if (GetCategoryByName(item.CategoryName) == null)
+                        return database.Insert(item);
+                    else
+                        return 0;
                 }
             }
         }
@@ -163,7 +167,11 @@ namespace Recipe_App.ViewModels
                 else
                 {
                     //Insert item  
-                    return database.Insert(item);
+                    if (GetItem(item.RecipeName) == null)
+                        return database.Insert(item);
+                    else
+                        return 0;
+                   
                 }
             }
         }
@@ -172,6 +180,7 @@ namespace Recipe_App.ViewModels
         {
             lock (locker)
             {
+
                  database.Delete<SQLentry>(RecipeID);
             }
         }
