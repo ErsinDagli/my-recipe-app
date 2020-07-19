@@ -1,4 +1,5 @@
-﻿using Recipe_App.ViewModels;
+﻿using Newtonsoft.Json;
+using Recipe_App.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,25 +19,68 @@ namespace Recipe_App.Views
 
         void SetButtonFrameColors()
         {
-            var categories = App.Database.GetCategories();
+            //var categories = App.Database.GetCategories();
 
 
-            foreach (var category in categories)
+            //foreach (var category in categories)
+            //{
+            //    Frame f = new Frame()
+            //    {
+            //        HeightRequest = 200,
+            //        WidthRequest = 150,
+            //        CornerRadius = 20,
+            //        BackgroundColor = redColor,
+            //        HasShadow = true,
+            //    };
+
+            //    if (Application.Current.Properties.ContainsKey(category.CategoryName + "-color"))
+            //    {
+            //        f.BackgroundColor = (Color)Application.Current.Properties[category.CategoryName + "-color"];
+            //    }
+
+
+            //}
+
+            //loop through all frames in stack layout
+            foreach(Frame frame in stack1.Children)
             {
-                Frame f = new Frame()
+                try
                 {
-                    HeightRequest = 200,
-                    WidthRequest = 150,
-                    CornerRadius = 20,
-                    BackgroundColor = redColor,
-                    HasShadow = true,
-                };
-
-                if (Application.Current.Properties.ContainsKey(category.CategoryName + "-color"))
-                {
-                    f.BackgroundColor = (Color)Application.Current.Properties[category.CategoryName + "-color"];
+                    var categoryName = ((frame.Content as StackLayout).Children[0] as Label).Text;
+                    if (Application.Current.Properties.ContainsKey(categoryName + "-color"))
+                    {
+                        frame.BackgroundColor = (Color)Application.Current.Properties[categoryName + "-color"];
+                    }
                 }
+                catch
+                {
 
+                }
+              
+            }
+
+            foreach (Frame frame in stack2.Children)
+            {
+                try
+                {
+                    var categoryName = ((frame.Content as StackLayout).Children[0] as Label).Text;
+                    if (Application.Current.Properties.ContainsKey(categoryName + "-color"))
+                    {
+                        var colorrgba = Application.Current.Properties[categoryName + "-color"].ToString();
+
+                        var RGBA = colorrgba.Split(',');
+                        var R = Convert.ToDouble(RGBA[0]);
+                        var G = Convert.ToDouble(RGBA[1]);
+                        var B = Convert.ToDouble(RGBA[2]);
+                        var A = Convert.ToDouble(RGBA[3]);
+
+                        frame.BackgroundColor = new Color(R, G, B ,A );
+                    }
+                }
+                catch
+                {
+
+                }
 
             }
 
@@ -57,30 +101,7 @@ namespace Recipe_App.Views
             SaladsFrame.BackgroundColor = redColor;
 
 
-            if (Application.Current.Properties.ContainsKey("Breakfast-color"))
-            {
-                BreakfastFrame.BackgroundColor = (Color)Application.Current.Properties["Breakfast-color"];
-            }
-            if (Application.Current.Properties.ContainsKey("Lunch-color"))
-            {
-                LunchFrame.BackgroundColor = (Color)Application.Current.Properties["Lunch-color"];
-            }
-            if (Application.Current.Properties.ContainsKey("Dinner-color"))
-            {
-                DinnerFrame.BackgroundColor = (Color)Application.Current.Properties["Dinner-color"];
-            }
-            if (Application.Current.Properties.ContainsKey("Desserts-color"))
-            {
-                DessertFrame.BackgroundColor = (Color)Application.Current.Properties["Desserts-color"];
-            }
-            if (Application.Current.Properties.ContainsKey("Quick Bites-color"))
-            {
-                QuickBites.BackgroundColor = (Color)Application.Current.Properties["Quick Bites-color"];
-            }
-            if (Application.Current.Properties.ContainsKey("Salads-color"))
-            {
-                SaladsFrame.BackgroundColor = (Color)Application.Current.Properties["Salads-color"];
-            }
+           
 
 
             ReloadButtons();
@@ -291,33 +312,75 @@ namespace Recipe_App.Views
 
             try
             {
+
+               
+
+
                 if (Application.Current.Properties.ContainsKey("Breakfast-color"))
                 {
-                    BreakfastFrame.BackgroundColor = (Color)Application.Current.Properties["Breakfast-color"];
+                    var colorrgba = Application.Current.Properties["Breakfast-color"].ToString();
+                    var RGBA = colorrgba.Split(',');
+                    var R = Convert.ToDouble(RGBA[0]);
+                    var G = Convert.ToDouble(RGBA[1]);
+                    var B = Convert.ToDouble(RGBA[2]);
+                    var A = Convert.ToDouble(RGBA[3]);
+                    BreakfastFrame.BackgroundColor = new Color(R, G, B, A);
                 }
                 if (Application.Current.Properties.ContainsKey("Lunch-color"))
                 {
-                    LunchFrame.BackgroundColor = (Color)Application.Current.Properties["Lunch-color"];
+                    var colorrgba = Application.Current.Properties["Lunch-color"].ToString();
+                    var RGBA = colorrgba.Split(',');
+                    var R = Convert.ToDouble(RGBA[0]);
+                    var G = Convert.ToDouble(RGBA[1]);
+                    var B = Convert.ToDouble(RGBA[2]);
+                    var A = Convert.ToDouble(RGBA[3]);
+                    LunchFrame.BackgroundColor = new Color(R, G, B, A);
                 }
                 if (Application.Current.Properties.ContainsKey("Dinner-color"))
                 {
-                    DinnerFrame.BackgroundColor = (Color)Application.Current.Properties["Dinner-color"];
+                    var colorrgba = Application.Current.Properties["Dinner-color"].ToString();
+                    var RGBA = colorrgba.Split(',');
+                    var R = Convert.ToDouble(RGBA[0]);
+                    var G = Convert.ToDouble(RGBA[1]);
+                    var B = Convert.ToDouble(RGBA[2]);
+                    var A = Convert.ToDouble(RGBA[3]);
+                    DinnerFrame.BackgroundColor = new Color(R, G, B, A);
                 }
                 if (Application.Current.Properties.ContainsKey("Desserts-color"))
                 {
-                    DessertFrame.BackgroundColor = (Color)Application.Current.Properties["Desserts-color"];
+                    var colorrgba = Application.Current.Properties["Desserts-color"].ToString();
+                    var RGBA = colorrgba.Split(',');
+                    var R = Convert.ToDouble(RGBA[0]);
+                    var G = Convert.ToDouble(RGBA[1]);
+                    var B = Convert.ToDouble(RGBA[2]);
+                    var A = Convert.ToDouble(RGBA[3]);
+                    DessertFrame.BackgroundColor = new Color(R, G, B, A);
                 }
                 if (Application.Current.Properties.ContainsKey("Quick Bites-color"))
                 {
-                    QuickBitesFrame.BackgroundColor = (Color)Application.Current.Properties["Quick Bites-color"];
+                    var colorrgba = Application.Current.Properties["Quick Bites-color"].ToString();
+                    var RGBA = colorrgba.Split(',');
+                    var R = Convert.ToDouble(RGBA[0]);
+                    var G = Convert.ToDouble(RGBA[1]);
+                    var B = Convert.ToDouble(RGBA[2]);
+                    var A = Convert.ToDouble(RGBA[3]);
+                    QuickBitesFrame.BackgroundColor = new Color(R, G, B, A);
                 }
                 if (Application.Current.Properties.ContainsKey("Salads-color"))
                 {
-                    SaladsFrame.BackgroundColor = (Color)Application.Current.Properties["Salads-color"];
+                    var colorrgba = Application.Current.Properties["Salads-color"].ToString();
+                    var RGBA = colorrgba.Split(',');
+                    var R = Convert.ToDouble(RGBA[0]);
+                    var G = Convert.ToDouble(RGBA[1]);
+                    var B = Convert.ToDouble(RGBA[2]);
+                    var A = Convert.ToDouble(RGBA[3]);
+                    SaladsFrame.BackgroundColor = new Color(R, G, B, A);
                 }
 
                 SetButtonFrameColors();
-               // ReloadButtons();
+
+
+             
             }
             catch
             {

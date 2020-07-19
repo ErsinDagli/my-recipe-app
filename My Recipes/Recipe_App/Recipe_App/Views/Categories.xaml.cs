@@ -10,6 +10,7 @@ using Plugin.Permissions;
 using System.IO;
 using Plugin.Media;
 using Plugin.Permissions.Abstractions;
+using Newtonsoft.Json;
 
 namespace Recipe_App.Views
 {
@@ -412,14 +413,19 @@ namespace Recipe_App.Views
         }
 
 
-        private void Colorbutton_Clicked(object sender, EventArgs e)
+        private async void Colorbutton_Clicked(object sender, EventArgs e)
         {
             catFrame.BackgroundColor = GetRandomColor();
 
             var buttonHexColor = catFrame.BackgroundColor.ToHex();
 
-          //  App.Database.UpdateCategoryColor(SelectedCategory, buttonHexColor);
-            Application.Current.Properties[$"{SelectedCategory}-color"] = catFrame.BackgroundColor;
+            //  App.Database.UpdateCategoryColor(SelectedCategory, buttonHexColor);
+            Application.Current.Properties[$"{SelectedCategory}-color"] = catFrame.BackgroundColor.R + "," +
+                                                                          catFrame.BackgroundColor.G + "," +
+                                                                           catFrame.BackgroundColor.B + "," +
+                                                                            catFrame.BackgroundColor.A;
+
+           await Application.Current.SavePropertiesAsync();
 
         }
     }
