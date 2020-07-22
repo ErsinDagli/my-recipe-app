@@ -95,13 +95,9 @@ namespace Recipe_App
             txtIngredients.Text = sqlentry.Ingredients;
             txtRecipe.Text = sqlentry.Recipe;
             txtNotes.Text = sqlentry.Notes;
+           
 
-
-
-            //foreach (var item in Application.Current.Properties)
-            //{
-            //    txtcategory.Items.Add(item.Value.ToString());
-            //}
+    
 
             foreach (var category in App.Database.GetCategories())
             {
@@ -109,9 +105,7 @@ namespace Recipe_App
 
             }
 
-            txtcategory.SelectedItem = sqlentry.Category;
-
-
+           
             if (MainPage.TurkishClicked == false)
             {
 
@@ -153,6 +147,23 @@ namespace Recipe_App
                 txtcategory.Items.Add("Tatlılar");
                 txtcategory.Items.Add("Aperatifler");
             }
+
+            //set category in picker prefill
+            try
+            {
+                if (txtcategory.Items.Contains(sqlentry.Category))
+                {
+                    var indexofCat = txtcategory.Items.IndexOf(sqlentry.Category);
+
+                    txtcategory.SelectedIndex = indexofCat;
+
+                }
+            }
+            catch
+            {
+
+            }
+
 
         }
 
@@ -225,7 +236,7 @@ namespace Recipe_App
         {
 
             bool answer;
-            if (txtRecipeName.Text != null)
+            if (!string.IsNullOrWhiteSpace(txtRecipeName.Text) && !string.IsNullOrWhiteSpace(txtcategory.SelectedItem.ToString()))
             {
                 
                 if (MainPage.TurkishClicked == false)
@@ -234,7 +245,7 @@ namespace Recipe_App
                 }
                 else
                 {
-                    answer = await DisplayAlert("Yeni Tarif", "Kaydetmek ister misiniz?", "Evet", "Hayır");
+                    answer = await DisplayAlert("Tarifi Kaydet", "Emin misiniz?", "Evet", "Hayır");
                 }
             }
             else
@@ -246,7 +257,7 @@ namespace Recipe_App
                 }
                 else
                 {
-                    await DisplayAlert("", "Lütfen Tarif ismini ve Kategoriyi doldurunuz", "OK");
+                    await DisplayAlert("", "Tarif adı ve Kategori zorunlu alanlardır", "OK");
                     answer = false;
                 }
             }
@@ -348,7 +359,7 @@ namespace Recipe_App
                                     }
                                     else
                                     {
-                                        await DisplayAlert("Oops!", "Tekrar Deneyiniz", "OK");
+                                        await DisplayAlert("Oops!", "Tekrar Deneyin", "OK");
                                     }
                                     
                                 }
@@ -361,7 +372,7 @@ namespace Recipe_App
                                 }
                                 else
                                 {
-                                    await DisplayAlert("", "Lütfen tarif ismini ve kategoriyi doldurunuz", "OK");
+                                    await DisplayAlert("", "Tarif adı ve Kategori zorunlu alanlardır", "OK");
                                 }
                                
                             }
@@ -414,7 +425,7 @@ namespace Recipe_App
                                     }
                                     else
                                     {
-                                        await DisplayAlert("Oops!", "Tekrar Deneyiniz", "OK");
+                                        await DisplayAlert("Oops!", "Tekrar Deneyin", "OK");
                                     }
                                 }
                             }
@@ -426,7 +437,7 @@ namespace Recipe_App
                                 }
                                 else
                                 {
-                                    await DisplayAlert("", "Lütfen tarif ismini ve kategoriyi doldurunuz", "OK");
+                                    await DisplayAlert("", "Tarif adı ve Kategori zorunlu alanlardır", "OK");
                                 }
                             }
 
@@ -437,12 +448,12 @@ namespace Recipe_App
                         {
                             if(MainPage.TurkishClicked == false)
                             {
-                                await DisplayAlert("Save Failed", "Recipe Already Exists ", "OK");
+                                await DisplayAlert("Save Failed", "Recipe Already Exists", "OK");
                                 txtRecipeName.Text = "";
                             }
                             else
                             {
-                                await DisplayAlert("Tarif Ekleme Başarısız oldu", "Lütfen Yeni Tarif Ekle", "OK");
+                                await DisplayAlert("Kayıt başarısız", "Lütfen Yeni Tarif Ad Kullanin", "OK");
                                 txtRecipeName.Text = "";
                             }
 

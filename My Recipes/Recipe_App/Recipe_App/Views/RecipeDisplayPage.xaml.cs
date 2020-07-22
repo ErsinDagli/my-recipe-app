@@ -191,7 +191,7 @@ namespace Recipe_App.Views
         {
             try
             {
-                if (PicTakenFile != null)
+                if (!string.IsNullOrWhiteSpace(SQLentry.ImageFilePath))
                     Navigation.PushAsync(new ImagePage(SQLentry.ImageFilePath));
             }
             catch

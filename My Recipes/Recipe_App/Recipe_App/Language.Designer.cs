@@ -133,7 +133,7 @@ namespace Recipe_App {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tatlilar.
+        ///   Looks up a localized string similar to Tatlılar.
         /// </summary>
         internal static string CategoryDessertsTR {
             get {
@@ -232,7 +232,7 @@ namespace Recipe_App {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select Photo.
+        ///   Looks up a localized string similar to Select Image.
         /// </summary>
         internal static string ChooseImageButtonEnglish {
             get {
@@ -241,7 +241,7 @@ namespace Recipe_App {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Resim Seç.
+        ///   Looks up a localized string similar to Fotoğraf Seç.
         /// </summary>
         internal static string ChooseImageButtonTurkish {
             get {
@@ -331,7 +331,7 @@ namespace Recipe_App {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tarif Ekle.
+        ///   Looks up a localized string similar to Yeni Tarif.
         /// </summary>
         internal static string MainPageAddRecipeButtonTR {
             get {
@@ -412,7 +412,7 @@ namespace Recipe_App {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tarif Ismi.
+        ///   Looks up a localized string similar to Tarif Adı.
         /// </summary>
         internal static string RecipeNameTurkish {
             get {
@@ -475,7 +475,7 @@ namespace Recipe_App {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Resim çek.
+        ///   Looks up a localized string similar to Fotoğraf çek.
         /// </summary>
         internal static string TakePhotoButtonTurkish {
             get {

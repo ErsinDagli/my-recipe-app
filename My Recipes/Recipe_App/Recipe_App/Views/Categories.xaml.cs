@@ -62,12 +62,39 @@ namespace Recipe_App.Views
             try
             {
                 var category = App.Database.GetCategoryByName(selectedcategory);
-                CatImage.Source = category.ImageFilePath;
+                if (string.IsNullOrEmpty(category.ImageFilePath))
+                {
+                    CatImage.Source = "recipeplaceholder.png";
+
+                }else
+                 CatImage.Source = category.ImageFilePath;
             }
             catch
             {
 
             }
+
+            try
+            {
+                if (Application.Current.Properties.ContainsKey(SelectedCategory + "-color"))
+                {
+                    var colorrgba = Application.Current.Properties[SelectedCategory + "-color"].ToString();
+
+                    var RGBA = colorrgba.Split(',');
+                    var R = Convert.ToDouble(RGBA[0]);
+                    var G = Convert.ToDouble(RGBA[1]);
+                    var B = Convert.ToDouble(RGBA[2]);
+                    var A = Convert.ToDouble(RGBA[3]);
+
+                    catFrame.BackgroundColor = new Color(R, G, B, A);
+                }
+            }
+            catch
+            {
+
+            }
+
+           
 
 
             try

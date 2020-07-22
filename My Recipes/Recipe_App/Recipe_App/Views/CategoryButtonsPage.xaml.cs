@@ -19,27 +19,6 @@ namespace Recipe_App.Views
 
         void SetButtonFrameColors()
         {
-            //var categories = App.Database.GetCategories();
-
-
-            //foreach (var category in categories)
-            //{
-            //    Frame f = new Frame()
-            //    {
-            //        HeightRequest = 200,
-            //        WidthRequest = 150,
-            //        CornerRadius = 20,
-            //        BackgroundColor = redColor,
-            //        HasShadow = true,
-            //    };
-
-            //    if (Application.Current.Properties.ContainsKey(category.CategoryName + "-color"))
-            //    {
-            //        f.BackgroundColor = (Color)Application.Current.Properties[category.CategoryName + "-color"];
-            //    }
-
-
-            //}
 
             //loop through all frames in stack layout
             foreach(Frame frame in stack1.Children)
@@ -49,7 +28,15 @@ namespace Recipe_App.Views
                     var categoryName = ((frame.Content as StackLayout).Children[0] as Label).Text;
                     if (Application.Current.Properties.ContainsKey(categoryName + "-color"))
                     {
-                        frame.BackgroundColor = (Color)Application.Current.Properties[categoryName + "-color"];
+                        var colorrgba = Application.Current.Properties[categoryName + "-color"].ToString();
+
+                        var RGBA = colorrgba.Split(',');
+                        var R = Convert.ToDouble(RGBA[0]);
+                        var G = Convert.ToDouble(RGBA[1]);
+                        var B = Convert.ToDouble(RGBA[2]);
+                        var A = Convert.ToDouble(RGBA[3]);
+
+                        frame.BackgroundColor = new Color(R, G, B, A);
                     }
                 }
                 catch
@@ -191,11 +178,21 @@ namespace Recipe_App.Views
                     HasShadow = true,
                 };
 
-                //if (!string.IsNullOrWhiteSpace(category.ButtonColorHex))
-                //    f.BackgroundColor = Color.FromHex(category.ButtonColorHex);
-                if (Application.Current.Properties.ContainsKey(category.CategoryName + "-color"))
+
+                //var categoryName = ((f.Content as StackLayout).Children[0] as Label).Text;
+                var categoryName = category.CategoryName;
+
+                if (Application.Current.Properties.ContainsKey(categoryName + "-color"))
                 {
-                    f.BackgroundColor = (Color)Application.Current.Properties[category.CategoryName + "-color"];
+                    var colorrgba = Application.Current.Properties[categoryName + "-color"].ToString();
+
+                    var RGBA = colorrgba.Split(',');
+                    var R = Convert.ToDouble(RGBA[0]);
+                    var G = Convert.ToDouble(RGBA[1]);
+                    var B = Convert.ToDouble(RGBA[2]);
+                    var A = Convert.ToDouble(RGBA[3]);
+
+                    f.BackgroundColor = new Color(R, G, B, A);
                 }
 
                 var tapGestureRecognizer = new TapGestureRecognizer();
@@ -219,8 +216,8 @@ namespace Recipe_App.Views
                     VerticalOptions = LayoutOptions.Start
                 });
 
-                if (!string.IsNullOrWhiteSpace(category.ImageFilePath))
-                {
+               // if (!string.IsNullOrWhiteSpace(category.ImageFilePath))
+                //{
                     Frame imageFrame = new Frame()
                     {
                         Margin = new Thickness(0),
@@ -231,12 +228,23 @@ namespace Recipe_App.Views
                         WidthRequest = 100,
                         CornerRadius = 100,
                         IsClippedToBounds = true,
-                        BackgroundColor = Color.Transparent,
-                        Content = new Image() { Aspect = Aspect.Fill, HeightRequest = 100, WidthRequest = 100, Source = category.ImageFilePath, HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center }
+                        BackgroundColor = Color.Transparent
                     };
 
-                    sl.Children.Add(imageFrame);
+                if (!string.IsNullOrWhiteSpace(category.ImageFilePath))
+                {
+                    imageFrame.Content = new Image() { Aspect = Aspect.Fill, HeightRequest = 100, WidthRequest = 100, Source = category.ImageFilePath, HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center };
+
                 }
+                else
+                {
+                    imageFrame.Content = new Image() { Aspect = Aspect.Fill, HeightRequest = 100, WidthRequest = 100, Source = "recipeplaceholder.png", HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center };
+
+                }
+
+                sl.Children.Add(imageFrame);
+           
+             
 
 
 
@@ -262,17 +270,6 @@ namespace Recipe_App.Views
                     stack1.Children.Add(f);
 
 
-                //button.HeightRequest = 150;
-                //button.WidthRequest = 150;
-                //button.CornerRadius = 20;
-                //button.Margin = new Thickness(5);
-                ////give the button a random colour
-                //button.BackgroundColor = redColor;
-                //button.TextColor = Color.Black;
-
-
-
-                //button.Clicked += async (sender, e) => await Navigation.PushAsync(new Categories(category.CategoryName));
 
 
                 col++;
@@ -443,15 +440,7 @@ namespace Recipe_App.Views
 
                 }
 
-                // Button button = new Button();
-                // button.Text = AddCategoryEntry.Text;
-
-                // button.CornerRadius = 20;
-                // button.WidthRequest = 150;
-                // button.HeightRequest = 150;
-                // button.Margin = new Thickness(5);
-                // button.Clicked += async (s, f) => await Navigation.PushAsync(new Categories(AddCategoryEntry.Text));
-                //button.BackgroundColor = redColor;
+      
 
                 Frame f = new Frame()
                 {
@@ -463,10 +452,7 @@ namespace Recipe_App.Views
                 };
 
       
-                //if (Application.Current.Properties.ContainsKey(category.CategoryName + "-color"))
-                //{
-                //    f.BackgroundColor = (Color)Application.Current.Properties[category.CategoryName + "-color"];
-                //}
+            
 
                 var tapGestureRecognizer = new TapGestureRecognizer();
                 tapGestureRecognizer.Tapped += TapGestureRecognizer_Tapped;

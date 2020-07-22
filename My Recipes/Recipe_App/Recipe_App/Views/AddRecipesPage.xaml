@@ -78,7 +78,7 @@
                     <StackLayout>
                         <Label x:Name="categoryLabel" FontAttributes="Bold" FontSize="Medium" TextColor="White" BackgroundColor="Transparent"/>
 
-                        <Picker x:Name="txtcategory" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Grid.Row="4" BackgroundColor="LightGreen" SelectedItem="{Binding SelectedCategory}">
+                        <Picker x:Name="txtcategory" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Grid.Row="4" BackgroundColor="LightGreen" >
                         <Picker.Items>
 
                         </Picker.Items>

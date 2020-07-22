@@ -17,7 +17,7 @@
                           HasUnevenRows="True" >
                 <ListView.Header>
                     <StackLayout>
-                        <Label HorizontalOptions="CenterAndExpand"   x:Name="CategoryLabel" FontAttributes="Bold" FontSize="Large" TextColor="Black"/>
+                        <Label HorizontalOptions="CenterAndExpand"   x:Name="CategoryLabel" FontAttributes="Bold" FontSize="25" FontFamily="Roboto-Regular" TextColor="Black"/>
                     <Frame x:Name="catFrame" CornerRadius="40" BackgroundColor="IndianRed" HasShadow="True">
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                                 <Frame  HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="200" WidthRequest="200" CornerRadius="100" IsClippedToBounds="True" Padding="0">

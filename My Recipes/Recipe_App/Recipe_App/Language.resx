@@ -142,7 +142,7 @@
     <value>Desserts</value>
   </data>
   <data name="CategoryDessertsTR" xml:space="preserve">
-    <value>Tatlilar</value>
+    <value>Tatlılar</value>
   </data>
   <data name="CategoryDinnerEnglish" xml:space="preserve">
     <value>Dinner</value>
@@ -175,10 +175,10 @@
     <value>Kategori</value>
   </data>
   <data name="ChooseImageButtonEnglish" xml:space="preserve">
-    <value>Select Photo</value>
+    <value>Select Image</value>
   </data>
   <data name="ChooseImageButtonTurkish" xml:space="preserve">
-    <value>Resim Seç</value>
+    <value>Fotoğraf Seç</value>
   </data>
   <data name="DeleteButtonEN" xml:space="preserve">
     <value>Delete</value>
@@ -208,7 +208,7 @@
     <value>New Recipe</value>
   </data>
   <data name="MainPageAddRecipeButtonTR" xml:space="preserve">
-    <value>Tarif Ekle</value>
+    <value>Yeni Tarif</value>
   </data>
   <data name="MainPageSearchRecipeButtonTR" xml:space="preserve">
     <value>Tariflerim</value>
@@ -235,7 +235,7 @@
     <value>Recipe Name</value>
   </data>
   <data name="RecipeNameTurkish" xml:space="preserve">
-    <value>Tarif Ismi</value>
+    <value>Tarif Adı</value>
   </data>
   <data name="RecipeTurkish" xml:space="preserve">
     <value>Tarif</value>
@@ -256,6 +256,6 @@
     <value>Take Photo</value>
   </data>
   <data name="TakePhotoButtonTurkish" xml:space="preserve">
-    <value>Resim çek</value>
+    <value>Fotoğraf çek</value>
   </data>
 </root>
