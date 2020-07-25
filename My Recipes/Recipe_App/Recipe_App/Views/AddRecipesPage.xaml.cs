@@ -9,6 +9,7 @@ using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using Recipe_App.Views;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace Recipe_App
 {
@@ -22,23 +23,26 @@ namespace Recipe_App
        public SQLentry passedSQLentry { get; set; }
        public bool saved;
 
+        async Task Initialise()
+        {
+            var categories = await App.Database.GetCategories();
+
+            categories = categories?.OrderBy(x => x.CategoryName);
+            foreach (var category in categories)
+            {
+                txtcategory.Items.Add(category.CategoryName.ToString());
+
+            }
+        }
 
         public AddRecipesPage()
         {
             InitializeComponent();
-            
 
-            //update picker values with colletion
-            //foreach (var item in Application.Current.Properties)
-            //{
-            //    txtcategory.Items.Add(item.Value.ToString());
-            //}
-            
-            foreach(var category in App.Database.GetCategories())
-            {
-               txtcategory.Items.Add(category.CategoryName.ToString());
 
-            }
+            Task.Run(async () => await Initialise());
+
+           
 
 
             if (MainPage.TurkishClicked == false)
@@ -84,6 +88,19 @@ namespace Recipe_App
 
         }
 
+        async Task InitialiseEdit(SQLentry sqlentry)
+        {
+            var categories = await App.Database.GetCategories();
+
+            foreach (var category in categories)
+            {
+                txtcategory.Items.Add(category.CategoryName.ToString());
+
+            }
+
+        }
+
+
         public AddRecipesPage(SQLentry sqlentry)
         {
             InitializeComponent();
@@ -95,16 +112,11 @@ namespace Recipe_App
             txtIngredients.Text = sqlentry.Ingredients;
             txtRecipe.Text = sqlentry.Recipe;
             txtNotes.Text = sqlentry.Notes;
-           
 
-    
 
-            foreach (var category in App.Database.GetCategories())
-            {
-                txtcategory.Items.Add(category.CategoryName.ToString());
+            Task.Run(async () => await InitialiseEdit(sqlentry));
 
-            }
-
+          
            
             if (MainPage.TurkishClicked == false)
             {
@@ -270,7 +282,7 @@ namespace Recipe_App
 
 
                    
-                        SQLentry fileexist = App.Database.GetItem(txtRecipeName.Text.ToUpper());
+                        SQLentry fileexist = await App.Database.GetItem(txtRecipeName.Text.ToUpper());
                         if (fileexist == null)
                         {
                             if (txtRecipeName.Text != null)
@@ -329,7 +341,7 @@ namespace Recipe_App
 
 
 
-                                int i = App.Database.SaveItem(entry);
+                                int i = await App.Database.SaveItem(entry);
 
 
                                 if (i > 0)
@@ -399,7 +411,7 @@ namespace Recipe_App
                                 entry2.Recipe = txtRecipe.Text;
                                 entry2.Notes = txtNotes.Text;
 
-                                int i = App.Database.SaveItem(entry2);
+                                int i = await App.Database.SaveItem(entry2);
 
 
                                 if (i > 0)

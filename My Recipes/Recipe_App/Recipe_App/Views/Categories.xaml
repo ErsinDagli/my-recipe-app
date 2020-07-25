@@ -13,7 +13,7 @@
 
 
             <ListView x:Name="categoriesList" ItemSelected="categoriesList_ItemSelected"
-                          CachingStrategy="RecycleElement"   RowHeight="100"
+                          CachingStrategy="RecycleElement"   RowHeight="100" ItemAppearing="CategoriesList_ItemAppearing"
                           HasUnevenRows="True" >
                 <ListView.Header>
                     <StackLayout>
@@ -60,7 +60,11 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-        </StackLayout>
+
+        <ActivityIndicator Color="Black"  x:Name="loadercat" >
+
+        </ActivityIndicator>
+    </StackLayout>
 
 
       

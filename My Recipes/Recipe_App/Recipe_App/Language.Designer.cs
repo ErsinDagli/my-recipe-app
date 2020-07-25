@@ -61,6 +61,24 @@ namespace Recipe_App {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Type a category name.
+        /// </summary>
+        internal static string AddCategoryPlaceholderEn {
+            get {
+                return ResourceManager.GetString("AddCategoryPlaceholderEn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kategori Ad.
+        /// </summary>
+        internal static string AddCategoryPlaceholderTR {
+            get {
+                return ResourceManager.GetString("AddCategoryPlaceholderTR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New Recipe.
         /// </summary>
         internal static string AddRecipeEnglish {
@@ -75,6 +93,24 @@ namespace Recipe_App {
         internal static string AddRecipeTurkish {
             get {
                 return ResourceManager.GetString("AddRecipeTurkish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string CancelButtonEnglish {
+            get {
+                return ResourceManager.GetString("CancelButtonEnglish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Iptal.
+        /// </summary>
+        internal static string CancelButtonTurkish {
+            get {
+                return ResourceManager.GetString("CancelButtonTurkish", resourceCulture);
             }
         }
         

@@ -114,7 +114,7 @@ namespace Recipe_App.Views
           if(answer == true)
             {
                 //App.CategoryOC.Remove(SQLentry);
-                App.Database.DeleteItem(SQLentry.RecipeID);
+                await App.Database.DeleteItem(SQLentry.RecipeID);
 
                 //we need to also delete from the observablecollections
                 if (RecipeSearchPage.RecipeNameOC.Contains(SQLentry))

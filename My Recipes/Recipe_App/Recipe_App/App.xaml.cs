@@ -3,6 +3,7 @@ using Recipe_App.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -25,10 +26,19 @@ namespace Recipe_App
                 
             };
             NavigationPage.SetHasNavigationBar(MainPage, false);
-           
 
 
-            SQLentry fileexist = App.Database.GetItem("SALMON WITH HERB SAUCE RAVIGOTE");
+
+            Task.Run(async () => await Initialise());
+
+
+
+        }
+
+        //create seed recipe
+        async Task Initialise()
+        {
+            SQLentry fileexist = await App.Database.GetItem("SALMON WITH HERB SAUCE RAVIGOTE");
             if (fileexist == null)
             {
                 SQLentry stockRecipe1 = new SQLentry();
@@ -44,16 +54,13 @@ namespace Recipe_App
                 stockRecipe1.ImageFilePath = "salmon.png";
 
 
-                Database.SaveItem(stockRecipe1);
+                await Database.SaveItem(stockRecipe1);
             }
-               
-
-
 
         }
 
 
-        
+
 
         public static SQLHelper Database
         {

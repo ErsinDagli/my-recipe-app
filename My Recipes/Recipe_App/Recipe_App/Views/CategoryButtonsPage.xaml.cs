@@ -106,7 +106,8 @@ namespace Recipe_App.Views
                 Desserts.Text = Language.CategoryDessertsEN;
                 Salads.Text = Language.CategorySaladsEN;
                 SaveCategoryButton.Text = Language.SaveButtonEnglish;
-
+                SaveCategoryButton.Text = Language.CancelButtonEnglish;
+                AddCategoryEntry.Placeholder = Language.AddCategoryPlaceholderEn;
 
             }
             else
@@ -118,13 +119,35 @@ namespace Recipe_App.Views
                 Desserts.Text = Language.CategoryDessertsTR;
                 Salads.Text = Language.CategorySaladsTR;
                 SaveCategoryButton.Text = Language.SaveButtonTurkish;
+                CancelCategoryButton.Text = Language.CancelButtonTurkish;
+                AddCategoryEntry.Placeholder = Language.AddCategoryPlaceholderTR;
+
             }
 
 
             //setup count category recipes
             CountRecipesPerCategory();
 
+            //try
+            //{
+            //    MessagingCenter.Subscribe<Categories, string>(this, "PicUpdated", (sender, editedCat) => {
 
+            //        var buttonTUpdate = stack1.Children.Where(x => (((StackLayout)((Frame)x).Content).Children.FirstOrDefault() as Label)?.Text.Contains(editedCat) == true).FirstOrDefault();
+            //        if (buttonTUpdate != null)
+            //        {
+            //            stack1.
+            //        }
+            //            stack1.Children.Remove(buttonToDelete);
+
+
+
+
+            //    });
+            //}
+            //catch
+            //{
+
+            //}
 
             try
             {
@@ -161,10 +184,10 @@ namespace Recipe_App.Views
 
 
 
-        void ReloadButtons()
+        async Task ReloadButtons()
         {
             //get categories
-            var categories = App.Database.GetCategories();
+            var categories = await App.Database.GetCategories();
 
             int col = 1;
             foreach (var category in categories)
@@ -233,12 +256,12 @@ namespace Recipe_App.Views
 
                 if (!string.IsNullOrWhiteSpace(category.ImageFilePath))
                 {
-                    imageFrame.Content = new Image() { Aspect = Aspect.Fill, HeightRequest = 100, WidthRequest = 100, Source = category.ImageFilePath, HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center };
+                    imageFrame.Content = new Image() { Aspect = Aspect.AspectFill, HeightRequest = 100, WidthRequest = 100, Source = category.ImageFilePath, HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center };
 
                 }
                 else
                 {
-                    imageFrame.Content = new Image() { Aspect = Aspect.Fill, HeightRequest = 100, WidthRequest = 100, Source = "recipeplaceholder.png", HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center };
+                    imageFrame.Content = new Image() { Aspect = Aspect.AspectFill, HeightRequest = 100, WidthRequest = 100, Source = "recipeplaceholder.png", HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center };
 
                 }
 
@@ -251,7 +274,7 @@ namespace Recipe_App.Views
                 sl.Children.Add(new Label()
                 {
                     Margin = new Thickness(0, 5, 0, 0),
-                    Text = App.Database.GetCountRecipesInCategory(category.CategoryName) == 1 ? App.Database.GetCountRecipesInCategory(category.CategoryName).ToString() + " recipe" : App.Database.GetCountRecipesInCategory(category.CategoryName).ToString() + " recipes",
+                    Text = await App.Database.GetCountRecipesInCategory(category.CategoryName) == 1 ? (await App.Database.GetCountRecipesInCategory(category.CategoryName)).ToString() + " recipe" : (await App.Database.GetCountRecipesInCategory(category.CategoryName)).ToString() + " recipes",
                     VerticalTextAlignment = TextAlignment.Center,
                     FontSize = 15,
                     FontAttributes = FontAttributes.Bold,
@@ -278,26 +301,26 @@ namespace Recipe_App.Views
             col = 1;
         }
 
-        void CountRecipesPerCategory()
+        async Task CountRecipesPerCategory()
         {
-            breaklbl.Text = App.Database.GetCountRecipesInCategory("Breakfast") == 1 ?  "1 recipe" : App.Database.GetCountRecipesInCategory("Breakfast").ToString() + " recipes";
+            breaklbl.Text = await App.Database.GetCountRecipesInCategory("Breakfast") == 1 ?  "1 recipe" : (await App.Database.GetCountRecipesInCategory("Breakfast")).ToString() + " recipes";
 
 
-            lunchlbl.Text = App.Database.GetCountRecipesInCategory("Lunch") == 1 ? "1 recipe" : App.Database.GetCountRecipesInCategory("Lunch").ToString() + " recipes";
+            lunchlbl.Text = await App.Database.GetCountRecipesInCategory("Lunch") == 1 ? "1 recipe" : (await App.Database.GetCountRecipesInCategory("Lunch")).ToString() + " recipes";
 
 
-            dinnerlbl.Text = App.Database.GetCountRecipesInCategory("Dinner") == 1 ? "1 recipe" : App.Database.GetCountRecipesInCategory("Dinner").ToString() + " recipes";
+            dinnerlbl.Text = await App.Database.GetCountRecipesInCategory("Dinner") == 1 ? "1 recipe" : (await App.Database.GetCountRecipesInCategory("Dinner")).ToString() + " recipes";
 
 
 
 
-            biteslbl.Text = App.Database.GetCountRecipesInCategory("Quick Bites") == 1 ? "1 recipe" : App.Database.GetCountRecipesInCategory("Quick Bites").ToString() + " recipes";
+            biteslbl.Text = await App.Database.GetCountRecipesInCategory("Quick Bites") == 1 ? "1 recipe" : (await App.Database.GetCountRecipesInCategory("Quick Bites")).ToString() + " recipes";
 
 
-            dessertslbl.Text = App.Database.GetCountRecipesInCategory("Desserts") == 1 ? "1 recipe" : App.Database.GetCountRecipesInCategory("Desserts").ToString() + " recipes";
+            dessertslbl.Text = await App.Database.GetCountRecipesInCategory("Desserts") == 1 ? "1 recipe" : (await App.Database.GetCountRecipesInCategory("Desserts")).ToString() + " recipes";
 
 
-            saladslbl.Text = App.Database.GetCountRecipesInCategory("Salads") == 1 ? "1 recipe" : App.Database.GetCountRecipesInCategory("Salads").ToString() + " recipes";
+            saladslbl.Text = await App.Database.GetCountRecipesInCategory("Salads") == 1 ? "1 recipe" : (await App.Database.GetCountRecipesInCategory("Salads")).ToString() + " recipes";
 
 
         }
@@ -432,7 +455,7 @@ namespace Recipe_App.Views
                 Category c = new Category();
                 c.CategoryName = AddCategoryEntry.Text;
 
-                var result = App.Database.SaveCategory(c);
+                var result = await App.Database.SaveCategory(c);
                 if (result == 0)
                 {
                     await DisplayAlert("That category already exists", "", "cancel");
@@ -499,7 +522,7 @@ namespace Recipe_App.Views
                 sl.Children.Add(new Label()
                 {
                     Margin = new Thickness(0, 5, 0, 0),
-                    Text = App.Database.GetCountRecipesInCategory(AddCategoryEntry.Text) == 1 ? App.Database.GetCountRecipesInCategory(AddCategoryEntry.Text).ToString() + " recipe" : App.Database.GetCountRecipesInCategory(AddCategoryEntry.Text).ToString() + " recipes",
+                    Text = await App.Database.GetCountRecipesInCategory(AddCategoryEntry.Text) == 1 ? (await App.Database.GetCountRecipesInCategory(AddCategoryEntry.Text)).ToString() + " recipe" : (await App.Database.GetCountRecipesInCategory(AddCategoryEntry.Text)).ToString() + " recipes",
                     VerticalTextAlignment = TextAlignment.Center,
                     FontSize = 15,
                     FontAttributes = FontAttributes.Bold,

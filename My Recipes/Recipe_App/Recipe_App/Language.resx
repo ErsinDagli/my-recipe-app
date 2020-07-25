@@ -117,11 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddCategoryPlaceholderEn" xml:space="preserve">
+    <value>Type a category name</value>
+  </data>
+  <data name="AddCategoryPlaceholderTR" xml:space="preserve">
+    <value>Kategori Ad</value>
+  </data>
   <data name="AddRecipeEnglish" xml:space="preserve">
     <value>New Recipe</value>
   </data>
   <data name="AddRecipeTurkish" xml:space="preserve">
     <value>Tarif Ekle</value>
+  </data>
+  <data name="CancelButtonEnglish" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CancelButtonTurkish" xml:space="preserve">
+    <value>Iptal</value>
   </data>
   <data name="CategoriesTabEn" xml:space="preserve">
     <value>Categories</value>

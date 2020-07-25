@@ -11,6 +11,7 @@ using System.IO;
 using Plugin.Media;
 using Plugin.Permissions.Abstractions;
 using Newtonsoft.Json;
+using System.Linq;
 
 namespace Recipe_App.Views
 {
@@ -21,7 +22,46 @@ namespace Recipe_App.Views
         public static IList<SQLentry> categoryListEntries;
         public static ObservableCollection<SQLentry> CategoryOC;
         public MediaFile PicTakenFile { get; set; }
+        int page = 1;
+        async Task Initialise(string selectedcategory)
+        {
+            var category = await App.Database.GetCategoryByName(selectedcategory);
+            if (string.IsNullOrEmpty(category.ImageFilePath))
+            {
+                CatImage.Source = "recipeplaceholder.png";
 
+            }
+            else
+                CatImage.Source = category.ImageFilePath;
+        }
+
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            page = 1;
+
+        }
+
+        async Task InitialiseTwo(string selectedcategory)
+        {
+            CategoryOC = new ObservableCollection<SQLentry>();
+            categoryListEntries = await App.Database.GetCategory(selectedcategory, 1);
+
+            foreach (var item in categoryListEntries)
+            {
+                if (!CategoryOC.Contains(item))
+                {
+                    if (string.IsNullOrWhiteSpace(item.ImageFilePath))
+                        item.ImageFilePath = "recipeplaceholder.png";
+
+                    CategoryOC.Add(item);
+                }
+            }
+
+
+            categoriesList.ItemsSource = CategoryOC;
+        }
 
         public Categories (string selectedcategory)
 		{
@@ -52,22 +92,22 @@ namespace Recipe_App.Views
                 CatImage.Source = "catDessert.png";
 
 
+
+           
+
+
             BindingContext = new SQLentry();
 
-            SetUpNavBar();
+             SetUpNavBar();
 
             SelectedCategory = selectedcategory;
 
             //get category image
             try
             {
-                var category = App.Database.GetCategoryByName(selectedcategory);
-                if (string.IsNullOrEmpty(category.ImageFilePath))
-                {
-                    CatImage.Source = "recipeplaceholder.png";
+                Task.Run(async () => await Initialise(selectedcategory));
 
-                }else
-                 CatImage.Source = category.ImageFilePath;
+               
             }
             catch
             {
@@ -99,22 +139,8 @@ namespace Recipe_App.Views
 
             try
             {
-                CategoryOC = new ObservableCollection<SQLentry>();
-                categoryListEntries = App.Database.GetCategory(selectedcategory);
 
-                foreach (var item in categoryListEntries)
-                {
-                    if (!CategoryOC.Contains(item))
-                    {
-                        if (string.IsNullOrWhiteSpace(item.ImageFilePath))
-                            item.ImageFilePath = "recipeplaceholder.png";
-
-                        CategoryOC.Add(item);
-                    }
-                }
-
-
-                categoriesList.ItemsSource = CategoryOC;
+                Task.Run(async () => await InitialiseTwo(selectedcategory));
 
             }
             catch
@@ -128,14 +154,36 @@ namespace Recipe_App.Views
             if(MainPage.TurkishClicked == false)
             {
                 CategoryLabel.Text = SelectedCategory;
-              //  CameraButtonCat.Text = Language.TakePhotoButtonEnglish;
-                //ChooseImageCat.Text = Language.ChooseImageButtonEnglish;
+                if (selectedcategory == "Breakfast")
+                    CategoryLabel.Text = Language.CategoryBreakfastEnglish;
+                else if (selectedcategory == "Lunch")
+                    CategoryLabel.Text = Language.CategoryLunchEnglish;
+                else if (selectedcategory == "Dinner")
+                    CategoryLabel.Text = Language.CategoryDinnerEnglish;
+                else if (selectedcategory == "Salads")
+                    CategoryLabel.Text = Language.CategorySaladsEN;
+                else if (selectedcategory == "Quick Bites")
+                    CategoryLabel.Text = Language.CategoryQuickBitesEN;
+                else if (selectedcategory == "Desserts")
+                    CategoryLabel.Text = Language.CategoryDessertsEN;
             }
             else
             {
                 CategoryLabel.Text = SelectedCategory;
-               // CameraButtonCat.Text = Language.TakePhotoButtonTurkish;
-                //ChooseImageCat.Text = Language.ChooseImageButtonTurkish;
+
+                if (selectedcategory == "Breakfast")
+                    CategoryLabel.Text = Language.CategoryBreakfastTurkish;
+                else if (selectedcategory == "Lunch")
+                    CategoryLabel.Text = Language.CategoryLunchTurkish;
+                else if (selectedcategory == "Dinner")
+                    CategoryLabel.Text = Language.CategoryDinnerTurkish;
+                else if (selectedcategory == "Salads")
+                    CategoryLabel.Text = Language.CategorySaladsTR;
+                else if (selectedcategory == "Quick Bites")
+                    CategoryLabel.Text = Language.CategoryQuickBitesTR;
+                else if (selectedcategory == "Desserts")
+                    CategoryLabel.Text = Language.CategoryDessertsTR;
+
             }
 
 
@@ -204,7 +252,7 @@ namespace Recipe_App.Views
                 var cat = App.Database.GetCategoryByName(SelectedCategory);
                 if (cat != null)
                 {
-                    App.Database.DeleteCategory(cat.Id);
+                    await App.Database.DeleteCategory(cat.Id);
 
                     //send deleted event
                     MessagingCenter.Send<Categories, string>(this, "Deleted", SelectedCategory);
@@ -218,7 +266,7 @@ namespace Recipe_App.Views
         }
 
 
-        void SetUpNavBar()
+         void SetUpNavBar()
         {
             try
             {
@@ -239,7 +287,7 @@ namespace Recipe_App.Views
                 sb.HorizontalOptions = LayoutOptions.FillAndExpand;
                 sb.VerticalOptions = LayoutOptions.FillAndExpand;
                 sb.BackgroundColor = Color.Transparent;
-                sb.TextChanged += searchbar_TextChanged;
+                sb.TextChanged +=  searchbar_TextChanged;
                 sb.HeightRequest = 40;
                 sb.Behaviors.Add(new TextChangedBehavior());
                 sb.Placeholder = "Recipe name";
@@ -260,11 +308,11 @@ namespace Recipe_App.Views
            
 
         }
-        private void searchbar_TextChanged(object sender, TextChangedEventArgs e)
+        private async void searchbar_TextChanged(object sender, TextChangedEventArgs e)
         {
 
 
-            categoriesList.ItemsSource = App.Database.SearchRecipeInCategory(e.NewTextValue.ToUpper(), SelectedCategory);
+            categoriesList.ItemsSource = await App.Database.SearchRecipeInCategory(e.NewTextValue.ToUpper(), SelectedCategory);
 
 
         }
@@ -334,14 +382,17 @@ namespace Recipe_App.Views
 
 
                 //save image for category
-                var currentCategory = App.Database.GetCategoryByName(SelectedCategory);
+                var currentCategory = await App.Database.GetCategoryByName(SelectedCategory);
                 if(currentCategory != null)
                 {
                     currentCategory.ImageFilePath = file.Path.ToString();
                 }
                
 
-                App.Database.EditCategory(currentCategory);
+                await App.Database.EditCategory(currentCategory);
+
+               // MessagingCenter.Send<Categories, string>(this, "PicUpdated", SelectedCategory);
+
 
                 file.Dispose();
 
@@ -409,16 +460,19 @@ namespace Recipe_App.Views
                     CatImage.Source = ImageSource.FromStream(() => stream);
 
                     //save image for category
-                    var currentCategory = App.Database.GetCategoryByName(SelectedCategory);
+                    var currentCategory = await App.Database.GetCategoryByName(SelectedCategory);
                     if (currentCategory != null)
                     {
                         currentCategory.ImageFilePath = file.Path.ToString();
                     }
 
-                    App.Database.EditCategory(currentCategory);
+                    await App.Database.EditCategory(currentCategory);
 
 
                     PicTakenFile = file;
+
+                   // MessagingCenter.Send<Categories, string>(this, "PicUpdated", SelectedCategory);
+
 
                     file.Dispose();
 
@@ -454,6 +508,60 @@ namespace Recipe_App.Views
 
            await Application.Current.SavePropertiesAsync();
 
+        }
+
+        private async void CategoriesList_ItemAppearing(object sender, ItemVisibilityEventArgs e)
+        {
+            try
+            {
+
+
+                if (CategoryOC.Count < 10)
+                    return;
+                var recipeList = sender as ListView;
+                var recipeListLast = CategoryOC.LastOrDefault();
+
+                if (e.Item == null)
+                {
+                    return;
+                }
+
+
+                if (((SQLentry)e.Item).RecipeName == recipeListLast.RecipeName)
+                {
+                    page++;
+
+                    loadercat.IsRunning = true;
+                    loadercat.IsVisible = true;
+                    var recipes = await App.Database.GetCategory(SelectedCategory, page);
+
+                    foreach (var rec in recipes)
+                    {
+                        if (string.IsNullOrWhiteSpace(rec.ImageFilePath))
+                        {
+                            rec.ImageFilePath = "recipeplaceholder.pnhg";
+
+                        }
+                        if (CategoryOC.Where(x => x.RecipeName == rec.RecipeName).FirstOrDefault() == null)
+                            CategoryOC.Add(rec);
+                    }
+                    categoriesList.ItemsSource = CategoryOC;
+
+
+                   
+
+
+                }
+            }
+            catch (Exception f)
+            {
+
+            }
+            finally
+            {
+                loadercat.IsRunning = false;
+                loadercat.IsVisible = false;
+            }
         }
     }
 }

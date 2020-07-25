@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using PCLStorage;
+using System.Threading.Tasks;
 
 namespace Recipe_App.ViewModels
 {
     public class SQLHelper
     {
+        int pageSize = 10;
+           
         static object locker = new object();
-        SQLiteConnection database;
+        SQLiteAsyncConnection database;
         
 
         //CONSTRUCTOR
@@ -16,11 +19,13 @@ namespace Recipe_App.ViewModels
         {
             database = GetConnection();
             // create the tables  
-            database.CreateTable<SQLentry>();
+            database.CreateTableAsync<SQLentry>();
 
-            database.CreateTable<Category>();
+            database.CreateTableAsync<Category>();
 
         }
+
+        
 
         /// <summary>
         /// CATEGORY methods
@@ -28,68 +33,62 @@ namespace Recipe_App.ViewModels
         /// <returns></returns>
         /// 
 
-        public Category GetCategoryByName(string CategoryName)
+        public async Task<Category> GetCategoryByName(string CategoryName)
         {
-            lock (locker)
-            {
-                return database.Table<Category>().FirstOrDefault(x => x.CategoryName == CategoryName);
-            }
+            
+            return await database.Table<Category>().FirstOrDefaultAsync(x => x.CategoryName == CategoryName);
+            
         }
 
-        public int EditCategory(Category cat)
+        public async Task<int> EditCategory(Category cat)
         {
-            lock (locker)
-            {
-
-                //Update Item  
+           
                 
-                return database.Update(cat);
-            }
+                return await database.UpdateAsync(cat);
+           
         }
 
-        public IEnumerable<Category> GetCategories()
+        public async Task<IEnumerable<Category>> GetCategories()
         {
-            lock (locker)
-            {
-                return (from i in database.Table<Category>() select i).OrderBy(x => x.CategoryName).ToList();
-            }
+           
+               
+
+                return  await database.Table<Category>().OrderBy(x => x.CategoryName).ToListAsync();
+         
         }
 
-        public int GetCountRecipesInCategory(string categoryname)
+        public async Task<int> GetCountRecipesInCategory(string categoryname)
         {
-            lock (locker)
-            {
-                return (from i in database.Table<SQLentry>().Where(x=> x.Category.ToLower() == categoryname.ToLower()) select i).Count();
-            }
+          
+                return await database.Table<SQLentry>().Where(x=> x.Category.ToLower() == categoryname.ToLower()).CountAsync();
+          
         }
-        public int SaveCategory(Category item)
+        public async Task<int> SaveCategory(Category item)
         {
-            lock (locker)
-            {
+           
                 if (item.Id != 0)
                 {
                     //Update Item  
-                    database.Update(item);
+                    await database.UpdateAsync(item);
                     return item.Id;
                 }
                 else
                 {
                     //Insert item  
                     //check if category exists before insert
-                    if (GetCategoryByName(item.CategoryName) == null)
-                        return database.Insert(item);
+                    if (await GetCategoryByName(item.CategoryName) == null)
+                        return await database.InsertAsync(item);
                     else
                         return 0;
                 }
-            }
+           
         }
 
-        public void DeleteCategory(int categoryId)
+        public async Task DeleteCategory(int categoryId)
         {
-            lock (locker)
-            {
-                database.Delete<Category>(categoryId);
-            }
+           
+                await database.DeleteAsync<Category>(categoryId);
+         
         }
 
 
@@ -98,102 +97,114 @@ namespace Recipe_App.ViewModels
         /// </summary>
         /// <returns></returns>
 
-        public IEnumerable<SQLentry> GetItems()
+        public async Task<IEnumerable<SQLentry>> GetItems(int page)
         {
-            lock (locker)
-            {
-                return (from i in database.Table<SQLentry>() select i).ToList();
-            }
+          
+                var total = await database.Table<SQLentry>().CountAsync();
+                var skip = pageSize * (page - 1);
+                var canPage = skip < total;
+                if (!canPage) // do what you wish if you can page no further
+                    return null;
+
+                return await  database.Table<SQLentry>().Skip(skip).Take(pageSize).ToListAsync();
+            
         }
-        public SQLentry GetItem(string RecipeName)
+        public async Task<SQLentry> GetItem(string RecipeName)
         {
-            lock (locker)
-            {
-                return database.Table<SQLentry>().FirstOrDefault(x => x.RecipeName == RecipeName);
-            }
+            
+                return await database.Table<SQLentry>().FirstOrDefaultAsync(x => x.RecipeName == RecipeName);
+           
         }
 
-        public List<SQLentry> ListRecipes(string key)
+        public async Task<List<SQLentry>> ListRecipes(string key, int page)
         {
+            var total = await database.Table<SQLentry>().CountAsync();
+            var skip = pageSize * (page - 1);
+            var canPage = skip < total;
+            if (!canPage) // do what you wish if you can page no further
+                return null;
 
-            return database.Table<SQLentry>().Where(e => e.RecipeName.Contains(key)).OrderBy(c => c.RecipeName).ToList();
+            return await database.Table<SQLentry>().Where(e => e.RecipeName.Contains(key)).OrderBy(c => c.RecipeName).Skip(skip).Take(pageSize).ToListAsync();
             
 
         }
-        public List<SQLentry> SearchRecipeInCategory(string recipeName, string category)
+        public async Task<List<SQLentry>> SearchRecipeInCategory(string recipeName, string category)
         {
 
-            return database.Table<SQLentry>().Where(x=> x.Category == category).Where(e => e.RecipeName.Contains(recipeName)).OrderBy(c => c.RecipeName).ToList();
+            return await database.Table<SQLentry>().Where(x=> x.Category == category).Where(e => e.RecipeName.Contains(recipeName)).OrderBy(c => c.RecipeName).ToListAsync();
 
 
         }
         
 
-        public List<SQLentry> GetCategory(string category)
+        public async Task<List<SQLentry>> GetCategory(string category, int page)
         {
-            return database.Table<SQLentry>().Where(c => c.Category == category).ToList();
+            var total = await database.Table<SQLentry>().CountAsync();
+            var skip = pageSize * (page - 1);
+            var canPage = skip < total;
+            if (!canPage) // do what you wish if you can page no further
+                return null;
+
+            return await database.Table<SQLentry>().Where(c => c.Category == category).OrderBy(x=> x.RecipeName).Skip(skip).Take(pageSize).ToListAsync();
         }
         
-        public int UpdateCategoryColor(string categoryName, string ColorHex)
+        public async Task<int> UpdateCategoryColor(string categoryName, string ColorHex)
         {
-            lock (locker)
-            {
-                var category = database.Table<Category>().Where(x => x.CategoryName == categoryName).FirstOrDefault();
+           
+                var category = await database.Table<Category>().Where(x => x.CategoryName == categoryName).FirstOrDefaultAsync();
 
                 if (category != null)
                 {
                     category.ButtonColorHex = ColorHex;
                     //Update Item  
 
-                    return database.Update(category);
+                    return await database.UpdateAsync(category);
                 }
 
-                return 0;
+                return  0;
                
-            }
+           
         }
 
 
-        public int SaveItem(SQLentry item)
+        public async Task<int> SaveItem(SQLentry item)
         {
-            lock (locker)
-            {
+           
                 if (item.RecipeID != 0)
                 {
                     //Update Item  
-                    database.Update(item);
+                    await database.UpdateAsync(item);
                     return item.RecipeID;
                 }
                 else
                 {
                     //Insert item  
-                    if (GetItem(item.RecipeName) == null)
-                        return database.Insert(item);
+                    if (await GetItem(item.RecipeName) == null)
+                        return await database.InsertAsync(item);
                     else
                         return 0;
                    
                 }
-            }
+           
         }
 
-        public void DeleteItem(int RecipeID)
+        public async Task DeleteItem(int RecipeID)
         {
-            lock (locker)
-            {
+           
 
-                 database.Delete<SQLentry>(RecipeID);
-            }
+               await  database.DeleteAsync<SQLentry>(RecipeID);
+          
         }
 
 
 
-        public SQLite.SQLiteConnection GetConnection()
+        public SQLiteAsyncConnection GetConnection()
         {
-            SQLiteConnection sqlitConnection;
+            SQLiteAsyncConnection sqlitConnection;
             var sqliteFilename = "Recipes.db3";
             IFolder folder = FileSystem.Current.LocalStorage;
             string path = PortablePath.Combine(folder.Path.ToString(), sqliteFilename);
-            sqlitConnection = new SQLite.SQLiteConnection(path);
+            sqlitConnection = new SQLiteAsyncConnection(path);
             return sqlitConnection;
         }
 

@@ -8,6 +8,9 @@
              Title="Search"  BackgroundColor="White">
 
     <ContentPage.Content>
+        <StackLayout>
+            
+       
         <ScrollView>
             
                 
@@ -34,7 +37,7 @@
                   
                         
                         <ListView x:Name="searchitemslistView" RowHeight="100"
-                                  ItemSelected="searchitemslist_ItemSelected"  
+                                  ItemSelected="searchitemslist_ItemSelected"   ItemAppearing="SearchitemslistView_ItemAppearing"
                                   CachingStrategy="RecycleElement" HasUnevenRows="True">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
@@ -65,9 +68,15 @@
                             </ListView.ItemTemplate>
                         </ListView>
 
+
+
+                
             </StackLayout>
 
-
         </ScrollView>
+            <ActivityIndicator Color="Black"  x:Name="loader" >
+
+            </ActivityIndicator>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
