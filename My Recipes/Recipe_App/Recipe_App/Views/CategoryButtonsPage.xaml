@@ -48,7 +48,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <StackLayout Grid.Column="0" x:Name="stack1">
-                        <Frame  x:Name="BreakfastFrame" HeightRequest="150" WidthRequest="150" CornerRadius="20"  HasShadow="false">
+                        <Frame  x:Name="BreakfastFrame" HeightRequest="200" WidthRequest="150" CornerRadius="20"  HasShadow="false">
                             <StackLayout Margin="-10,-15,-10,-15">
                                 <Label x:Name="BreakfastButton" TextColor="White" FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center" BackgroundColor="Transparent"  VerticalTextAlignment="Center" />
 
@@ -59,7 +59,7 @@
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="Breakfast" />
                             </Frame.GestureRecognizers>
                         </Frame>
-                        <Frame x:Name="DinnerFrame"  HeightRequest="150" WidthRequest="150" CornerRadius="20"  HasShadow="false">
+                        <Frame x:Name="DinnerFrame"  HeightRequest="200" WidthRequest="150" CornerRadius="20"  HasShadow="false">
                             <StackLayout Margin="-10,-15,-10,-15">
                                 <Label x:Name="Dinner" TextColor="White" VerticalTextAlignment="Center" FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center" />
 
@@ -71,7 +71,7 @@
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="Dinner" />
                             </Frame.GestureRecognizers>
                         </Frame>
-                        <Frame x:Name="DessertFrame"  HeightRequest="150" WidthRequest="150" CornerRadius="20"  HasShadow="false">
+                        <Frame x:Name="DessertFrame"  HeightRequest="200" WidthRequest="150" CornerRadius="20"  HasShadow="false">
                             <StackLayout Margin="-10,-15,-10,-15">
                                 <Label x:Name="Desserts" TextColor="White" VerticalTextAlignment="Center"  FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
 
@@ -86,7 +86,7 @@
                       
                     </StackLayout>
                     <StackLayout Grid.Column="1" Margin="0,80,0,0" x:Name="stack2">
-                        <Frame  x:Name="LunchFrame" HeightRequest="150" WidthRequest="150" CornerRadius="20"  HasShadow="false">
+                        <Frame  x:Name="LunchFrame" HeightRequest="200" WidthRequest="150" CornerRadius="20"  HasShadow="false">
                             <StackLayout Margin="-10,-15,-10,-15">
                                 <Label x:Name="Lunch" TextColor="White" VerticalTextAlignment="Center" FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center" />
 
@@ -99,7 +99,7 @@
                             </Frame.GestureRecognizers>
                         </Frame>
                       
-                        <Frame x:Name="SaladsFrame"  HeightRequest="150" WidthRequest="150" CornerRadius="20"  HasShadow="false">
+                        <Frame x:Name="SaladsFrame"  HeightRequest="200" WidthRequest="150" CornerRadius="20"  HasShadow="false">
                             <StackLayout Margin="-10,-15,-10,-15">
                                 <Label x:Name="Salads" TextColor="White" VerticalTextAlignment="Center"  FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center" />
 
@@ -111,7 +111,7 @@
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="Salads" />
                             </Frame.GestureRecognizers>
                         </Frame>
-                        <Frame x:Name="QuickBitesFrame" HeightRequest="150" WidthRequest="150" CornerRadius="20"  HasShadow="false">
+                        <Frame x:Name="QuickBitesFrame" HeightRequest="200" WidthRequest="150" CornerRadius="20"  HasShadow="false">
                             <StackLayout Margin="-10,-15,-10,-15">
                                 <Label x:Name="QuickBites" TextColor="White" VerticalTextAlignment="Center"  FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center" />
 

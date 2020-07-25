@@ -310,9 +310,21 @@ namespace Recipe_App.Views
         }
         private async void searchbar_TextChanged(object sender, TextChangedEventArgs e)
         {
+            var items = await App.Database.SearchRecipeInCategory(e.NewTextValue.ToUpper(), SelectedCategory);
+
+            foreach(var item in items)
+            {
+                if (string.IsNullOrEmpty(item.ImageFilePath))
+                {
+                    item.ImageFilePath = "recipeplaceholder.png";
+
+                }
+            }
 
 
-            categoriesList.ItemsSource = await App.Database.SearchRecipeInCategory(e.NewTextValue.ToUpper(), SelectedCategory);
+
+
+            categoriesList.ItemsSource = items;
 
 
         }

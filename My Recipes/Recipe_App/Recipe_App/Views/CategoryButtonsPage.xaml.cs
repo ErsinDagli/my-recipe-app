@@ -106,7 +106,7 @@ namespace Recipe_App.Views
                 Desserts.Text = Language.CategoryDessertsEN;
                 Salads.Text = Language.CategorySaladsEN;
                 SaveCategoryButton.Text = Language.SaveButtonEnglish;
-                SaveCategoryButton.Text = Language.CancelButtonEnglish;
+                CancelCategoryButton.Text = Language.CancelButtonEnglish;
                 AddCategoryEntry.Placeholder = Language.AddCategoryPlaceholderEn;
 
             }
