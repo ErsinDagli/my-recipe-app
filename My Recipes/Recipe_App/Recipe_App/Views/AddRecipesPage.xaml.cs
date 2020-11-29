@@ -25,6 +25,8 @@ namespace Recipe_App
 
         async Task Initialise()
         {
+            txtcategory.Items.Clear();
+
             var categories = await App.Database.GetCategories();
 
             categories = categories?.OrderBy(x => x.CategoryName);
@@ -419,12 +421,12 @@ namespace Recipe_App
                                     if(MainPage.TurkishClicked == false)
                                     {
                                         await DisplayAlert("Edit Recipe", "Save successful!", "OK");
-                                        await Navigation.PopToRootAsync();
+                                      //  await Navigation.PopToRootAsync();
                                     }
                                     else
                                     {
                                         await DisplayAlert("Tarif düzenleme", "Başarılı!", "OK");
-                                        await Navigation.PopToRootAsync();
+                                       // await Navigation.PopToRootAsync();
                                     }
                                     
 
@@ -647,6 +649,124 @@ namespace Recipe_App
 
             }
            
+
+        }
+
+        private void AddCategoryButton_Clicked(object sender, EventArgs e)
+        {
+            var isShowing = AddCategoryFrame.IsVisible;
+
+            
+          
+            if(AddCategoryFrame.IsVisible == false)
+            {
+                Device.BeginInvokeOnMainThread(async () => {
+                    //this puts the element off the screen. positive number pushes down.
+                    //Then we translate to 0 whcih is the orignal position
+
+                    AddCategoryFrame.TranslationY = 50; 
+                    AddCategoryFrame.IsVisible = true;
+                    await AddCategoryFrame.TranslateTo(AddCategoryFrame.X, 0);
+
+
+                    //make mainscreen stack dark
+                    MainScreen.BackgroundColor = Color.Black;
+                    MainScreen.Opacity = 0.3;
+                    
+
+                });
+            }
+
+          
+        }
+
+        private async void SaveCategoryButton_Clicked(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(AddCategoryEntry.Text))
+            {
+                Category c = new Category();
+                c.CategoryName = AddCategoryEntry.Text;
+
+                var result = await App.Database.SaveCategory(c);
+                if (result == 0)
+                {
+                    await DisplayAlert("That category already exists", "", "cancel");
+                    return;
+
+                }
+                else
+                {
+                    await DisplayAlert("", "The category was added", "Ok");
+
+                    await AddCategoryFrame.TranslateTo(AddCategoryFrame.X, 50);
+                    AddCategoryFrame.IsVisible = false;
+
+
+                    //make mainscreen stack dark
+                    MainScreen.BackgroundColor = Color.Transparent;
+                    MainScreen.Opacity = 1;
+
+                    AddCategoryEntry.Text = String.Empty;
+
+                    //re popuplate categories
+                    if (MainPage.TurkishClicked == false)
+                    {
+                        Title = Language.AddRecipeEnglish;
+                        recipeNameLabel.Text = Language.RecipeNameEnglish;
+                        categoryLabel.Text = Language.CategoryEnglish;
+                        ingredientsLabel.Text = Language.IngredientsEnglish;
+                        recipeLabel.Text = Language.RecipeEnglish;
+                        notesLabel.Text = Language.NotesEnglish;
+                        SaveButton.Text = Language.SaveButtonEnglish;
+                        CameraButton.Text = Language.TakePhotoButtonEnglish;
+                        ChooseImage.Text = Language.ChooseImageButtonEnglish;
+
+
+                        txtcategory.Items.Add("Breakfast");
+                        txtcategory.Items.Add("Lunch");
+                        txtcategory.Items.Add("Dinner");
+                        txtcategory.Items.Add("Desserts");
+                        txtcategory.Items.Add("Quick Bites");
+
+                    }
+                    else
+                    {
+                        Title = Language.AddRecipeTurkish;
+
+                        recipeNameLabel.Text = Language.RecipeNameTurkish;
+                        categoryLabel.Text = Language.CategoryTurkish;
+                        ingredientsLabel.Text = Language.IngredientsTurkish;
+                        recipeLabel.Text = Language.RecipeTurkish;
+                        notesLabel.Text = Language.NotesTurkish;
+                        SaveButton.Text = Language.SaveButtonTurkish;
+                        CameraButton.Text = Language.TakePhotoButtonTurkish;
+                        ChooseImage.Text = Language.ChooseImageButtonTurkish;
+
+                        txtcategory.Items.Add("Kahvaltı");
+                        txtcategory.Items.Add("Öğlen Yemeği");
+                        txtcategory.Items.Add("Akşam Yemegi");
+                        txtcategory.Items.Add("Tatlılar");
+                        txtcategory.Items.Add("Aperatifler");
+                    }
+                    await Initialise();
+
+
+                }
+            }
+        }
+
+        private async void CloseNewCategoryButton_Clicked(object sender, EventArgs e)
+        {
+            await AddCategoryFrame.TranslateTo(AddCategoryFrame.X, 50);
+            AddCategoryFrame.IsVisible = false;
+
+
+            //make mainscreen stack dark
+            MainScreen.BackgroundColor = Color.Transparent;
+            MainScreen.Opacity = 1;
+
+            AddCategoryEntry.Text = String.Empty;
+
 
         }
     }

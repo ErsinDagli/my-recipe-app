@@ -16,9 +16,11 @@
 
 
     <ContentPage.Content>
-       
+        <StackLayout>
+            
+  
         <ScrollView>
-            <StackLayout Padding="20" >
+            <StackLayout Padding="20" x:Name="MainScreen" >
 
 
 
@@ -65,9 +67,9 @@
                        IsClippedToBounds="True"
                        BackgroundColor="LightBlue">
                     <StackLayout>
-                        <Label x:Name="recipeNameLabel" FontAttributes="Bold" FontSize="Medium" TextColor="White" BackgroundColor="Transparent" />
+                        <Label x:Name="recipeNameLabel"  FontAttributes="Bold" FontSize="Medium" TextColor="White" BackgroundColor="Transparent" />
 
-                        <Editor x:Name="txtRecipeName"  HorizontalOptions="FillAndExpand" VerticalOptions="Center" Grid.Row="3" BackgroundColor="LightBlue" />
+                        <Editor x:Name="txtRecipeName" AutoSize="TextChanges" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Grid.Row="3" BackgroundColor="LightBlue" />
 
                     </StackLayout>
                 </Frame>
@@ -76,7 +78,11 @@
                        BackgroundColor="LightGreen">
 
                     <StackLayout>
-                        <Label x:Name="categoryLabel" FontAttributes="Bold" FontSize="Medium" TextColor="White" BackgroundColor="Transparent"/>
+                        <StackLayout Orientation="Horizontal">
+                            <Label x:Name="categoryLabel" HorizontalOptions="StartAndExpand" FontAttributes="Bold" FontSize="Medium" TextColor="White" BackgroundColor="Transparent"/>
+                            <Button Text="Add +" HorizontalOptions="EndAndExpand" x:Name="AddCategoryButton" Clicked="AddCategoryButton_Clicked" />
+
+                        </StackLayout>
 
                         <Picker x:Name="txtcategory" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Grid.Row="4" BackgroundColor="LightGreen" >
                         <Picker.Items>
@@ -119,8 +125,38 @@
 
                     </StackLayout>
                 </Frame>
-               
-        </StackLayout>
+
+                
+              
+
+            </StackLayout>
+           
         </ScrollView>
+
+            <!--hidden add category button-->
+                
+            <Frame x:Name="AddCategoryFrame"
+                       Margin="4,0,8,4" 
+                       HorizontalOptions="FillAndExpand" 
+                       VerticalOptions="End" 
+                       IsVisible="False"
+                      
+                       CornerRadius="10" >
+
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Category Name" TextColor="Black" HorizontalOptions="StartAndExpand" />
+
+                        <Button HorizontalOptions="EndAndExpand" Text="X" TextColor="Black"  x:Name="CloseNewCategoryButton" BackgroundColor="Transparent" Clicked="CloseNewCategoryButton_Clicked" />
+
+
+                    </StackLayout>
+                    
+                    <Editor x:Name="AddCategoryEntry" AutoSize="TextChanges" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
+                    <Button CornerRadius="20" BackgroundColor="Aqua" TextColor="White" Text="Save" x:Name="SaveCategoryButton" Clicked="SaveCategoryButton_Clicked"/>
+                </StackLayout>  
+            </Frame>
+
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
